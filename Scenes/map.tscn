@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bga6mkh5j441c"]
+
+[ext_resource type="Script" path="res://Scripts/Main System/map.gd" id="1_6l5pm"]
+[ext_resource type="MeshLibrary" uid="uid://c63kkvp6fisyv" path="res://Meshes/Block Library.tres" id="1_ilh50"]
+[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
+[ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
+
+[sub_resource type="Environment" id="Environment_yeaxu"]
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_6l5pm")
+
+[node name="TileSystem" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpawnTower1" type="TextureButton" parent="TileSystem"]
+layout_mode = 0
+offset_left = 878.0
+offset_top = 512.0
+offset_right = 1006.0
+offset_bottom = 640.0
+texture_normal = ExtResource("2_hl03d")
+
+[node name="SpawnTower2" type="TextureButton" parent="TileSystem"]
+layout_mode = 0
+offset_left = 1015.0
+offset_top = 511.0
+offset_right = 1143.0
+offset_bottom = 639.0
+texture_normal = ExtResource("2_hl03d")
+
+[node name="Lighting Stuff" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting Stuff"]
+environment = SubResource("Environment_yeaxu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting Stuff"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_ilh50")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 65531, 851968, 0, 65532, 851968, 0, 65533, 851968, 0, 65534, 851968, 0, 65535, 851968, 0, 0, 851968, 0, 1, 851968, 0, 2, 851968, 0, 3, 851968, 0, 4, 851968, 65535, 65535, 851968, 65534, 65535, 851968, 65532, 65535, 851968, 65533, 65535, 851968, 1, 65535, 851968, 2, 65535, 851968, 3, 65535, 851968, 4, 65535, 851968, 5, 65535, 851968, 5, 65531, 851968, 5, 65532, 851968, 5, 65533, 851968, 5, 65534, 851968, 5, 2, 851968, 5, 3, 851968, 5, 4, 851968, 1, 4, 851968, 2, 4, 851968, 3, 4, 851968, 4, 4, 851968, 65535, 4, 851968, 65534, 4, 851968, 65533, 4, 851968, 65532, 4, 851968, 65532, 3, 851968, 65532, 2, 851968, 65532, 1, 851968, 65532, 0, 851968, 65532, 65534, 851968, 65532, 65533, 851968, 65532, 65532, 851968, 65532, 65531, 851968, 65533, 65531, 851968, 65534, 65531, 851968, 65535, 65531, 851968, 1, 65531, 851968, 2, 65531, 851968, 3, 65531, 851968, 4, 65531, 851968, 65534, 65532, 851968, 65534, 2, 851968, 65533, 65532, 851968, 65533, 65533, 851968, 65533, 65534, 851968, 65533, 0, 851968, 65533, 1, 851968, 65533, 2, 851968, 65533, 3, 851968, 65534, 65533, 851968, 65534, 65534, 851968, 65534, 0, 851968, 65534, 1, 851968, 65534, 3, 851968, 65535, 65532, 851968, 65535, 65533, 851968, 65535, 65534, 851968, 65535, 0, 851968, 65535, 1, 851968, 65535, 2, 851968, 65535, 3, 851968, 1, 65532, 851968, 1, 65533, 851968, 1, 65534, 851968, 1, 0, 851968, 1, 1, 851968, 1, 2, 851968, 1, 3, 851968, 2, 65532, 851968, 2, 65533, 851968, 2, 65534, 851968, 2, 0, 851968, 2, 1, 851968, 2, 2, 851968, 2, 3, 851968, 3, 65532, 851968, 3, 65533, 851968, 3, 65534, 851968, 3, 0, 851968, 3, 1, 851968, 3, 2, 851968, 3, 3, 851968, 4, 65532, 851968, 4, 65533, 851968, 4, 65534, 851968, 4, 0, 851968, 4, 1, 851968, 4, 2, 851968, 4, 3, 851968, 5, 0, 851968, 5, 1, 851968, 65540, 65533, 851970, 65540, 65534, 851970, 65539, 65533, 851970, 131070, 65533, 851970, 131070, 65534, 851970, 131070, 65535, 851970, 131070, 0, 851970, 131070, 3, 851970, 131071, 3, 851970, 65536, 3, 851970, 65540, 1, 851969, 65540, 3, 851969)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8.50205, 8.10687)
+script = ExtResource("3_a5gf1")
+
+[connection signal="button_down" from="TileSystem/SpawnTower1" to="." method="_on_spawn_tower_1_button_down"]
+[connection signal="button_down" from="TileSystem/SpawnTower2" to="." method="_on_spawn_tower_2_button_down"]
