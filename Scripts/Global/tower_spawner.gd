@@ -1,7 +1,7 @@
 extends Node
 
 var currentTower := "Test2"
-var SpawnTower
+var SpawnTower : PackedScene
 
 var TowerDictionary : Dictionary = {
 	"Test1" : preload("res://Scenes/test_tower_1.tscn"),
