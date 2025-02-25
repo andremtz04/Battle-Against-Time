@@ -1,12 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqc72v5w5u5bp"]
+[gd_scene load_steps=13 format=3 uid="uid://cqc72v5w5u5bp"]
+
+[ext_resource type="Texture2D" uid="uid://cqn2xv4tr57bx" path="res://Textures/Temp/Light/texture_11.png" id="1_v8nul"]
+[ext_resource type="Texture2D" uid="uid://baoxoykc1w6ju" path="res://Textures/Temp/Dark/texture_12.png" id="2_jopfe"]
+[ext_resource type="Texture2D" uid="uid://c8mf41tklkpb4" path="res://Textures/Temp/Purple/texture_13.png" id="3_0hbof"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1210d"]
+albedo_texture = ExtResource("1_v8nul")
+uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k4yed"]
+material = SubResource("StandardMaterial3D_1210d")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ho01"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohxpv"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("2_jopfe")
+uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_00i0f"]
 material = SubResource("StandardMaterial3D_ohxpv")
@@ -15,7 +25,8 @@ material = SubResource("StandardMaterial3D_ohxpv")
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_283d8"]
-albedo_color = Color(0.458405, 0.458405, 0.458405, 1)
+albedo_texture = ExtResource("3_0hbof")
+uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vypmt"]
 material = SubResource("StandardMaterial3D_283d8")
@@ -26,7 +37,6 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="Block Library" type="Node3D"]
 
 [node name="White Block" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_k4yed")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="White Block"]
@@ -43,10 +53,11 @@ mesh = SubResource("BoxMesh_00i0f")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Black Block/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_tjtf8")
 
-[node name="Gray Block" type="MeshInstance3D" parent="."]
+[node name="Purple Block" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_vypmt")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Gray Block"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Purple Block"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Gray Block/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Purple Block/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_drahq")

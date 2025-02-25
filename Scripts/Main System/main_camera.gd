@@ -1,13 +1,12 @@
 extends Camera3D
 
 @onready var map: Node3D = $".."
-var buttonDown : bool = false
 
 # Mouse tracking stuff
 var rayLength : int = 1000
 var rayCastResult : Dictionary
 var instance
-
+var inPos
 
 func _process(_delta: float) -> void:
 	# Gets the mouse position
@@ -19,38 +18,47 @@ func _process(_delta: float) -> void:
 	rayQuery.from = from
 	rayQuery.to = to
 	rayCastResult = space.intersect_ray(rayQuery)
-	print(buttonDown)
+	#print(rayCastResult)
 
 
 func _input(event) -> void:
 	# Spawns the tower when you left click
-	if event.is_action_pressed("Left Click") :
-		instance = TowerSpawner.SpawnTower.instantiate()
-		instance.position = rayCastResult["position"]
-		map.add_child(instance)
+	if event.is_action_pressed("Left Click"):
+		spawn_tower()
 
 	# Drags the tower around when left click is held
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !rayCastResult.is_empty():
-		instance.position = rayCastResult["position"]
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !rayCastResult.is_empty() && instance:
+		instance.position = Vector3(round(rayCastResult["position"]).x + 0.5, round(rayCastResult["position"]).y, round(rayCastResult["position"]).z + 0.5)
 
 	# Deletes the tower if it out of bounds
 	if event.is_action_released("Left Click"):
-		deleteTower()
+		delete_tower()
+		#TowerSpawner.mapGrid[inPos.x][inPos.z] = [1]
 
 
-func deleteTower() -> void:
-	
-	if rayCastResult.is_empty():
-		instance.queue_free()
-	elif rayCastResult["position"].y < 1:
-		instance.queue_free()
-	buttonDown = false
+func delete_tower() -> void:
+	if instance:
+		if rayCastResult.is_empty():
+				instance.queue_free()
+		elif rayCastResult["position"].y < 1:
+			instance.queue_free()
+		else:
+			TowerSpawner.mapGrid[instance.position.x+4.5][instance.position.z+5.5] = [1]
+			print(TowerSpawner.mapGrid)
+			print(instance.position)
+
+
+func spawn_tower() -> void:
+	if !rayCastResult.is_empty():
+		inPos = rayCastResult["position"]
+		instance = TowerSpawner.SpawnTower.instantiate()
+		instance.position = Vector3(inPos.x, inPos.y, inPos.z)
+		map.add_child(instance)
+
 
 func _on_spawn_tower_1_button_down() -> void:
 	TowerSpawner.currentTower = "Test1"
-	buttonDown = true
 
 
 func _on_spawn_tower_2_button_down() -> void:
 	TowerSpawner.currentTower = "Test2"
-	buttonDown = true
