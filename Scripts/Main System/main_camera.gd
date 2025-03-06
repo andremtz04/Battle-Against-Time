@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 	rayQuery.from = from
 	rayQuery.to = to
 	rayCastResult = space.intersect_ray(rayQuery)
-	#print(inPos)
+	#print(rayCastResult)
 
 
 func _input(event) -> void:
