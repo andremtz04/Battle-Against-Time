@@ -4,8 +4,10 @@ var currentTower := "Test2"
 var SpawnTower : PackedScene
 var mapGrid : Array
 
-var row : int = 10
-var col : int = 10
+var row : int = 15
+var col : int = 20
+
+enum { EMPTY, TOWER, ENEMY, BLOCK }
 
 var TowerDictionary : Dictionary = {
 	"Test1" : preload("res://Scenes/test_tower_1.tscn"),
@@ -16,7 +18,8 @@ func _ready() -> void:
 	for r in row:
 		mapGrid.append([])
 		for c in col:
-			mapGrid[r].append(0)
+			mapGrid[r].append(EMPTY)
+	#print(mapGrid)
 
 func _process(_delta: float) -> void:
 	SpawnTower = TowerDictionary[currentTower]

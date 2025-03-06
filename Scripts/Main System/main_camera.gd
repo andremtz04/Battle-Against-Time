@@ -8,6 +8,7 @@ var rayCastResult : Dictionary
 var instance
 var inPos
 
+
 func _process(_delta: float) -> void:
 	# Gets the mouse position
 	var mousePos := get_viewport().get_mouse_position()
@@ -18,7 +19,7 @@ func _process(_delta: float) -> void:
 	rayQuery.from = from
 	rayQuery.to = to
 	rayCastResult = space.intersect_ray(rayQuery)
-	#print(rayCastResult)
+	#print(inPos)
 
 
 func _input(event) -> void:
@@ -28,24 +29,32 @@ func _input(event) -> void:
 
 	# Drags the tower around when left click is held
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !rayCastResult.is_empty() && instance:
-		instance.position = Vector3(round(rayCastResult["position"]).x + 0.5, round(rayCastResult["position"]).y, round(rayCastResult["position"]).z + 0.5)
+		inPos = rayCastResult["position"]
+		instance.position = inPos
 
 	# Deletes the tower if it out of bounds
 	if event.is_action_released("Left Click"):
-		delete_tower()
-		#TowerSpawner.mapGrid[inPos.x][inPos.z] = [1]
+		if delete_tower():
+			pass
+		else:
+			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 0.5)
+			print(inPos)
+			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.TOWER
+			#print(TowerSpawner.mapGrid)
 
 
-func delete_tower() -> void:
+func delete_tower() -> bool:
 	if instance:
+		inPos = Vector3(floor(inPos.x), floor(inPos.y), floor(inPos.z))
 		if rayCastResult.is_empty():
-				instance.queue_free()
+			instance.queue_free()
 		elif rayCastResult["position"].y < 1:
 			instance.queue_free()
+		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != TowerSpawner.EMPTY:
+			instance.queue_free()
 		else:
-			TowerSpawner.mapGrid[instance.position.x+4.5][instance.position.z+5.5] = [1]
-			print(TowerSpawner.mapGrid)
-			print(instance.position)
+			return false
+	return true
 
 
 func spawn_tower() -> void:
