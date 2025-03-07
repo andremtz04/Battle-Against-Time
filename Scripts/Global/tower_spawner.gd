@@ -9,6 +9,7 @@ var col : int = 20
 
 enum { EMPTY, TOWER, ENEMY, BLOCK }
 
+
 var TowerDictionary : Dictionary = {
 	"None" : null,
 	"Test1" : preload("res://Scenes/test_tower_1.tscn"),
