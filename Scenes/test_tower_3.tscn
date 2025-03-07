@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://kcve8m00d6jr"]
+
+[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="1_d62rn"]
+
+[node name="test_tower_3" type="Sprite3D"]
+top_level = true
+offset = Vector2(0, 50)
+billboard = 1
+texture = ExtResource("1_d62rn")

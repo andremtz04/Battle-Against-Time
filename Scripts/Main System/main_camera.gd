@@ -38,8 +38,6 @@ func _input(event) -> void:
 			pass
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 0.5)
-			print(inPos)
-			print(TowerSpawner.currentTower)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
 
 
@@ -72,3 +70,7 @@ func _on_spawn_tower_1_button_down() -> void:
 
 func _on_spawn_tower_2_button_down() -> void:
 	TowerSpawner.currentTower = "Test2"
+
+
+func _on_spawn_tower_3_button_down() -> void:
+	TowerSpawner.currentTower = "Test3"

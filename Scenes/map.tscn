@@ -32,6 +32,10 @@ texture_normal = ExtResource("2_hl03d")
 layout_mode = 2
 texture_normal = ExtResource("2_hl03d")
 
+[node name="SpawnTower3" type="TextureButton" parent="UI/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_hl03d")
+
 [node name="Lighting Stuff" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting Stuff"]
@@ -63,3 +67,4 @@ metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [connection signal="button_down" from="UI/GridContainer/SpawnTower2" to="Camera3D" method="_on_spawn_tower_2_button_down"]
 [connection signal="button_down" from="UI/GridContainer/SpawnTower1" to="Camera3D" method="_on_spawn_tower_1_button_down"]
+[connection signal="button_down" from="UI/GridContainer/SpawnTower3" to="Camera3D" method="_on_spawn_tower_3_button_down"]
