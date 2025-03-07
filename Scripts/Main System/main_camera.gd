@@ -39,26 +39,27 @@ func _input(event) -> void:
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 0.5)
 			print(inPos)
-			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.TOWER
-			#print(TowerSpawner.mapGrid)
+			print(TowerSpawner.currentTower)
+			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
 
 
 func delete_tower() -> bool:
 	if instance:
-		inPos = Vector3(floor(inPos.x), floor(inPos.y), floor(inPos.z))
+		inPos = Vector3(floor(inPos.x), round(inPos.y), floor(inPos.z))
 		if rayCastResult.is_empty():
 			instance.queue_free()
-		elif rayCastResult["position"].y < 1:
+		elif inPos.y < 0.95:
 			instance.queue_free()
-		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != TowerSpawner.EMPTY:
+		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != "None":
 			instance.queue_free()
 		else:
+			#print(TowerSpawner.mapGrid[inPos.z][inPos.x])
 			return false
 	return true
 
 
 func spawn_tower() -> void:
-	if !rayCastResult.is_empty():
+	if !rayCastResult.is_empty() and TowerSpawner.SpawnTower != null:
 		inPos = rayCastResult["position"]
 		instance = TowerSpawner.SpawnTower.instantiate()
 		instance.position = Vector3(inPos.x, inPos.y, inPos.z)

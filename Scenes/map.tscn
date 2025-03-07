@@ -10,26 +10,26 @@
 [node name="Map" type="Node3D"]
 script = ExtResource("1_6l5pm")
 
-[node name="TileSystem" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SpawnTower1" type="TextureButton" parent="TileSystem"]
+[node name="GridContainer" type="GridContainer" parent="UI"]
 layout_mode = 0
 offset_left = 878.0
-offset_top = 512.0
-offset_right = 1006.0
-offset_bottom = 640.0
+offset_top = 13.0
+offset_right = 1138.0
+offset_bottom = 273.0
+columns = 2
+
+[node name="SpawnTower2" type="TextureButton" parent="UI/GridContainer"]
+layout_mode = 2
 texture_normal = ExtResource("2_hl03d")
 
-[node name="SpawnTower2" type="TextureButton" parent="TileSystem"]
-layout_mode = 0
-offset_left = 1015.0
-offset_top = 511.0
-offset_right = 1143.0
-offset_bottom = 639.0
+[node name="SpawnTower1" type="TextureButton" parent="UI/GridContainer"]
+layout_mode = 2
 texture_normal = ExtResource("2_hl03d")
 
 [node name="Lighting Stuff" type="Node3D" parent="."]
@@ -41,7 +41,8 @@ environment = SubResource("Environment_yeaxu")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 10, 15, 20)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 13.5, 15, 12.5)
+fov = 65.0
 script = ExtResource("3_a5gf1")
 
 [node name="Main Map" type="GridMap" parent="."]
@@ -60,5 +61,5 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
-[connection signal="button_down" from="TileSystem/SpawnTower1" to="Camera3D" method="_on_spawn_tower_1_button_down"]
-[connection signal="button_down" from="TileSystem/SpawnTower2" to="Camera3D" method="_on_spawn_tower_2_button_down"]
+[connection signal="button_down" from="UI/GridContainer/SpawnTower2" to="Camera3D" method="_on_spawn_tower_2_button_down"]
+[connection signal="button_down" from="UI/GridContainer/SpawnTower1" to="Camera3D" method="_on_spawn_tower_1_button_down"]
