@@ -39,6 +39,8 @@ func _input(event) -> void:
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 0.5)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
+			#update risk table
+			map.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
 
 
 func delete_tower() -> bool:

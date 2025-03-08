@@ -18,33 +18,36 @@ func _ready():
 	}
 
 func updateRisk(towerName, row, col, delete) -> void:
-	var towerRisk : Array = towerRisk[towerName]
-	var range : int = floor(towerRisk.size()/2)
+	var SpTowerRisk : Array = towerRisk[towerName]
+	var range : int = towerRisk.size()/2
 	var r : int = 0
 	var c : int = 0
 	for i in range(row-range, row+range):
+		c = 0
 		for j in range(col-range, col+range):
 			if(i < 0 || i > riskTable.size() || j < 0 || j > riskTable[0].size()):
 				pass
 			else:
 				if(delete == true):
-					riskTable[i][j] -= towerRisk[r][c]
+					riskTable[i][j] -= SpTowerRisk[r][c]
 				else:
-					riskTable[i][j] += towerRisk[r][c]
+					print("Attempting to access: " + str(i) + " " + str(j))
+					print("col value" + str(r) + " " + str(c))
+					riskTable[i][j] += SpTowerRisk[r][c]
 			c += 1
 		r += 1
+	print("Added risk!!")
+	print(riskTable)
 	
-func calcRisk(towers) -> void:
+func calcRisk() -> void:
 	#reset all values to 0 in risktable
 	for i in riskTable:
 		for j in riskTable[i]:
 			riskTable[i][j] = 0
 
-	for row in towers:
-		for col in towers[row]:
-			updateRisk(towers[row][col], row, col, false)
+	for row in TowerSpawner.mapGrid:
+		for col in TowerSpawner.mapGrid[row]:
+			updateRisk(TowerSpawner.mapGrid[row][col], row, col, false)
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#pass
-
-
