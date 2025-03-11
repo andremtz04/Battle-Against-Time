@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TowerSpawner="*res://Scripts/Global/tower_spawner.gd"
+Economy="*res://Scripts/Global/economy.gd"
 
 [display]
 

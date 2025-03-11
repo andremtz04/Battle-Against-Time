@@ -8,6 +8,8 @@ var rayCastResult : Dictionary
 var instance
 var inPos
 
+signal placedTower
+
 
 func _process(_delta: float) -> void:
 	# Gets the mouse position
@@ -39,6 +41,7 @@ func _input(event) -> void:
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 0.5)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
+			placedTower.emit()
 
 
 func delete_tower() -> bool:
@@ -62,15 +65,3 @@ func spawn_tower() -> void:
 		instance = TowerSpawner.SpawnTower.instantiate()
 		instance.position = Vector3(inPos.x, inPos.y, inPos.z)
 		map.add_child(instance)
-
-
-func _on_spawn_tower_1_button_down() -> void:
-	TowerSpawner.currentTower = "Test1"
-
-
-func _on_spawn_tower_2_button_down() -> void:
-	TowerSpawner.currentTower = "Test2"
-
-
-func _on_spawn_tower_3_button_down() -> void:
-	TowerSpawner.currentTower = "Test3"
