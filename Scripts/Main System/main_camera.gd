@@ -40,12 +40,14 @@ func _input(event) -> void:
 			pass
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 0.5)
-			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
+			TowerSpawner.mapGrid[inPos.z][inPos.x] = instance
 			#update risk table
 			map.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
-			
+			#print(TowerSpawner.mapGrid)
+			instance.tPosition = inPos
+			instance.calculate_radius()
+			instance.timer.start()
 			placedTower.emit()
-
 
 func delete_tower() -> bool:
 	if instance:
@@ -54,7 +56,7 @@ func delete_tower() -> bool:
 			instance.queue_free()
 		elif inPos.y < 0.95:
 			instance.queue_free()
-		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != "None":
+		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != null:
 			instance.queue_free()
 		else:
 			#print(TowerSpawner.mapGrid[inPos.z][inPos.x])

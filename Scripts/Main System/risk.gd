@@ -9,7 +9,7 @@ func _ready():
 		riskTable.append([])
 		for j in TowerSpawner.col:
 			riskTable[i].append(0)
-	print(riskTable)
+	#print(riskTable)
 	
 	towerRisk = {
 		"Test1" : [[0,0,1,0,0],[0,1,2,1,0],[1,2,3,2,1],[0,1,2,1,0],[0,0,1,0,0]],
@@ -31,13 +31,13 @@ func updateRisk(towerName, row, col, delete) -> void:
 				if(delete == true):
 					riskTable[i][j] -= SpTowerRisk[r][c]
 				else:
-					print("Attempting to access: " + str(i) + " " + str(j))
-					print("col value" + str(r) + " " + str(c))
+					#print("Attempting to access: " + str(i) + " " + str(j))
+					#print("col value" + str(r) + " " + str(c))
 					riskTable[i][j] += SpTowerRisk[r][c]
 			c += 1
 		r += 1
-	print("Added risk!!")
-	print(riskTable)
+	#print("Added risk!!")
+	#print(riskTable)
 	
 func calcRisk() -> void:
 	#reset all values to 0 in risktable
