@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0f6l08qc0qe5"]
+
+[ext_resource type="Script" path="res://Scripts/Tower/mage.gd" id="1_ssjch"]
+[ext_resource type="Texture2D" uid="uid://ck56qpsuks6hc" path="res://Textures/Temp/Character/Female person/Tilesheet/character_femalePerson_sheet.png" id="1_tx5d1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f5ts"]
+atlas = ExtResource("1_tx5d1")
+region = Rect2(0, 27, 864, 613)
+
+[node name="Mage" type="Sprite3D" groups=["Tower"]]
+offset = Vector2(0, 50)
+billboard = 1
+texture = SubResource("AtlasTexture_3f5ts")
+hframes = 9
+vframes = 5
+script = ExtResource("1_ssjch")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

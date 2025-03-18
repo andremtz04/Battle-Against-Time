@@ -24,6 +24,11 @@ Economy="*res://Scripts/Global/economy.gd"
 
 window/stretch/mode="viewport"
 
+[global_group]
+
+Enemy=""
+Tower=""
+
 [input]
 
 "Left Click"={

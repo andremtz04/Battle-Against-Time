@@ -39,11 +39,11 @@ func _input(event) -> void:
 		if delete_tower():
 			pass
 		else:
-			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 0.5)
+			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 1)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = instance
 			#update risk table
-			map.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
-			#print(TowerSpawner.mapGrid)
+			#map.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
+			
 			instance.tPosition = inPos
 			instance.calculate_radius()
 			instance.timer.start()

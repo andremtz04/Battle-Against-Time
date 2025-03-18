@@ -1,6 +1,6 @@
 extends Node
 
-var currentTower := "null"
+var currentTower : String = "null"
 var SpawnTower : PackedScene
 var mapGrid : Array
 
@@ -12,9 +12,10 @@ enum { EMPTY, TOWER, ENEMY, BLOCK }
 
 var TowerDictionary : Dictionary = {
 	"null" : null,
-	"Test1" : preload("res://Scenes/test_tower_1.tscn"),
-	"Test2" : preload("res://Scenes/test_tower_2.tscn"),
-	"Test3" : preload("res://Scenes/test_tower_3.tscn")
+	"Fist" : preload("res://Scenes/towers/fist_fighter.tscn"),
+	"Healer" : preload("res://Scenes/towers/healer.tscn"),
+	"Mage" : preload("res://Scenes/towers/mage.tscn"),
+	"Enemy" : preload("res://Scenes/towers/enemy_1.tscn")
 }
 
 func _ready() -> void:
@@ -22,7 +23,6 @@ func _ready() -> void:
 		mapGrid.append([])
 		for c in col:
 			mapGrid[r].append(null)
-	#print(mapGrid)
 
 func _process(_delta: float) -> void:
 	SpawnTower = TowerDictionary[currentTower]

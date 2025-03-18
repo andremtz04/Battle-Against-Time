@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmtlwkbkhqcuj"]
+
+[ext_resource type="Script" path="res://Scripts/Tower/healer.gd" id="1_3rqt0"]
+[ext_resource type="Texture2D" uid="uid://dgjr3jn55ikpg" path="res://Textures/Temp/Character/Female adventurer/Tilesheet/character_femaleAdventurer_sheet.png" id="1_jth88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01yci"]
+atlas = ExtResource("1_jth88")
+region = Rect2(0, 23, 864, 617)
+
+[node name="Healer" type="Sprite3D" groups=["Tower"]]
+offset = Vector2(0, 50)
+billboard = 1
+texture = SubResource("AtlasTexture_01yci")
+hframes = 9
+vframes = 5
+script = ExtResource("1_3rqt0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

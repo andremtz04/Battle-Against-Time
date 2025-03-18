@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://djfr0wtn0nyus"]
+
+[ext_resource type="Texture2D" uid="uid://cufx3s0p6sj4m" path="res://Textures/Temp/Character/Zombie/Tilesheet/character_zombie_sheet.png" id="1_1h3b1"]
+[ext_resource type="Script" path="res://Scripts/Tower/enemy_1.gd" id="1_ettbt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0jc0"]
+atlas = ExtResource("1_1h3b1")
+region = Rect2(0, 22, 864, 618)
+
+[node name="Enemy1" type="Sprite3D" groups=["Enemy"]]
+offset = Vector2(0, 50)
+billboard = 1
+texture = SubResource("AtlasTexture_c0jc0")
+hframes = 9
+vframes = 5
+script = ExtResource("1_ettbt")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

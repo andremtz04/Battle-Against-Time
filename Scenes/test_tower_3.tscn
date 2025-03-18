@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://kcve8m00d6jr"]
+[gd_scene load_steps=4 format=3 uid="uid://kcve8m00d6jr"]
 
-[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="1_d62rn"]
+[ext_resource type="Texture2D" uid="uid://dgjr3jn55ikpg" path="res://Textures/Temp/Character/Female adventurer/Tilesheet/character_femaleAdventurer_sheet.png" id="1_mwdtb"]
+[ext_resource type="Script" path="res://Scripts/Tower/test_tower_3.gd" id="2_eetts"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4nay"]
+atlas = ExtResource("1_mwdtb")
+region = Rect2(1, 22, 866, 615)
 
 [node name="test_tower_3" type="Sprite3D"]
 top_level = true
 offset = Vector2(0, 50)
 billboard = 1
-texture = ExtResource("1_d62rn")
+texture = SubResource("AtlasTexture_w4nay")
+hframes = 9
+vframes = 5
+script = ExtResource("2_eetts")
+
+[node name="Timer" type="Timer" parent="."]
