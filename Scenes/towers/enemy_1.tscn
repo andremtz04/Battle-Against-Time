@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://djfr0wtn0nyus"]
+[gd_scene load_steps=6 format=3 uid="uid://djfr0wtn0nyus"]
 
 [ext_resource type="Texture2D" uid="uid://cufx3s0p6sj4m" path="res://Textures/Temp/Character/Zombie/Tilesheet/character_zombie_sheet.png" id="1_1h3b1"]
 [ext_resource type="Script" path="res://Scripts/Tower/enemy_1.gd" id="1_ettbt"]
@@ -7,7 +7,13 @@
 atlas = ExtResource("1_1h3b1")
 region = Rect2(0, 22, 864, 618)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_d7skv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk2wm"]
+size = Vector3(3, 0.25, 3)
+
 [node name="Enemy1" type="Sprite3D" groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 offset = Vector2(0, 50)
 billboard = 1
 texture = SubResource("AtlasTexture_c0jc0")
@@ -17,4 +23,20 @@ script = ExtResource("1_ettbt")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HitboxArea" type="Area3D" parent="."]
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitboxArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_d7skv")
+
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="AttackBox" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_bk2wm")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

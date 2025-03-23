@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dysyltj04yf18"]
+[gd_scene load_steps=5 format=3 uid="uid://dysyltj04yf18"]
 
 [ext_resource type="Texture2D" uid="uid://dk6oh5ofthkg8" path="res://Textures/Temp/Character/Male adventurer/Tilesheet/character_maleAdventurer_sheet.png" id="1_7fgov"]
 [ext_resource type="Script" path="res://Scripts/Tower/fist_fighter.gd" id="2_mq440"]
@@ -6,6 +6,8 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_quac4"]
 atlas = ExtResource("1_7fgov")
 region = Rect2(0, 18, 864, 622)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kkffx"]
 
 [node name="fist_fighter" type="Sprite3D" groups=["Tower"]]
 top_level = true
@@ -17,5 +19,11 @@ vframes = 5
 script = ExtResource("2_mq440")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="HitboxArea" type="Area3D" parent="."]
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitboxArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_kkffx")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

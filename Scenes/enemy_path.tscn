@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://b86bnbspcmf8d"]
+
+[ext_resource type="PackedScene" uid="uid://djfr0wtn0nyus" path="res://Scenes/towers/enemy_1.tscn" id="1_fy46r"]
+[ext_resource type="Script" path="res://Scripts/Main System/enemy_path.gd" id="1_n75t5"]
+[ext_resource type="Texture2D" uid="uid://cufx3s0p6sj4m" path="res://Textures/Temp/Character/Zombie/Tilesheet/character_zombie_sheet.png" id="2_02jbc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0jc0"]
+atlas = ExtResource("2_02jbc")
+region = Rect2(0, 22, 864, 618)
+
+[node name="enemy_path" type="PathFollow3D"]
+script = ExtResource("1_n75t5")
+
+[node name="Enemy1" parent="." instance=ExtResource("1_fy46r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+texture = SubResource("AtlasTexture_c0jc0")

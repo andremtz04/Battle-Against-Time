@@ -1,7 +1,7 @@
 extends Control
 
 @onready var moneyLabel : RichTextLabel = $Money
-
+signal start_round
 
 func _ready() -> void:
 	moneyLabel.text = str(Economy.totalMoney)
@@ -27,3 +27,7 @@ func _on_camera_3d_placed_tower() -> void:
 
 func _on_enemy_test_button_down() -> void:
 	TowerSpawner.currentTower = "Enemy"
+
+
+func _on_play_button_button_down() -> void:
+	start_round.emit()

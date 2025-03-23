@@ -15,39 +15,19 @@ var age : int = 0
 var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
 
-var zUp
-var zDown
-var xLeft
-var xRight
-
 @onready var timer: Timer = $Timer
+@onready var hitbox_area: Area3D = $HitboxArea
 
 # z = rows , x = columns
-func attack() -> void:
-	for r in range(zUp, zDown+1):
-		for c in range(xLeft, xRight+1):
-			var currSlot : Node3D = TowerSpawner.mapGrid[r][c]
-			if not is_instance_valid(currSlot):
-				pass
-			if is_instance_valid(currSlot):
-				if currSlot.is_in_group("Tower"):
-					currSlot.health -= damage
+func attack(node : Sprite3D) -> void:
+	print("attacking ", node.tName)
 
 
-func calculate_radius() -> void:
-	zUp = tPosition.z - attackRange
-	zDown = tPosition.z + attackRange
-	xLeft = tPosition.x - attackRange
-	xRight = tPosition.x + attackRange
-	if (zUp < 0):
-		zUp = 0
-	if (zDown >= TowerSpawner.row):
-		zDown = TowerSpawner.row - 1
-	if (xLeft < 0):
-		xLeft = 0
-	if (xRight >= TowerSpawner.col):
-		xRight = TowerSpawner.col - 1
+func _on_timer_timeout() -> void: # idk maybe an attack cooldown
+	pass
 
-
-func _on_timer_timeout() -> void:
-	attack()
+func _on_attack_area_area_entered(area: Area3D) -> void:
+	if hitbox_area != area: # Ignores its own hitbox
+		var parent = area.get_parent()
+		if parent.is_in_group("Tower"): # Attack function
+			attack(parent)

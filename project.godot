@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 TowerSpawner="*res://Scripts/Global/tower_spawner.gd"
 Economy="*res://Scripts/Global/economy.gd"
+EnemySpawner="*res://Scripts/Global/enemy_spawner.gd"
 
 [display]
 
