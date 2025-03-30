@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlmu2syech5sk"]
+
+[ext_resource type="Script" path="res://Scripts/menu/MenuScript.gd" id="1_82wa2"]
+[ext_resource type="Texture2D" uid="uid://b3mt5h0tgeq7l" path="res://Textures/Menu/file.svg" id="2_hac84"]
+[ext_resource type="Script" path="res://Scripts/menu/peeta.gd" id="3_5keqw"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_82wa2")
+
+[node name="Start" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 55.0
+offset_right = 516.0
+offset_bottom = 113.0
+texture_normal = ExtResource("2_hac84")
+script = ExtResource("3_5keqw")
+
+[connection signal="button_down" from="Control/Start" to="Control" method="_on_start_button_down"]
