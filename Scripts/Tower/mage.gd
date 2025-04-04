@@ -1,4 +1,4 @@
-extends Sprite3D
+extends AnimatedSprite3D
 
 # Things to make sure each character has
 # Inspector: 
@@ -9,45 +9,36 @@ extends Sprite3D
 # Add to the correct group
 
 var tName : String = "Mage"
-var attackRange : int = 5 
-var damage : int = 1
+var damage : int = 3
 var age : int = 0
 var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
+var attackingNode = null # To save the node that it is attacking
 
-var zUp
-var zDown
-var xLeft
-var xRight
-
-@onready var timer: Timer = $Timer
+@onready var mage: AnimatedSprite3D = $"."
+@onready var timer: Timer = $AttackTimer
+@onready var hitbox_area: Area3D = $HitboxArea
 
 # z = rows , x = columns
-func attack() -> void:
-	for r in range(zUp, zDown+1):
-		for c in range(xLeft, xRight+1):
-			var currSlot : Node3D = TowerSpawner.mapGrid[r][c]
-			if not is_instance_valid(currSlot):
-				pass
-			if is_instance_valid(currSlot):
-				if currSlot.is_in_group("Enemy"):
-					currSlot.health -= damage
+func _process(_delta: float) -> void:
+	if health <= 0:
+		queue_free()
 
+# Checks if an enemy enters its strike range
+func _on_attack_area_area_entered(area: Area3D) -> void:
+	if hitbox_area != area: # Ignores its own hitbox
+		var parent = area.get_parent()
+		if parent.is_in_group("Enemy"): # Attack function
+			attackingNode = parent
+			timer.start()
 
-func calculate_radius() -> void:
-	zUp = tPosition.z - attackRange
-	zDown = tPosition.z + attackRange
-	xLeft = tPosition.x - attackRange
-	xRight = tPosition.x + attackRange
-	if (zUp < 0):
-		zUp = 0
-	if (zDown >= TowerSpawner.row):
-		zDown = TowerSpawner.row - 1
-	if (xLeft < 0):
-		xLeft = 0
-	if (xRight >= TowerSpawner.col):
-		xRight = TowerSpawner.col - 1
+# Stops attacking once they leaving the attacking area
+func _on_attack_area_area_exited(_area: Area3D) -> void:
+	timer.stop()
+	mage.play("Idle")
 
-
+# The attacking timer
 func _on_timer_timeout() -> void:
-	attack()
+	if attackingNode != null:
+		mage.play("Attacking")
+		attackingNode.health -= damage

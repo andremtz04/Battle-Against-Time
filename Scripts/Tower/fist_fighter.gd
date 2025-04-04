@@ -15,30 +15,27 @@ var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
-	if health <= 0:
+	if health <= 0: # KYS
 		queue_free()
 
 
 func _on_attack_area_area_entered(area: Area3D) -> void:
 	if hitbox_area != area: # Ignores its own hitbox
 		var parent = area.get_parent()
-		#print(attackingNode)
 		if parent.is_in_group("Enemy"): # Attack function
-			attackingNode = parent
+			attackingNode = parent 
 			timer.start()
-			#pass
 
-
+# Stops attacking once they leaving the attacking area
 func _on_attack_area_area_exited(_area: Area3D) -> void:
 	timer.stop()
 
-
+# The attacking timer
 func _on_timer_timeout() -> void:
 	if attackingNode != null:
 		attackingNode.health -= damage
-		#print(attackingNode.health)

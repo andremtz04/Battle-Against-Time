@@ -15,11 +15,12 @@ var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
 @onready var attack_area: Area3D = $AttackArea
 
-signal stop_movement # signal that enemy sends to enemy_path.gd
+# signal that enemy sends to enemy_path.gd
+signal stop_movement
 signal start_movement
 
 # z = rows , x = columns
@@ -36,18 +37,20 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 			timer.start() # Starts the attack
 			stop_movement.emit() # Tells enemy_path.gd to stop moving
 
-
+# Checks if there's something in its way
 func _on_hitbox_area_area_entered(area: Area3D) -> void:
 	stop_movement.emit() # Tells enemy_path.gd to stop moving
 
-
+# Starts to move if nothing is in the way 
 func _on_hitbox_area_area_exited(_area: Area3D) -> void:
 	start_movement.emit()
 
-func _on_timer_timeout() -> void: # idk maybe an attack cooldown
+# Attackingggg
+func _on_timer_timeout() -> void: 
 	if attackingNode != null:
 		attackingNode.health -= damage
 
+# Starts to move if there isn't anything in its way
 func _on_attack_area_area_exited(_area: Area3D) -> void:
 	timer.stop()
 	start_movement.emit()

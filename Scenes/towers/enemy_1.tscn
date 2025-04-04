@@ -21,7 +21,7 @@ hframes = 9
 vframes = 5
 script = ExtResource("1_ettbt")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="."]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -39,7 +39,7 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_bk2wm")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
 [connection signal="area_exited" from="HitboxArea" to="." method="_on_hitbox_area_area_exited"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

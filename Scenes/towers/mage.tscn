@@ -1,21 +1,80 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0f6l08qc0qe5"]
+[gd_scene load_steps=10 format=3 uid="uid://c0f6l08qc0qe5"]
 
+[ext_resource type="Texture2D" uid="uid://def5v5wknj0g1" path="res://Textures/Towers/wizarding.png" id="1_bkebe"]
 [ext_resource type="Script" path="res://Scripts/Tower/mage.gd" id="1_ssjch"]
-[ext_resource type="Texture2D" uid="uid://ck56qpsuks6hc" path="res://Textures/Temp/Character/Female person/Tilesheet/character_femalePerson_sheet.png" id="1_tx5d1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3f5ts"]
-atlas = ExtResource("1_tx5d1")
-region = Rect2(0, 27, 864, 613)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyfyi"]
+atlas = ExtResource("1_bkebe")
+region = Rect2(0, 134, 125, 134)
 
-[node name="Mage" type="Sprite3D" groups=["Tower"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4mav"]
+atlas = ExtResource("1_bkebe")
+region = Rect2(125, 134, 125, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqpe8"]
+atlas = ExtResource("1_bkebe")
+region = Rect2(0, 0, 125, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55a02"]
+atlas = ExtResource("1_bkebe")
+region = Rect2(125, 0, 125, 134)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0mrvf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyfyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4mav")
+}],
+"loop": true,
+"name": &"Attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqpe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55a02")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsyow"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrefv"]
+size = Vector3(4.25, 0.25, 4.25)
+
+[node name="Mage" type="AnimatedSprite3D" groups=["Tower"]]
 offset = Vector2(0, 50)
 billboard = 1
-texture = SubResource("AtlasTexture_3f5ts")
-hframes = 9
-vframes = 5
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_0mrvf")
+animation = &"Idle"
+frame_progress = 0.183062
 script = ExtResource("1_ssjch")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="HitboxArea" type="Area3D" parent="."]
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitboxArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_fsyow")
+
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 2
+monitorable = false
+
+[node name="AttackBox" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_rrefv")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]
