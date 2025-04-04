@@ -1,27 +1,24 @@
 extends PathFollow3D
 
-var isMoving : bool = true
+
 var moveSpeed : int = 3
 var currPosition : Vector3
-
+@onready var isMoving : bool = true
 @onready var enemy_1: Sprite3D = $Enemy1
 @onready var enemy_path: PathFollow3D = $"."
 
+var node = null
+
+
 func _ready() -> void:
-	var hitbox = enemy_1.get_node("HitboxArea")
-	hitbox.connect("area_entered", _on_hitbox_area_entered)
-	#hitbox.connect("area_exited", _on_hitbox_area_exit)
+	enemy_1.connect("start_movement", _start_movement)
+	enemy_1.connect("stop_movement", _stop_movement)
 
-
-# Checks if collision with another body
-func _on_hitbox_area_entered(_area: Area3D) -> void:
-	print("stop moving")
+func _stop_movement() -> void:
 	isMoving = false
 
-# Checks if it leaves collision
-#func _on_hitbox_area_exit(_area: Area3D) -> void:
-	#print("start moving")
-	#isMoving = true
+func _start_movement() -> void:
+	isMoving = true
 
 func _process(delta: float) -> void:
 	if isMoving:

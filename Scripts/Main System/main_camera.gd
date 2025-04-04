@@ -45,7 +45,7 @@ func _input(event) -> void:
 			#map.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
 			
 			instance.tPosition = inPos
-			instance.calculate_radius()
+			#instance.calculate_radius()
 			instance.timer.start()
 			placedTower.emit()
 

@@ -31,3 +31,4 @@ func _on_enemy_test_button_down() -> void:
 
 func _on_play_button_button_down() -> void:
 	start_round.emit()
+	$"../Path1".roundStarted = true

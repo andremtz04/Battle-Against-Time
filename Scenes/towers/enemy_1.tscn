@@ -10,7 +10,7 @@ region = Rect2(0, 22, 864, 618)
 [sub_resource type="BoxShape3D" id="BoxShape3D_d7skv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bk2wm"]
-size = Vector3(3, 0.25, 3)
+size = Vector3(2.25, 0.25, 2.25)
 
 [node name="Enemy1" type="Sprite3D" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
@@ -33,10 +33,14 @@ shape = SubResource("BoxShape3D_d7skv")
 
 [node name="AttackArea" type="Area3D" parent="."]
 collision_layer = 2
+monitorable = false
 
 [node name="AttackBox" type="CollisionShape3D" parent="AttackArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_bk2wm")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
+[connection signal="area_exited" from="HitboxArea" to="." method="_on_hitbox_area_area_exited"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]
