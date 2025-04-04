@@ -51,3 +51,7 @@ func calcRisk() -> void:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#pass
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

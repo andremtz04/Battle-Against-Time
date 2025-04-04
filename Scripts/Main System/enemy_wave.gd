@@ -16,7 +16,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_ui_start_round() -> void:
-	if roundStarted:
+	if !roundStarted:
 		print("round start")
 		timer.set_wait_time(EnemySpawner.path1D[EnemySpawner.roundCounter][1])
 		timer.start()
@@ -25,4 +25,10 @@ func _on_ui_start_round() -> void:
 func _process(_delta: float) -> void:
 	if currEnemyTotal == EnemySpawner.path1D[EnemySpawner.roundCounter][0]:
 		timer.stop()
+	if EnemySpawner.enemykilled == EnemySpawner.path1D[EnemySpawner.roundCounter][0]:
+		print("round over")
+		currEnemyTotal = 0
+		EnemySpawner.enemykilled = 0
+		if EnemySpawner.roundCounter < EnemySpawner.totalRounds:
+			EnemySpawner.roundCounter += 1
 		roundStarted = false

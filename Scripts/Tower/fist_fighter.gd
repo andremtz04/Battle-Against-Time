@@ -9,8 +9,7 @@ extends Sprite3D
 # Add to the correct group
 
 var tName : String = "Fist"
-var attackRange : int = 1
-var damage : int = 1
+var damage : int = 5
 var age : int = 0
 var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)

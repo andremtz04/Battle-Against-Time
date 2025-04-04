@@ -10,7 +10,7 @@ region = Rect2(0, 18, 864, 622)
 [sub_resource type="BoxShape3D" id="BoxShape3D_kkffx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aj5nm"]
-size = Vector3(2.25, 0.25, 2.25)
+size = Vector3(1.25, 0.25, 1.25)
 
 [node name="fist_fighter" type="Sprite3D" groups=["Tower"]]
 top_level = true
