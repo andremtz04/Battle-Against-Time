@@ -63,6 +63,11 @@ offset_right = 1132.0
 offset_bottom = 637.0
 texture_normal = ExtResource("2_hl03d")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Lighting Stuff" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting Stuff"]

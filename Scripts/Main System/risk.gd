@@ -131,3 +131,7 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#pass
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

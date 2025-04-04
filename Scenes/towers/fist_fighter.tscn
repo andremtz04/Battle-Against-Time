@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dysyltj04yf18"]
+[gd_scene load_steps=6 format=3 uid="uid://dysyltj04yf18"]
 
 [ext_resource type="Texture2D" uid="uid://dk6oh5ofthkg8" path="res://Textures/Temp/Character/Male adventurer/Tilesheet/character_maleAdventurer_sheet.png" id="1_7fgov"]
 [ext_resource type="Script" path="res://Scripts/Tower/fist_fighter.gd" id="2_mq440"]
@@ -9,6 +9,9 @@ region = Rect2(0, 18, 864, 622)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kkffx"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_aj5nm"]
+size = Vector3(1.25, 0.25, 1.25)
+
 [node name="fist_fighter" type="Sprite3D" groups=["Tower"]]
 top_level = true
 offset = Vector2(0, 50)
@@ -18,7 +21,7 @@ hframes = 9
 vframes = 5
 script = ExtResource("2_mq440")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="."]
 
 [node name="HitboxArea" type="Area3D" parent="."]
 
@@ -26,4 +29,14 @@ script = ExtResource("2_mq440")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_kkffx")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 2
+monitorable = false
+
+[node name="AttackBox" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_aj5nm")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]

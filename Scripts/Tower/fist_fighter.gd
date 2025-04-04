@@ -9,27 +9,33 @@ extends Sprite3D
 # Add to the correct group
 
 var tName : String = "Fist"
-var attackRange : int = 1
-var damage : int = 1
+var damage : int = 5
 var age : int = 0
 var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
+var attackingNode = null
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
 
 # z = rows , x = columns
-func attack(node : Sprite3D) -> void:
-	print("attacking ", node.tName)
-
-
-func _on_timer_timeout() -> void:
-	pass
-	#attack()
+func _process(_delta: float) -> void:
+	if health <= 0: # KYS
+		queue_free()
 
 
 func _on_attack_area_area_entered(area: Area3D) -> void:
 	if hitbox_area != area: # Ignores its own hitbox
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"): # Attack function
-			attack(parent)
+			attackingNode = parent 
+			timer.start()
+
+# Stops attacking once they leaving the attacking area
+func _on_attack_area_area_exited(_area: Area3D) -> void:
+	timer.stop()
+
+# The attacking timer
+func _on_timer_timeout() -> void:
+	if attackingNode != null:
+		attackingNode.health -= damage
