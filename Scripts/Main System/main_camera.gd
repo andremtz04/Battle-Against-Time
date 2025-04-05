@@ -7,6 +7,7 @@ var rayLength : int = 1000
 var rayCastResult : Dictionary
 var instance
 var inPos
+var testNum = 0;
 
 signal placedTower
 
@@ -42,7 +43,13 @@ func _input(event) -> void:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 1)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = instance
 			#update risk table
-			#map.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
+			testNum = Risk.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
+			#DEBUG
+			if testNum:
+				Risk.print2DArray(Risk.riskTable)
+				pass
+			else:
+				print("TOWER NOT RECOGNIZED/CODED: " + TowerSpawner.currentTower)
 			
 			instance.tPosition = inPos
 			#instance.calculate_radius()

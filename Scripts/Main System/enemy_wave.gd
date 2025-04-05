@@ -16,6 +16,8 @@ func _on_timer_timeout() -> void:
 
 
 func _on_ui_start_round() -> void:
+	#Risk.print2DArray(Risk.calculate_path(Vector2i(0,0),Vector2i(19,14)))
+	#var curve:Curve3D = $"../Path3D".newCurve()
 	if !roundStarted:
 		print("round start")
 		timer.set_wait_time(EnemySpawner.path1D[EnemySpawner.roundCounter][1])

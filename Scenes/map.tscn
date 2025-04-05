@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=12 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
 [ext_resource type="PackedScene" uid="uid://dysyltj04yf18" path="res://Scenes/towers/fist_fighter.tscn" id="6_cb6cv"]
 [ext_resource type="PackedScene" uid="uid://djfr0wtn0nyus" path="res://Scenes/towers/enemy_1.tscn" id="7_7xc5k"]
+[ext_resource type="Script" path="res://Scenes/enemyPath.gd" id="8_e2212"]
 
 [sub_resource type="Environment" id="Environment_yeaxu"]
 
@@ -16,6 +17,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_i64at"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 1, 5),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
 
 [node name="Map" type="Node3D"]
 
@@ -112,6 +120,10 @@ curve = SubResource("Curve3D_i2jhb")
 script = ExtResource("6_0jpq0")
 
 [node name="Timer" type="Timer" parent="Path1"]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_i64at")
+script = ExtResource("8_e2212")
 
 [connection signal="start_round" from="UI" to="Path1" method="_on_ui_start_round"]
 [connection signal="button_down" from="UI/GridContainer/SpawnTower2" to="UI" method="_on_spawn_tower_2_button_down"]
