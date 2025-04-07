@@ -46,7 +46,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 			stop_movement.emit() # Tells enemy_path.gd to stop moving
 
 # Checks if there's something in its way
-func _on_hitbox_area_area_entered(area: Area3D) -> void:
+func _on_hitbox_area_area_entered(_area: Area3D) -> void:
 	stop_movement.emit() # Tells enemy_path.gd to stop moving
 
 # Starts to move if nothing is in the way 
