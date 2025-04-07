@@ -1,4 +1,4 @@
-extends Sprite3D
+extends AnimatedSprite3D
 
 # Things to make sure each character has
 # Inspector: 
@@ -8,23 +8,31 @@ extends Sprite3D
 # Update name to ui.gd, economy.gd, tower_spawner.gd
 # Add to the correct group
 
+const MAXHEALTH : int = 10
+var health : int = MAXHEALTH
+
 var tName : String = "Enemy"
 var damage : int = 2
 var age : int = 0
-var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
 
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
 @onready var attack_area: Area3D = $AttackArea
+@onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
 
 # signal that enemy sends to enemy_path.gd
 signal stop_movement
 signal start_movement
 
+func _ready() -> void:
+	health_bar.max_value = MAXHEALTH
+
+
 # z = rows , x = columns
 func _process(_delta: float) -> void:
+	health_bar.value = health
 	if health <= 0: # removes itself once it dies
 		EnemySpawner.enemykilled += 1
 		queue_free()

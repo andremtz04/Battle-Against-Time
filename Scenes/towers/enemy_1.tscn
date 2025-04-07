@@ -1,24 +1,100 @@
-[gd_scene load_steps=6 format=3 uid="uid://djfr0wtn0nyus"]
+[gd_scene load_steps=16 format=3 uid="uid://djfr0wtn0nyus"]
 
 [ext_resource type="Texture2D" uid="uid://cufx3s0p6sj4m" path="res://Textures/Temp/Character/Zombie/Tilesheet/character_zombie_sheet.png" id="1_1h3b1"]
 [ext_resource type="Script" path="res://Scripts/Tower/enemy_1.gd" id="1_ettbt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c0jc0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggof0"]
 atlas = ExtResource("1_1h3b1")
-region = Rect2(0, 22, 864, 618)
+region = Rect2(0, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxedi"]
+atlas = ExtResource("1_1h3b1")
+region = Rect2(96, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8n3m"]
+atlas = ExtResource("1_1h3b1")
+region = Rect2(192, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p86nv"]
+atlas = ExtResource("1_1h3b1")
+region = Rect2(576, 256, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkq74"]
+atlas = ExtResource("1_1h3b1")
+region = Rect2(672, 256, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwmin"]
+atlas = ExtResource("1_1h3b1")
+region = Rect2(768, 256, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wpsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggof0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxedi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8n3m")
+}],
+"loop": true,
+"name": &"Attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p86nv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkq74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwmin")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d7skv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bk2wm"]
 size = Vector3(1.25, 0.25, 1.25)
 
-[node name="Enemy1" type="Sprite3D" groups=["Enemy"]]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvugt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa6hj"]
+bg_color = Color(0.752941, 0.266667, 0.266667, 1)
+border_width_bottom = 3
+border_color = Color(0.496103, 0.152412, 0.155195, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwlj7"]
+bg_color = Color(1.39579e-06, 0.73793, 0.390966, 1)
+border_width_bottom = 3
+border_color = Color(8.0619e-07, 0.424344, 0.215547, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6wocv"]
+viewport_path = NodePath("HealthBar/SubViewport")
+
+[node name="Enemy1" type="AnimatedSprite3D" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 offset = Vector2(0, 50)
 billboard = 1
-texture = SubResource("AtlasTexture_c0jc0")
-hframes = 9
-vframes = 5
+sprite_frames = SubResource("SpriteFrames_3wpsd")
+animation = &"Attacking"
+frame_progress = 0.896221
 script = ExtResource("1_ettbt")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -38,6 +114,41 @@ monitorable = false
 [node name="AttackBox" type="CollisionShape3D" parent="AttackArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_bk2wm")
+
+[node name="HealthBar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14166, 0)
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar"]
+transparent_bg = true
+size = Vector2i(128, 32)
+
+[node name="Panel" type="Panel" parent="HealthBar/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rvugt")
+
+[node name="Health" type="ProgressBar" parent="HealthBar/SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_oa6hj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uwlj7")
+value = 50.0
+
+[node name="DisplayHealth" type="Sprite3D" parent="HealthBar"]
+offset = Vector2(50, 50)
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_6wocv")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
