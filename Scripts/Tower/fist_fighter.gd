@@ -10,10 +10,13 @@ extends Sprite3D
 
 var tName : String = "Fist"
 var damage : int = 5
-var age : int = 0
+var age : int = 1
 var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
+
+var num_of_attacks : int = 0
+var seconds : int = 0
 
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
@@ -30,6 +33,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 		if parent.is_in_group("Enemy"): # Attack function
 			attackingNode = parent 
 			timer.start()
+			aging()
 
 # Stops attacking once they leaving the attacking area
 func _on_attack_area_area_exited(_area: Area3D) -> void:
@@ -39,3 +43,13 @@ func _on_attack_area_area_exited(_area: Area3D) -> void:
 func _on_timer_timeout() -> void:
 	if attackingNode != null:
 		attackingNode.health -= damage
+		num_of_attacks = num_of_attacks + 1
+		
+func aging() -> void:
+	if (num_of_attacks >= 5):
+		if (age < 5):
+			age = age + 1
+		num_of_attacks = 0
+		damage = damage + age
+		seconds = seconds + age
+	

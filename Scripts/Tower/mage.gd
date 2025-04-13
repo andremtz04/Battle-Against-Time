@@ -13,9 +13,12 @@ var health : int = MAXHEALTH
 
 var tName : String = "Mage"
 var damage : int = 3
-var age : int = 0
+var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null # To save the node that it is attacking
+
+var num_of_attacks : int = 0
+var seconds : int = 0
 
 @onready var mage: AnimatedSprite3D = $"."
 @onready var timer: Timer = $AttackTimer
@@ -42,6 +45,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 		if parent.is_in_group("Enemy"): # Attack function
 			attackingNode = parent
 			attack()
+			aging()
 			timer.start()
 
 # Stops attacking once they leaving the attacking area
@@ -52,11 +56,16 @@ func _on_attack_area_area_exited(_area: Area3D) -> void:
 
 # The attacking timer
 func _on_timer_timeout() -> void:
+	await get_tree().create_timer(seconds).timeout
 	attack()
+	aging()
 
 func attack() -> void:
 	if attackingNode != null:
 		mage.play("Attacking")
+		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
+		print("num of attacks, ", num_of_attacks)		#to see results, should delete later
+		print("damage is, ", damage)					#to see results, should delete later
 		spawn_projectile()
 
 func spawn_projectile() -> void:
@@ -64,4 +73,12 @@ func spawn_projectile() -> void:
 	map.add_child(instance)
 	instance.global_position = Vector3(mage.global_position.x, mage.global_position.y+1, mage.global_position.z)
 	instance.set_variables(attackingNode, mage)
+	
+func aging() -> void:
+	if (num_of_attacks >= 5):
+		if (age < 5):
+			age = age + 1
+		num_of_attacks = 0
+		damage = damage + age
+		seconds = seconds + age
 	
