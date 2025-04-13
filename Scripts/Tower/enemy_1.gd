@@ -56,9 +56,11 @@ func _on_hitbox_area_area_exited(_area: Area3D) -> void:
 # Attackingggg
 func _on_timer_timeout() -> void: 
 	if attackingNode != null:
+		print("attacking", attackingNode)
 		attackingNode.health -= damage
 
 # Starts to move if there isn't anything in its way
 func _on_attack_area_area_exited(_area: Area3D) -> void:
+	attackingNode = null
 	timer.stop()
 	start_movement.emit()

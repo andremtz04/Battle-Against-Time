@@ -1,6 +1,6 @@
 extends PathFollow3D
 
-var moveSpeed : int = 3
+var moveSpeed : int = 2
 
 @onready var isMoving : bool = true
 @onready var enemy_1: AnimatedSprite3D = $Enemy1
