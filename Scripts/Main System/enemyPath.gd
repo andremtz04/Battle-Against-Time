@@ -10,19 +10,24 @@ func newCurve() -> Curve3D:
 	var x = 0
 	var y = 1
 	var z = 5
-	var endX = 14
-	var endZ = 10
+	var endX = 19
+	var endZ = 14
 	#y in this case is steps down, x is steps to right
 	var startPos = Vector2i(x,z)
 	var endPos = Vector2i(endX,endZ)
+	print("Calculating path (Curve)\n path:\n")
 	var path:Array = Risk.calculate_path(startPos,endPos)
-	var curve:Curve3D
+	Risk.print2DArray(path)
+	var curve:Curve3D = self.curve
+	curve.clear_points()
 	var zVector = Vector3(0,0,0)
 	var index = 1
 	
 	print("Successfully accessed")
 	curve.add_point(Vector3(x,y,z),zVector,zVector,0)
+	
 	path[z][x] = 0
+	
 	while(x != endX || z != endZ):
 		print("This is fine")
 		if(x == endX):
@@ -48,6 +53,7 @@ func newCurve() -> Curve3D:
 			else:
 				print("problem occurred here")
 				x += 1
+		
 		
 		curve.add_point(Vector3(x,y,z),zVector,zVector,index)
 		index += 1
