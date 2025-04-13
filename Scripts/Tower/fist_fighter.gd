@@ -8,10 +8,12 @@ extends Sprite3D
 # Update name to ui.gd, economy.gd, tower_spawner.gd
 # Add to the correct group
 
+const MAXHEALTH : int = 10
+var health : int = MAXHEALTH
+
 var tName : String = "Fist"
 var damage : int = 5
 var age : int = 1
-var health : int = 10
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
 
@@ -20,9 +22,14 @@ var seconds : int = 0
 
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
+@onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
+
+func _ready() -> void:
+	health_bar.max_value = MAXHEALTH
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
+	health_bar.value = health
 	if health <= 0: # KYS
 		queue_free()
 
@@ -32,8 +39,9 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"): # Attack function
 			attackingNode = parent 
-			timer.start()
+			attack()
 			aging()
+			timer.start()
 
 # Stops attacking once they leaving the attacking area
 func _on_attack_area_area_exited(_area: Area3D) -> void:
@@ -41,10 +49,14 @@ func _on_attack_area_area_exited(_area: Area3D) -> void:
 
 # The attacking timer
 func _on_timer_timeout() -> void:
+	attack()
+
+
+func attack() -> void:
 	if attackingNode != null:
 		attackingNode.health -= damage
 		num_of_attacks = num_of_attacks + 1
-		
+
 func aging() -> void:
 	if (num_of_attacks >= 5):
 		if (age < 5):
