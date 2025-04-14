@@ -6,8 +6,11 @@ extends Camera3D
 var rayLength : int = 1000
 var rayCastResult : Dictionary
 var instance
+var dummyInstance
 var inPos
 var testNum = 0;
+
+const DUMMY_TOWER = preload("res://Scenes/towers/dummy_tower.tscn")
 
 signal placedTower
 
@@ -28,15 +31,23 @@ func _process(_delta: float) -> void:
 func _input(event) -> void:
 	# Spawns the tower when you left click
 	if event.is_action_pressed("Left Click"):
-		spawn_tower()
+		if !rayCastResult.is_empty() and TowerSpawner.SpawnTower != null:
+			inPos = rayCastResult["position"]
+			dummyInstance = DUMMY_TOWER.instantiate()
+			map.add_child(dummyInstance)
+			dummyInstance.position = Vector3(inPos.x, inPos.y, inPos.z)
+			
 
 	# Drags the tower around when left click is held
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !rayCastResult.is_empty() && instance:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !rayCastResult.is_empty() && dummyInstance:
 		inPos = rayCastResult["position"]
-		instance.position = inPos
+		#if inPos != null:
+		dummyInstance.position = inPos
 
 	# Deletes the tower if it out of bounds
-	if event.is_action_released("Left Click"):
+	if event.is_action_released("Left Click") && dummyInstance:
+		dummyInstance.queue_free()
+		spawn_tower()
 		if delete_tower():
 			pass
 		else:

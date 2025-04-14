@@ -24,15 +24,7 @@ var xRight
 
 # z = rows , x = columns
 func attack() -> void:
-	for r in range(zUp, zDown+1):
-		for c in range(xLeft, xRight+1):
-			var currSlot : Node3D = TowerSpawner.mapGrid[r][c]
-			if not is_instance_valid(currSlot):
-				pass
-			if is_instance_valid(currSlot):
-				if currSlot.is_in_group("Tower"):
-					currSlot.health += damage
-
+	pass
 
 func calculate_radius() -> void:
 	zUp = tPosition.z - attackRange
