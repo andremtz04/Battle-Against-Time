@@ -59,9 +59,9 @@ func attack() -> void:
 	if attackingNode != null:
 		healer.play("Attacking")
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
-		print("num of attacks, ", num_of_attacks)		#to see results, should delete later
-		print("heal is, ", damage)					#to see results, should delete later
-		print("health is, ", health)					#to see results, should delete later
+		#print("num of attacks, ", num_of_attacks)		#to see results, should delete later
+		#print("heal is, ", damage)					#to see results, should delete later
+		#print("health is, ", health)					#to see results, should delete later
 		spawn_projectile()
 
 func spawn_projectile() -> void:

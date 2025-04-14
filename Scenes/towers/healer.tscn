@@ -102,7 +102,7 @@ expand_margin_bottom = 3.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_ee1ve"]
 viewport_path = NodePath("HealthBar/SubViewport")
 
-[node name="Healer" type="AnimatedSprite3D" groups=["Tower"]]
+[node name="Healer" type="AnimatedSprite3D" groups=["Healer", "Tower"]]
 offset = Vector2(0, 50)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_jrsrq")
