@@ -1,21 +1,166 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmtlwkbkhqcuj"]
+[gd_scene load_steps=18 format=3 uid="uid://dmtlwkbkhqcuj"]
 
 [ext_resource type="Script" path="res://Scripts/Tower/healer.gd" id="1_3rqt0"]
-[ext_resource type="Texture2D" uid="uid://dgjr3jn55ikpg" path="res://Textures/Temp/Character/Female adventurer/Tilesheet/character_femaleAdventurer_sheet.png" id="1_jth88"]
+[ext_resource type="Texture2D" uid="uid://dqjnr134aetxi" path="res://Textures/Temp/Character/Robot/Tilesheet/character_robot_sheet.png" id="1_81y18"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_01yci"]
-atlas = ExtResource("1_jth88")
-region = Rect2(0, 23, 864, 617)
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4kfo"]
+atlas = ExtResource("1_81y18")
+region = Rect2(0, 0, 96, 128)
 
-[node name="Healer" type="Sprite3D" groups=["Tower"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bhud"]
+atlas = ExtResource("1_81y18")
+region = Rect2(96, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00bmm"]
+atlas = ExtResource("1_81y18")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u34lc"]
+atlas = ExtResource("1_81y18")
+region = Rect2(192, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u1co"]
+atlas = ExtResource("1_81y18")
+region = Rect2(96, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56qat"]
+atlas = ExtResource("1_81y18")
+region = Rect2(768, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7lpt"]
+atlas = ExtResource("1_81y18")
+region = Rect2(768, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x833"]
+atlas = ExtResource("1_81y18")
+region = Rect2(96, 128, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jrsrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4kfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bhud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00bmm")
+}],
+"loop": true,
+"name": &"Attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u34lc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u1co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56qat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7lpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x833")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qyv5i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wp7x"]
+size = Vector3(4.9, 0.25, 4.9)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fi111"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcyys"]
+bg_color = Color(0.752941, 0.266667, 0.266667, 1)
+border_width_bottom = 3
+border_color = Color(0.496103, 0.152412, 0.155195, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xi4jd"]
+bg_color = Color(1.39579e-06, 0.73793, 0.390966, 1)
+border_width_bottom = 3
+border_color = Color(8.0619e-07, 0.424344, 0.215547, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ee1ve"]
+viewport_path = NodePath("HealthBar/SubViewport")
+
+[node name="Healer" type="AnimatedSprite3D" groups=["Tower"]]
 offset = Vector2(0, 50)
 billboard = 1
-texture = SubResource("AtlasTexture_01yci")
-hframes = 9
-vframes = 5
+sprite_frames = SubResource("SpriteFrames_jrsrq")
+animation = &"Attacking"
+frame_progress = 0.318739
 script = ExtResource("1_3rqt0")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="HitboxArea" type="Area3D" parent="."]
+
+[node name="Hitbox" type="CollisionShape3D" parent="HitboxArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_qyv5i")
+
+[node name="AttackArea" type="Area3D" parent="."]
+collision_layer = 2
+monitorable = false
+
+[node name="AttackBox" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_8wp7x")
+
+[node name="HealthBar" type="Node3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar"]
+transparent_bg = true
+size = Vector2i(128, 32)
+
+[node name="Panel" type="Panel" parent="HealthBar/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fi111")
+
+[node name="Health" type="ProgressBar" parent="HealthBar/SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_wcyys")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xi4jd")
+value = 50.0
+
+[node name="DisplayHealth" type="Sprite3D" parent="HealthBar"]
+offset = Vector2(0, 100)
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_ee1ve")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]
