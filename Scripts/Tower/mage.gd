@@ -12,13 +12,14 @@ const MAXHEALTH : int = 10
 var health : int = MAXHEALTH
 
 var tName : String = "Mage"
-var damage : int = 3
+var damage : int = 1
+var base_damage : int = 1
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null # To save the node that it is attacking
 
 var num_of_attacks : int = 0
-var seconds : int = 0
+var seconds : float = 0.0
 
 @onready var mage: AnimatedSprite3D = $"."
 @onready var timer: Timer = $AttackTimer
@@ -66,6 +67,7 @@ func attack() -> void:
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		print("num of attacks, ", num_of_attacks)		#to see results, should delete later
 		print("damage is, ", damage)					#to see results, should delete later
+		print("health is, ", health)					#to see results, should delete later
 		spawn_projectile()
 
 func spawn_projectile() -> void:
@@ -76,9 +78,11 @@ func spawn_projectile() -> void:
 	
 func aging() -> void:
 	if (num_of_attacks >= 5):
-		if (age < 5):
+		if (age <= 5):
 			age = age + 1
+		else:
+			health -= 2
 		num_of_attacks = 0
-		damage = damage + age
-		seconds = seconds + age
+		damage = base_damage + age
+		seconds = age * 0.5
 	
