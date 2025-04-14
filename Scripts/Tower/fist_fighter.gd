@@ -13,12 +13,14 @@ var health : int = MAXHEALTH
 
 var tName : String = "Fist"
 var damage : int = 5
+var base_damage : int = 5
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
 
 var num_of_attacks : int = 0
-var seconds : int = 0
+var seconds : float = 0.0
+var base_seconds : float = 0.0
 
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
@@ -50,7 +52,7 @@ func _on_attack_area_area_exited(_area: Area3D) -> void:
 # The attacking timer
 func _on_timer_timeout() -> void:
 	attack()
-
+	aging()
 
 func attack() -> void:
 	if attackingNode != null:
@@ -61,7 +63,9 @@ func aging() -> void:
 	if (num_of_attacks >= 5):
 		if (age < 5):
 			age = age + 1
+		else:
+			health -= 2
 		num_of_attacks = 0
-		damage = damage + age
-		seconds = seconds + age
+		damage = base_damage + age
+		seconds = age * 0.5
 	

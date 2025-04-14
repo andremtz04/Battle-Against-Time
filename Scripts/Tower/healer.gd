@@ -1,4 +1,4 @@
-extends Sprite3D
+extends AnimatedSprite3D
 
 # Things to make sure each character has
 # Inspector: 
@@ -8,38 +8,79 @@ extends Sprite3D
 # Update name to ui.gd, economy.gd, tower_spawner.gd
 # Add to the correct group
 
+const MAXHEALTH : int = 10
+var health : int = MAXHEALTH
+
 var tName : String = "Healer"
-var attackRange : int = 2 
-var damage : int = 1
-var age : int = 0
-var health : int = 10
+var damage : int = 5
+
+var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
+var attackingNode = null # To save the node that it is attacking
 
-var zUp
-var zDown
-var xLeft
-var xRight
+var num_of_attacks : int = 0
+var seconds : float = 0.0
 
-@onready var timer: Timer = $Timer
+@onready var healer: AnimatedSprite3D = $"."
+@onready var timer: Timer = $AttackTimer
+@onready var hitbox_area: Area3D = $HitboxArea
+@onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
+@onready var map : Node3D = healer.get_parent_node_3d()
+
+const PROJECTILE = preload("res://Scenes/towers/projectile_heal.tscn")
+
+func _ready() -> void:
+	health_bar.max_value = MAXHEALTH
+	healer.play("Idle")
 
 # z = rows , x = columns
+func _process(_delta: float) -> void:
+	health_bar.value = health
+	if health <= 0:
+		queue_free()
+
+# Checks if an enemy enters its strike range
+func _on_attack_area_area_entered(area: Area3D) -> void:
+	if hitbox_area != area: # Ignores its own hitbox
+		var parent = area.get_parent()
+		if parent.is_in_group("Tower"): # Attack function
+			attackingNode = parent
+			attack()
+			aging()
+			timer.start()
+
+# Stops attacking once they leaving the attacking area
+func _on_attack_area_area_exited(_area: Area3D) -> void:
+	attackingNode = null
+	timer.stop()
+	healer.play("Idle")
+
 func attack() -> void:
-	pass
+	if attackingNode != null:
+		healer.play("Attacking")
+		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
+		print("num of attacks, ", num_of_attacks)		#to see results, should delete later
+		print("heal is, ", damage)					#to see results, should delete later
+		print("health is, ", health)					#to see results, should delete later
+		spawn_projectile()
 
-func calculate_radius() -> void:
-	zUp = tPosition.z - attackRange
-	zDown = tPosition.z + attackRange
-	xLeft = tPosition.x - attackRange
-	xRight = tPosition.x + attackRange
-	if (zUp < 0):
-		zUp = 0
-	if (zDown >= TowerSpawner.row):
-		zDown = TowerSpawner.row - 1
-	if (xLeft < 0):
-		xLeft = 0
-	if (xRight >= TowerSpawner.col):
-		xRight = TowerSpawner.col - 1
+func spawn_projectile() -> void:
+	var instance = PROJECTILE.instantiate()
+	map.add_child(instance)
+	instance.global_position = Vector3(healer.global_position.x, healer.global_position.y+1, healer.global_position.z)
+	instance.set_variables(attackingNode, healer)
+	
+func aging() -> void:
+	if (num_of_attacks >= 5):
+		if (age <= 5):
+			age = age + 1
+		else:
+			health -= 2
+		num_of_attacks = 0
+		seconds = age * 0.5
+	
 
-
-func _on_timer_timeout() -> void:
+func _on_attack_timer_timeout() -> void:
+	await get_tree().create_timer(seconds).timeout
 	attack()
+	#aging()
