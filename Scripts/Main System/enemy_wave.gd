@@ -9,16 +9,18 @@ var moveSpeed : int = 3
 var currEnemyTotal : int = 0
 var roundStarted : bool = false
 
-func newCurve() -> Curve3D:
+func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	#construct curve for path (CHANGE THIS INGAME)
 	
-	var x = 0
-	var y = 1
-	var z = 5
-	var endX = 19
-	var endZ = 14
+	var x = startPos.x
+	var y = 0
+	var z = startPos.y
+	var endX = rows
+	var endZ = cols
+	#endX = 19
+	#endZ = 14
 	#y in this case is steps down, x is steps to right
-	var startPos = Vector2i(x,z)
+	#var startPos = Vector2i(x,z)
 	var endPos = Vector2i(endX,endZ)
 	print("Calculating path (Curve)\n path:\n")
 	var path:Array = Risk.calculate_path(startPos,endPos)
@@ -27,10 +29,13 @@ func newCurve() -> Curve3D:
 	var zVector = Vector3(0,0,0)
 	var index = 1
 	
-	print("Successfully accessed")
+	#print("Successfully accessed")
 	curve.add_point(Vector3(x,y,z),zVector,zVector,0)
 	
-	path[z][x] = 0
+	#debug
+	#print("New point at x:" + str(x) + ", z:" + str(z))
+
+	path[x][z] = 0
 	
 	while(x != endX || z != endZ):
 		#print("This is fine")
@@ -55,7 +60,7 @@ func newCurve() -> Curve3D:
 			elif(path[z-1][x] == 1):
 					z -= 1
 			else:
-				print("problem occurred here")
+				print("problem occurred here : " + str(x) + " " + str(z))
 				x += 1
 		
 		
@@ -71,6 +76,10 @@ func newCurve() -> Curve3D:
 		# end loop
 	#final point added (endpos)
 	curve.add_point(Vector3(x,y,z),zVector,zVector,index)
+	
+	#DEBUG
+	#print(curve.get_baked_points())
+	
 	return curve
 
 func _on_timer_timeout() -> void:
@@ -78,17 +87,18 @@ func _on_timer_timeout() -> void:
 	mainPath.add_child(newEnemy)
 	currEnemyTotal += 1
 
-
 func _on_ui_start_round() -> void:
 	#print("Creating Curve") #debug
 	#Risk.print2DArray(Risk.calculate_path(Vector2i(0,0),Vector2i(19,14)))
 	#var curve:Curve3D = $"../Path3D".newCurve()
-	self.curve = newCurve()
+	var startPos:Vector2i = Vector2i(0,0)
+	var rows = 19 #(x)
+	var cols = 14 #(z)
+	self.curve = newCurve(startPos,rows,cols)
 	if !roundStarted:
 		print("round start")
 		timer.set_wait_time(EnemySpawner.path1D[EnemySpawner.roundCounter][1])
 		timer.start()
-
 
 func _process(_delta: float) -> void:
 	if currEnemyTotal == EnemySpawner.path1D[EnemySpawner.roundCounter][0]:

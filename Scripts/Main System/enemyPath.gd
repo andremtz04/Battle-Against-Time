@@ -1,5 +1,6 @@
 extends Path3D
 
+######THIS SCRIPT IS DEFUNCT AND FUNCTIONS MOVED TO ENEMY_WAVE########
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

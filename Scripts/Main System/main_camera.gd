@@ -52,12 +52,12 @@ func _input(event) -> void:
 			pass
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 1)
-			TowerSpawner.mapGrid[inPos.z][inPos.x] = instance
+			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
 			#update risk table
 			testNum = Risk.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
 			#DEBUG
 			if testNum:
-				Risk.print2DArray(Risk.riskTable)
+				#Risk.print2DArray(Risk.riskTable)
 				pass
 			else:
 				print("TOWER NOT RECOGNIZED/CODED: " + TowerSpawner.currentTower)
