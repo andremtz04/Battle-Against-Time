@@ -6,7 +6,7 @@ var direction : Vector3
 var damage : int
 var origin_tower
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_instance_valid(target_node): # Checks if it has a target
 		velocity = direction * speed
 		move_and_slide() # Is what makes it move

@@ -26,7 +26,16 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="EnemyTest" type="TextureButton" parent="UI"]
+layout_mode = 2
+offset_left = 878.0
+offset_top = 13.0
+offset_right = 1006.0
+offset_bottom = 141.0
+texture_normal = ExtResource("2_hl03d")
+
 [node name="GridContainer" type="GridContainer" parent="UI"]
+z_index = -1
 layout_mode = 0
 offset_left = 878.0
 offset_top = 13.0
@@ -34,11 +43,11 @@ offset_right = 1138.0
 offset_bottom = 273.0
 columns = 2
 
-[node name="SpawnTower2" type="TextureButton" parent="UI/GridContainer"]
+[node name="SpawnTower1" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_hl03d")
 
-[node name="SpawnTower1" type="TextureButton" parent="UI/GridContainer"]
+[node name="SpawnTower2" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_hl03d")
 
@@ -46,7 +55,15 @@ texture_normal = ExtResource("2_hl03d")
 layout_mode = 2
 texture_normal = ExtResource("2_hl03d")
 
-[node name="EnemyTest" type="TextureButton" parent="UI/GridContainer"]
+[node name="SpawnTower4" type="TextureButton" parent="UI/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_hl03d")
+
+[node name="SpawnTower5" type="TextureButton" parent="UI/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_hl03d")
+
+[node name="SpawnTower6" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_hl03d")
 
@@ -62,6 +79,14 @@ texture_normal = ExtResource("2_hl03d")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="EnemyTest2" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 1062.0
+offset_top = 434.0
+offset_right = 1123.0
+offset_bottom = 465.0
+text = "Enemy"
 
 [node name="Lighting Stuff" type="Node3D" parent="."]
 
@@ -109,10 +134,14 @@ script = ExtResource("6_0jpq0")
 [node name="Timer" type="Timer" parent="Path1"]
 
 [connection signal="start_round" from="UI" to="Path1" method="_on_ui_start_round"]
-[connection signal="button_down" from="UI/GridContainer/SpawnTower2" to="UI" method="_on_spawn_tower_2_button_down"]
+[connection signal="button_down" from="UI/EnemyTest" to="UI" method="_on_enemy_test_button_down"]
 [connection signal="button_down" from="UI/GridContainer/SpawnTower1" to="UI" method="_on_spawn_tower_1_button_down"]
+[connection signal="button_down" from="UI/GridContainer/SpawnTower2" to="UI" method="_on_spawn_tower_2_button_down"]
 [connection signal="button_down" from="UI/GridContainer/SpawnTower3" to="UI" method="_on_spawn_tower_3_button_down"]
-[connection signal="button_down" from="UI/GridContainer/EnemyTest" to="UI" method="_on_enemy_test_button_down"]
+[connection signal="button_down" from="UI/GridContainer/SpawnTower4" to="UI" method="_on_spawn_tower_4_button_down"]
+[connection signal="button_down" from="UI/GridContainer/SpawnTower5" to="UI" method="_on_spawn_tower_5_button_down"]
+[connection signal="button_down" from="UI/GridContainer/SpawnTower6" to="UI" method="_on_spawn_tower_6_button_down"]
 [connection signal="button_down" from="UI/Play Button" to="UI" method="_on_play_button_button_down"]
+[connection signal="button_down" from="UI/EnemyTest2" to="UI" method="_on_button_button_down"]
 [connection signal="placedTower" from="Camera3D" to="UI" method="_on_camera_3d_placed_tower"]
 [connection signal="timeout" from="Path1/Timer" to="Path1" method="_on_timer_timeout"]

@@ -11,7 +11,7 @@ extends AnimatedSprite3D
 const MAXHEALTH : int = 10
 var health : int = MAXHEALTH
 
-var tName : String = "Fist"
+var tName : String = "Tank"
 var damage : int = 5
 var base_damage : int = 5
 var age : int = 1
@@ -22,14 +22,14 @@ var num_of_attacks : int = 0
 var seconds : float = 0.0
 var base_seconds : float = 0.0
 
-@onready var fist: AnimatedSprite3D = $"."
+@onready var tank: AnimatedSprite3D = $"."
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
 @onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
 
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
-	fist.play("Idle")
+	tank.play("Idle")
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
@@ -51,7 +51,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 func _on_attack_area_area_exited(_area: Area3D) -> void:
 	attackingNode = null
 	timer.stop()
-	fist.play("Idle")
+	tank.play("Idle")
 
 # The attacking timer
 func _on_timer_timeout() -> void:
@@ -60,7 +60,7 @@ func _on_timer_timeout() -> void:
 
 func attack() -> void:
 	if attackingNode != null:
-		fist.play("Attacking")
+		tank.play("Attacking")
 		attackingNode.health -= damage
 		num_of_attacks = num_of_attacks + 1
 

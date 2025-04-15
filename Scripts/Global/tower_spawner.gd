@@ -15,6 +15,9 @@ var TowerDictionary : Dictionary = {
 	"Fist" : preload("res://Scenes/towers/fist_fighter.tscn"),
 	"Healer" : preload("res://Scenes/towers/healer.tscn"),
 	"Mage" : preload("res://Scenes/towers/mage.tscn"),
+	"Tank" : preload("res://Scenes/towers/tank.tscn"),
+	"Archer" : preload("res://Scenes/towers/archer.tscn"),
+	"Farmer" : preload("res://Scenes/towers/farmer.tscn"),
 	"Enemy" : preload("res://Scenes/towers/enemy_1.tscn")
 }
 
