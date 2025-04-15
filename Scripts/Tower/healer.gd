@@ -59,16 +59,14 @@ func attack() -> void:
 	if attackingNode != null:
 		healer.play("Attacking")
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
-		#print("num of attacks, ", num_of_attacks)		#to see results, should delete later
-		#print("heal is, ", damage)					#to see results, should delete later
-		#print("health is, ", health)					#to see results, should delete later
 		spawn_projectile()
 
 func spawn_projectile() -> void:
-	var instance = PROJECTILE.instantiate()
-	map.add_child(instance)
-	instance.global_position = Vector3(healer.global_position.x, healer.global_position.y+1, healer.global_position.z)
-	instance.set_variables(attackingNode, healer)
+	if attackingNode.health < attackingNode.MAXHEALTH:
+		var instance = PROJECTILE.instantiate()
+		map.add_child(instance)
+		instance.global_position = Vector3(healer.global_position.x, healer.global_position.y+1, healer.global_position.z)
+		instance.set_variables(attackingNode, healer)
 	
 func aging() -> void:
 	if (num_of_attacks >= 5):
@@ -83,4 +81,4 @@ func aging() -> void:
 func _on_attack_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
 	attack()
-	#aging()
+	aging()
