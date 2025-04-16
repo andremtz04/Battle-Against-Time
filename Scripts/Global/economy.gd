@@ -1,6 +1,7 @@
 extends Node
 
-var totalMoney : int = 1000
+var totalMoney : int = 10
+var tempMoney : int
 
 var moneyDictinary : Dictionary = {
 	"null" : 0,
@@ -15,3 +16,10 @@ var moneyDictinary : Dictionary = {
 
 func deduct_money() -> void:
 	totalMoney -= moneyDictinary[TowerSpawner.currentTower]
+
+func enoughMoney() -> bool:
+	tempMoney = totalMoney
+	if tempMoney - moneyDictinary[TowerSpawner.currentTower] >= 0:
+		return true
+	else:
+		return false

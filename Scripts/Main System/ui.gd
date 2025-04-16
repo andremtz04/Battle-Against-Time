@@ -3,7 +3,7 @@ extends Control
 @onready var moneyLabel : RichTextLabel = $Money
 signal start_round
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	moneyLabel.text = str(Economy.totalMoney)
 
 

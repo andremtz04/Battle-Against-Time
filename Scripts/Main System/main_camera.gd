@@ -75,6 +75,8 @@ func delete_tower() -> bool:
 			instance.queue_free()
 		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != null:
 			instance.queue_free()
+		elif !Economy.enoughMoney():
+			instance.queue_free()
 		else:
 			return false
 	return true

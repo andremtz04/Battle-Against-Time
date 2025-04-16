@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var speed : int = 1.5
+var speed : float = 1.5
 var direction : Vector3
 var genMoney : int
 @onready var timer: Timer = $Timer
@@ -18,5 +18,4 @@ func set_variables(origin : Node3D):
 
 func _on_timer_timeout() -> void:
 	Economy.totalMoney += 4
-	print(Economy.totalMoney)
 	queue_free()
