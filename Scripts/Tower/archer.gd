@@ -27,7 +27,7 @@ var seconds : float = 0.0
 @onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
 @onready var map : Node3D = archer.get_parent_node_3d()
 
-const PROJECTILE = preload("res://Scenes/towers/projectile.tscn")
+const PROJECTILE = preload("res://Scenes/towers/projectile/projectile.tscn")
 
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH

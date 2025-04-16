@@ -12,7 +12,7 @@ const MAXHEALTH : int = 10
 var health : int = MAXHEALTH
 
 var tName : String = "Enemy"
-var damage : int = 0
+var damage : int = 2
 var age : int = 0
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null

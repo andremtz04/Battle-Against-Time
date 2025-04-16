@@ -27,7 +27,7 @@ var seconds : float = 0.0
 @onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
 @onready var map : Node3D = healer.get_parent_node_3d()
 
-const PROJECTILE = preload("res://Scenes/towers/projectile_heal.tscn")
+const PROJECTILE = preload("res://Scenes/towers/projectile/projectile_heal.tscn")
 
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcirfwigj47ss"]
+
+[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="1_u0rd8"]
+[ext_resource type="Script" path="res://Scripts/Tower/farmer_money.gd" id="1_wmu3y"]
+
+[node name="Money" type="CharacterBody3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+script = ExtResource("1_wmu3y")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("1_u0rd8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.35
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

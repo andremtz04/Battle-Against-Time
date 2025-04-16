@@ -1,10 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=15 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
 [ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
+[ext_resource type="Texture2D" uid="uid://cn6prqeuxfshy" path="res://Textures/Temp/Character/Male adventurer/PNG/Poses/character_maleAdventurer_side.png" id="3_qru2a"]
+[ext_resource type="Texture2D" uid="uid://bxourm55iq30b" path="res://Textures/Temp/Character/Robot/PNG/Poses/character_robot_side.png" id="3_rm0tt"]
 [ext_resource type="MeshLibrary" uid="uid://dbj42d4e3avfy" path="res://Meshes/BlockLibrary.tres" id="4_dwd1q"]
+[ext_resource type="Texture2D" uid="uid://def5v5wknj0g1" path="res://Textures/Towers/wizarding.png" id="5_vf4dd"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
+[ext_resource type="Texture2D" uid="uid://cq3mpxw4p1qv8" path="res://Textures/Temp/Character/Male person/PNG/Poses/character_malePerson_side.png" id="6_p6r3r"]
+[ext_resource type="Texture2D" uid="uid://cd4fm045452sp" path="res://Textures/Temp/Character/Female person/PNG/Poses/character_femalePerson_side.png" id="7_6horj"]
+[ext_resource type="Texture2D" uid="uid://bses0ahx00xh2" path="res://Textures/Temp/Character/Female adventurer/PNG/Poses/character_femaleAdventurer_side.png" id="8_wjlhu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5543"]
+atlas = ExtResource("5_vf4dd")
+region = Rect2(0, 0, 121.5, 134)
 
 [sub_resource type="Environment" id="Environment_yeaxu"]
 
@@ -43,27 +53,27 @@ columns = 2
 
 [node name="SpawnTower1" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("3_rm0tt")
 
 [node name="SpawnTower2" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("3_qru2a")
 
 [node name="SpawnTower3" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = SubResource("AtlasTexture_p5543")
 
 [node name="SpawnTower4" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("6_p6r3r")
 
 [node name="SpawnTower5" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("7_6horj")
 
 [node name="SpawnTower6" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("8_wjlhu")
 
 [node name="Play Button" type="TextureButton" parent="UI"]
 layout_mode = 0

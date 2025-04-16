@@ -3,15 +3,15 @@ extends Control
 @onready var moneyLabel : RichTextLabel = $Money
 signal start_round
 
-func _ready() -> void:
+func _process(delta: float) -> void:
 	moneyLabel.text = str(Economy.totalMoney)
 
 
 # Spawn Tower Buttons
-func _on_spawn_tower_2_button_down() -> void:
-	TowerSpawner.currentTower = "Fist"
 func _on_spawn_tower_1_button_down() -> void:
 	TowerSpawner.currentTower = "Healer"
+func _on_spawn_tower_2_button_down() -> void:
+	TowerSpawner.currentTower = "Fist"
 func _on_spawn_tower_3_button_down() -> void:
 	TowerSpawner.currentTower = "Mage"
 func _on_spawn_tower_4_button_down() -> void:
