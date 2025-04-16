@@ -12,7 +12,7 @@ const MAXHEALTH : int = 10
 var health : int = MAXHEALTH
 
 var tName : String = "Enemy"
-var damage : int = 2
+var damage : int = 0
 var age : int = 0
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
@@ -56,7 +56,7 @@ func _on_hitbox_area_area_exited(_area: Area3D) -> void:
 # Attackingggg
 func _on_timer_timeout() -> void: 
 	if attackingNode != null:
-		print("attacking", attackingNode)
+		#print("attacking", attackingNode)
 		attackingNode.health -= damage
 
 # Starts to move if there isn't anything in its way
