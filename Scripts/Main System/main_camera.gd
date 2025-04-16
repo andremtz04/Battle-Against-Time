@@ -63,7 +63,6 @@ func _input(event) -> void:
 				print("TOWER NOT RECOGNIZED/CODED: " + TowerSpawner.currentTower)
 			
 			instance.tPosition = inPos
-			#instance.calculate_radius()
 			instance.timer.start()
 			placedTower.emit()
 
@@ -77,7 +76,6 @@ func delete_tower() -> bool:
 		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != null:
 			instance.queue_free()
 		else:
-			#print(TowerSpawner.mapGrid[inPos.z][inPos.x])
 			return false
 	return true
 

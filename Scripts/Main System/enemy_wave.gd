@@ -4,10 +4,12 @@ extends Path3D
 @onready var timer: Timer = $Timer
 
 const ENEMY_PATH = preload("res://Scenes/enemy_path.tscn")
+@onready var main_map: GridMap = $"../Main Map"
 
 var moveSpeed : int = 3
 var currEnemyTotal : int = 0
 var roundStarted : bool = false
+var blockLocation : Array = []
 
 func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	#construct curve for path (CHANGE THIS INGAME)
@@ -22,9 +24,9 @@ func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	#y in this case is steps down, x is steps to right
 	#var startPos = Vector2i(x,z)
 	var endPos = Vector2i(endX,endZ)
-	print("Calculating path (Curve)\n path:\n")
+	#print("Calculating path (Curve)\n path:\n")
 	var path:Array = Risk.calculate_path(startPos,endPos)
-	Risk.print2DArray(path)
+	#Risk.print2DArray(path)
 	
 	var zVector = Vector3(0,0,0)
 	var index = 1
@@ -91,9 +93,9 @@ func _on_ui_start_round() -> void:
 	#print("Creating Curve") #debug
 	#Risk.print2DArray(Risk.calculate_path(Vector2i(0,0),Vector2i(19,14)))
 	#var curve:Curve3D = $"../Path3D".newCurve()
-	var startPos:Vector2i = Vector2i(0,0)
-	var rows = 19 #(x)
-	var cols = 14 #(z)
+	var startPos:Vector2i = Vector2i(0.5,0.5)
+	var rows = TowerSpawner.col - 1 #(x)
+	var cols = TowerSpawner.row - 1 #(z)
 	self.curve = newCurve(startPos,rows,cols)
 	if !roundStarted:
 		print("round start")
@@ -110,3 +112,14 @@ func _process(_delta: float) -> void:
 		if EnemySpawner.roundCounter < EnemySpawner.totalRounds:
 			EnemySpawner.roundCounter += 1
 		roundStarted = false
+
+func _ready() -> void:
+	var used_cells = main_map.get_used_cells()
+	for cell in used_cells:
+		var world_position = main_map.map_to_local(cell)
+		if world_position.y == 1.5:
+			blockLocation.append(floor(world_position))
+	
+	for block in blockLocation:
+		Risk.riskTable[block.z][block.x] = 99 
+	print(Risk.riskTable)

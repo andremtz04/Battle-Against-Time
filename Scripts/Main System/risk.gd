@@ -1,6 +1,7 @@
 extends Node
 
 var riskTable : Array = []
+
 var towerRisk : Dictionary
 
 # Called when the node enters the scene tree for the first time.
@@ -159,11 +160,3 @@ func print2DArray(arr:Array) -> void:
 	for i in arr.size():
 		print(arr[i])
 	print()
-
-
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
-
-func _on_timer_timeout() -> void:
-	pass # Replace with function body.

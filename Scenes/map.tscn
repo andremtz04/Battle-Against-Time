@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=8 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
 [ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
 [ext_resource type="MeshLibrary" uid="uid://dbj42d4e3avfy" path="res://Meshes/BlockLibrary.tres" id="4_dwd1q"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
-[ext_resource type="PackedScene" uid="uid://dysyltj04yf18" path="res://Scenes/towers/fist_fighter.tscn" id="6_cb6cv"]
-[ext_resource type="PackedScene" uid="uid://djfr0wtn0nyus" path="res://Scenes/towers/enemy_1.tscn" id="7_7xc5k"]
 
 [sub_resource type="Environment" id="Environment_yeaxu"]
 
@@ -120,14 +118,8 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Enemy1" parent="." instance=ExtResource("7_7xc5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 6.91025)
-
-[node name="fist_fighter" parent="." instance=ExtResource("6_cb6cv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.549, 5.07292, 13.8721)
-
 [node name="Path1" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.501848, 1, 0.502752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.5)
 curve = SubResource("Curve3D_i2jhb")
 script = ExtResource("6_0jpq0")
 
