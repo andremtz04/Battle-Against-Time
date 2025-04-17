@@ -34,6 +34,7 @@ const PROJECTILE = preload("res://Scenes/towers/projectile.tscn")
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
 	mage.play("Idle")
+	$MageSpawn.play()
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
@@ -77,6 +78,7 @@ func attack() -> void:
 	attackingNode = enemyQueue[0]
 	if attackingNode != null:
 		mage.play("Attacking")
+		$MageShoot.play()
 		num_of_attacks = num_of_attacks + 1
 		spawn_projectile()
 

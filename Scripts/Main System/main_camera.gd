@@ -14,9 +14,15 @@ const DUMMY_TOWER = preload("res://Scenes/towers/dummy_tower.tscn")
 
 signal placedTower
 
+func _ready(): #this is basically for audio
+	$Audio/WhimsyPlayer.play()
+	$Audio/WompPlayer.play()
+	$Audio/KickPlayer.play()
+	$Audio/BassPlayer.play()
+	$Audio/HiTunePlayer.play()
 
 func _process(_delta: float) -> void:
-	# Gets the mouse position
+	# Gets the mouse position	
 	var mousePos := get_viewport().get_mouse_position()
 	var from := project_ray_origin(mousePos)
 	var to := from + project_ray_normal(mousePos) * rayLength 
@@ -49,12 +55,26 @@ func _input(event) -> void:
 		dummyInstance.queue_free()
 		spawn_tower()
 		if delete_tower():
+			$Audio/BadAction.play()
 			pass
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 1)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
 			#update risk table
 			testNum = Risk.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
+			
+			#play audio here because i dont care enough to move it
+			#match TowerSpawner.currentTower:
+				#"Fist":
+					#pass #yet to implement
+				#"Mage":
+					#$Audio/MageSpawn.play()
+				#"Healer":
+					#pass #yet to implement
+				#name:
+					#print("Missing Audio File!: " + name)
+
+			
 			#DEBUG
 			if testNum:
 				#Risk.print2DArray(Risk.riskTable)
@@ -86,3 +106,7 @@ func spawn_tower() -> void:
 		instance = TowerSpawner.SpawnTower.instantiate()
 		instance.position = Vector3(inPos.x, inPos.y, inPos.z)
 		map.add_child(instance)
+
+
+func _on_mute_button_pressed() -> void: #mute or unmute for our earsss
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),!AudioServer.is_bus_mute(AudioServer.get_bus_index("Master")))

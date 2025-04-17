@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=15 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
 [ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
+[ext_resource type="Texture2D" uid="uid://b0l7py1rdquvu" path="res://Textures/GUI/MuteButton.png" id="3_rg7c8"]
 [ext_resource type="MeshLibrary" uid="uid://dbj42d4e3avfy" path="res://Meshes/BlockLibrary.tres" id="4_dwd1q"]
+[ext_resource type="AudioStream" uid="uid://dwiowodyq12rj" path="res://Audio/Effects/BadAction.mp3" id="5_5u5l7"]
+[ext_resource type="AudioStream" uid="uid://bebyl24s5s1gd" path="res://Audio/Music/CheekyHorn.mp3" id="5_nu03c"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
+[ext_resource type="AudioStream" uid="uid://d2stov0k3ufj1" path="res://Audio/Music/TromboneSadge.mp3" id="6_5kee7"]
+[ext_resource type="AudioStream" uid="uid://xa1rxri2spvr" path="res://Audio/Music/Kick.mp3" id="8_exuxu"]
+[ext_resource type="AudioStream" uid="uid://ch5a1flc2esql" path="res://Audio/Music/AtariBass.mp3" id="9_qn2xa"]
+[ext_resource type="AudioStream" uid="uid://bs7xjlov6cm88" path="res://Audio/Music/MusicBox.mp3" id="10_qdetx"]
 
 [sub_resource type="Environment" id="Environment_yeaxu"]
 
@@ -86,6 +93,15 @@ offset_right = 1123.0
 offset_bottom = 465.0
 text = "Enemy"
 
+[node name="MuteButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 523.0
+offset_right = 855.0
+offset_bottom = 976.0
+scale = Vector2(0.209464, 0.247923)
+texture_normal = ExtResource("3_rg7c8")
+
 [node name="Lighting Stuff" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting Stuff"]
@@ -98,6 +114,34 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25,
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 13.5, 15, 12.5)
 fov = 65.0
 script = ExtResource("3_a5gf1")
+
+[node name="Audio" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0)
+
+[node name="BadAction" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("5_5u5l7")
+volume_db = -4.103
+bus = &"SFX"
+
+[node name="WhimsyPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("5_nu03c")
+parameters/looping = true
+
+[node name="WompPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("6_5kee7")
+parameters/looping = true
+
+[node name="KickPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("8_exuxu")
+parameters/looping = true
+
+[node name="BassPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("9_qn2xa")
+parameters/looping = true
+
+[node name="HiTunePlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("10_qdetx")
+parameters/looping = true
 
 [node name="Main Map" type="GridMap" parent="."]
 mesh_library = ExtResource("4_dwd1q")
@@ -135,5 +179,6 @@ script = ExtResource("6_0jpq0")
 [connection signal="button_down" from="UI/GridContainer/SpawnTower6" to="UI" method="_on_spawn_tower_6_button_down"]
 [connection signal="button_down" from="UI/Play Button" to="UI" method="_on_play_button_button_down"]
 [connection signal="button_down" from="UI/EnemyTest2" to="UI" method="_on_button_button_down"]
+[connection signal="pressed" from="UI/MuteButton" to="Camera3D" method="_on_mute_button_pressed"]
 [connection signal="placedTower" from="Camera3D" to="UI" method="_on_camera_3d_placed_tower"]
 [connection signal="timeout" from="Path1/Timer" to="Path1" method="_on_timer_timeout"]
