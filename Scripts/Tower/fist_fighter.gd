@@ -30,6 +30,7 @@ var base_seconds : float = 0.0
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
 	fist.play("Idle")
+	##IMPLEMENT AUDIO HERE ONCE DONE
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
@@ -61,6 +62,7 @@ func _on_timer_timeout() -> void:
 func attack() -> void:
 	if attackingNode != null:
 		fist.play("Attacking")
+		$FistAttack.play()
 		attackingNode.health -= damage
 		num_of_attacks = num_of_attacks + 1
 

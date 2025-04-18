@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 	health_bar.value = health
 	if health <= 0: # removes itself once it dies
 		EnemySpawner.enemykilled += 1
+		$EnemyDeath.play() ### DOES NOT WORK ATM DUE TO NODE DELETION. CONSIDER "DEATH" STATE.
 		queue_free()
 
 func _on_attack_area_area_entered(area: Area3D) -> void:

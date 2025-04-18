@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://djfr0wtn0nyus"]
+[gd_scene load_steps=18 format=3 uid="uid://djfr0wtn0nyus"]
 
 [ext_resource type="Texture2D" uid="uid://cufx3s0p6sj4m" path="res://Textures/Temp/Character/Zombie/Tilesheet/character_zombie_sheet.png" id="1_1h3b1"]
 [ext_resource type="Script" path="res://Scripts/Tower/enemy_1.gd" id="1_ettbt"]
+[ext_resource type="AudioStream" uid="uid://6uamtrhixq6g" path="res://Audio/Effects/EnemyDeath.mp3" id="3_k8ww7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ggof0"]
 atlas = ExtResource("1_1h3b1")
@@ -88,6 +89,11 @@ expand_margin_bottom = 3.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_6wocv"]
 viewport_path = NodePath("HealthBar/SubViewport")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fqw83"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_k8ww7")
+
 [node name="Enemy1" type="AnimatedSprite3D" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 offset = Vector2(0, 50)
@@ -148,6 +154,10 @@ offset = Vector2(0, 100)
 billboard = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_6wocv")
+
+[node name="EnemyDeath" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fqw83")
+bus = &"SFX"
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
