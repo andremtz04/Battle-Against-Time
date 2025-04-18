@@ -1,10 +1,15 @@
 extends Control
 
 @onready var moneyLabel : RichTextLabel = $Money
+@onready var healthLabel: RichTextLabel = $Health
+var health = 1
 signal start_round
 
 func _process(_delta: float) -> void:
+	if health <= 0:
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 	moneyLabel.text = str(Economy.totalMoney)
+	healthLabel.text = str(health)
 
 
 # Spawn Tower Buttons

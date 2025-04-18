@@ -2,6 +2,7 @@ extends Path3D
 
 @onready var mainPath: Path3D = $"."
 @onready var timer: Timer = $Timer
+@onready var ui: Control = $"../UI"
 
 const ENEMY_PATH = preload("res://Scenes/enemy_path.tscn")
 @onready var main_map: GridMap = $"../Main Map"
@@ -123,3 +124,12 @@ func _ready() -> void:
 	for block in blockLocation:
 		Risk.riskTable[block.z][block.x] = 99 
 	print(Risk.riskTable)
+
+# deletes the enemy if they reach the end
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	var enemyNode = area.get_parent()
+	if enemyNode.is_in_group("Enemy"):
+		ui.health -= enemyNode.damage
+		EnemySpawner.enemykilled += 1
+		var pathNode = enemyNode.get_parent()
+		pathNode.queue_free()
