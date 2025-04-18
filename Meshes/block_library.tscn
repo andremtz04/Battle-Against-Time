@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cqn2xv4tr57bx" path="res://Textures/Temp/Light/texture_11.png" id="1_v8nul"]
 [ext_resource type="Texture2D" uid="uid://baoxoykc1w6ju" path="res://Textures/Temp/Dark/texture_12.png" id="2_jopfe"]
-[ext_resource type="Texture2D" uid="uid://c8mf41tklkpb4" path="res://Textures/Temp/Purple/texture_13.png" id="3_0hbof"]
+[ext_resource type="Shader" uid="uid://uo05g43vpw5c" path="res://Meshes/repetition.tres" id="3_rh6wu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1210d"]
 albedo_texture = ExtResource("1_v8nul")
@@ -24,12 +24,12 @@ material = SubResource("StandardMaterial3D_ohxpv")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tjtf8"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_283d8"]
-albedo_texture = ExtResource("3_0hbof")
-uv1_scale = Vector3(3, 2, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_vypmt"]
-material = SubResource("StandardMaterial3D_283d8")
+lightmap_size_hint = Vector2i(14, 21)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ui7d"]
+render_priority = 0
+shader = ExtResource("3_rh6wu")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_drahq"]
 points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
@@ -37,6 +37,7 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="Block Library" type="Node3D"]
 
 [node name="White Block" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_k4yed")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="White Block"]
@@ -54,8 +55,8 @@ mesh = SubResource("BoxMesh_00i0f")
 shape = SubResource("ConvexPolygonShape3D_tjtf8")
 
 [node name="Purple Block" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_vypmt")
+surface_material_override/0 = SubResource("ShaderMaterial_1ui7d")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Purple Block"]
 

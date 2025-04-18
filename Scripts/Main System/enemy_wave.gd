@@ -123,7 +123,7 @@ func _ready() -> void:
 	
 	for block in blockLocation:
 		Risk.riskTable[block.z][block.x] = 99 
-	print(Risk.riskTable)
+	#print(Risk.riskTable)
 
 # deletes the enemy if they reach the end
 func _on_area_3d_area_entered(area: Area3D) -> void:
