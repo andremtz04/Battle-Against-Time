@@ -110,7 +110,7 @@ script = ExtResource("1_ettbt")
 [node name="HitboxArea" type="Area3D" parent="."]
 
 [node name="Hitbox" type="CollisionShape3D" parent="HitboxArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_d7skv")
 
 [node name="AttackArea" type="Area3D" parent="."]
@@ -158,7 +158,10 @@ texture = SubResource("ViewportTexture_6wocv")
 [node name="EnemyDeath" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_fqw83")
 
+[node name="MoveTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
 [connection signal="area_exited" from="HitboxArea" to="." method="_on_hitbox_area_area_exited"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]

@@ -16,17 +16,20 @@ var damage : int = 2
 var age : int = 0
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
+var enemyQueue : Array
 
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
 @onready var attack_area: Area3D = $AttackArea
 @onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
+@onready var enemy1: AnimatedSprite3D = $"."
 
 # signal that enemy sends to enemy_path.gd
 signal stop_movement
 signal start_movement
 
 func _ready() -> void:
+	enemy1.play("Walking")
 	health_bar.max_value = MAXHEALTH
 
 
@@ -37,31 +40,53 @@ func _process(_delta: float) -> void:
 		EnemySpawner.enemykilled += 1
 		$EnemyDeath.play() ### DOES NOT WORK ATM DUE TO NODE DELETION. CONSIDER "DEATH" STATE.
 		queue_free()
+	if enemyQueue.is_empty():
+		timer.stop()
+		attackingNode = null
+		enemy1.play("Walking")
+		start_movement.emit()
 
 func _on_attack_area_area_entered(area: Area3D) -> void:
 	if hitbox_area != area: # Ignores its own hitbox
 		var parent = area.get_parent()
 		if parent.is_in_group("Tower"): # Checks if the node is a tower
 			attackingNode = parent
+			enemyQueue.append(parent)
+			attack()
 			timer.start() # Starts the attack
 			stop_movement.emit() # Tells enemy_path.gd to stop moving
 
 # Checks if there's something in its way
 func _on_hitbox_area_area_entered(_area: Area3D) -> void:
-	stop_movement.emit() # Tells enemy_path.gd to stop moving
+	#stop_movement.emit() # Tells enemy_path.gd to stop moving
+	pass
+
 
 # Starts to move if nothing is in the way 
 func _on_hitbox_area_area_exited(_area: Area3D) -> void:
-	start_movement.emit()
+	#start_movement.emit()
+	pass
+
 
 # Attackingggg
 func _on_timer_timeout() -> void: 
-	if attackingNode != null:
-		#print("attacking", attackingNode)
-		attackingNode.health -= damage
+	attack()
+
 
 # Starts to move if there isn't anything in its way
-func _on_attack_area_area_exited(_area: Area3D) -> void:
-	attackingNode = null
-	timer.stop()
-	start_movement.emit()
+func _on_attack_area_area_exited(area: Area3D) -> void:
+	if hitbox_area != area:
+		var parent = area.get_parent()
+		if parent.is_in_group("Tower"):
+			var i = 0
+			for tower in enemyQueue:
+				if tower == parent || tower.is_queued_free():
+					enemyQueue.remove_at(i)
+				i += 1
+
+func attack():
+	attackingNode = enemyQueue[0]
+	if attackingNode != null:
+		enemy1.play("Attacking")
+		#print("attacking", attackingNode)
+		attackingNode.health -= damage

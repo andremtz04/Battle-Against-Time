@@ -22,6 +22,8 @@ var num_of_attacks : int = 0
 var seconds : float = 0.0
 var base_seconds : float = 0.0
 
+var enemyQueue : Array
+
 @onready var tank: AnimatedSprite3D = $"."
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
@@ -36,6 +38,10 @@ func _process(_delta: float) -> void:
 	health_bar.value = health
 	if health <= 0: # KYS
 		queue_free()
+	if enemyQueue.is_empty():
+		timer.stop()
+		attackingNode = null
+		tank.play("Idle")
 
 
 func _on_attack_area_area_entered(area: Area3D) -> void:
@@ -43,15 +49,21 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"): # Attack function
 			attackingNode = parent 
+			enemyQueue.append(parent)
 			attack()
 			aging()
 			timer.start()
 
 # Stops attacking once they leaving the attacking area
-func _on_attack_area_area_exited(_area: Area3D) -> void:
-	attackingNode = null
-	timer.stop()
-	tank.play("Idle")
+func _on_attack_area_area_exited(area: Area3D) -> void:
+	if hitbox_area != area:
+		var parent = area.get_parent()
+		if parent.is_in_group("Enemy"):
+			var i = 0
+			for enemy in enemyQueue:
+				if enemy == parent:
+					enemyQueue.remove_at(i)
+				i += 1
 
 # The attacking timer
 func _on_timer_timeout() -> void:
@@ -59,6 +71,7 @@ func _on_timer_timeout() -> void:
 	aging()
 
 func attack() -> void:
+	attackingNode = enemyQueue[0]
 	if attackingNode != null:
 		tank.play("Attacking")
 		attackingNode.health -= damage

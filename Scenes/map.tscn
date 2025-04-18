@@ -1,21 +1,33 @@
-[gd_scene load_steps=15 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=23 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
 [ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
 [ext_resource type="Texture2D" uid="uid://b0l7py1rdquvu" path="res://Textures/GUI/MuteButton.png" id="3_rg7c8"]
+[ext_resource type="Texture2D" uid="uid://dg0sqgyc4mxa" path="res://Textures/Temp/Character/Robot/PNG/Poses/character_robot_attack0.png" id="3_swmg0"]
 [ext_resource type="MeshLibrary" uid="uid://dbj42d4e3avfy" path="res://Meshes/BlockLibrary.tres" id="4_dwd1q"]
+[ext_resource type="Texture2D" uid="uid://rrhlhmcbsrqv" path="res://Textures/Temp/Character/Male adventurer/PNG/Poses/character_maleAdventurer_attack0.png" id="4_jguus"]
 [ext_resource type="AudioStream" uid="uid://dwiowodyq12rj" path="res://Audio/Effects/BadAction.mp3" id="5_5u5l7"]
+[ext_resource type="Texture2D" uid="uid://def5v5wknj0g1" path="res://Textures/Towers/wizarding.png" id="5_a3mt8"]
 [ext_resource type="AudioStream" uid="uid://bebyl24s5s1gd" path="res://Audio/Music/CheekyHorn.mp3" id="5_nu03c"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
 [ext_resource type="AudioStream" uid="uid://d2stov0k3ufj1" path="res://Audio/Music/TromboneSadge.mp3" id="6_5kee7"]
+[ext_resource type="Texture2D" uid="uid://b0my7388sgq8b" path="res://Textures/Temp/Character/Female person/PNG/Poses/character_femalePerson_attack0.png" id="6_qs5vs"]
+[ext_resource type="Texture2D" uid="uid://bue8fdsvcl46d" path="res://Textures/Temp/Character/Male person/PNG/Poses/character_malePerson_attack0.png" id="7_1yfya"]
+[ext_resource type="Texture2D" uid="uid://bhpaf7pegoclk" path="res://Textures/Temp/Character/Female adventurer/PNG/Poses/character_femaleAdventurer_attack0.png" id="8_1y1mp"]
 [ext_resource type="AudioStream" uid="uid://xa1rxri2spvr" path="res://Audio/Music/Kick.mp3" id="8_exuxu"]
 [ext_resource type="AudioStream" uid="uid://ch5a1flc2esql" path="res://Audio/Music/AtariBass.mp3" id="9_qn2xa"]
 [ext_resource type="AudioStream" uid="uid://bs7xjlov6cm88" path="res://Audio/Music/MusicBox.mp3" id="10_qdetx"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4sn0"]
+atlas = ExtResource("5_a3mt8")
+region = Rect2(7.5, 19, 104, 112)
+
 [sub_resource type="Environment" id="Environment_yeaxu"]
 
 [sub_resource type="Curve3D" id="Curve3D_i2jhb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evvkq"]
 
 [node name="Map" type="Node3D"]
 
@@ -30,6 +42,13 @@ script = ExtResource("2_bppfq")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Health" type="RichTextLabel" parent="UI"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 36.0
+offset_right = 41.0
+offset_bottom = 76.0
 
 [node name="EnemyTest" type="TextureButton" parent="UI"]
 layout_mode = 2
@@ -50,27 +69,27 @@ columns = 2
 
 [node name="SpawnTower1" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("3_swmg0")
 
 [node name="SpawnTower2" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("4_jguus")
 
 [node name="SpawnTower3" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = SubResource("AtlasTexture_o4sn0")
 
 [node name="SpawnTower4" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("7_1yfya")
 
 [node name="SpawnTower5" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("6_qs5vs")
 
 [node name="SpawnTower6" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("8_1y1mp")
 
 [node name="Play Button" type="TextureButton" parent="UI"]
 layout_mode = 0
@@ -121,7 +140,6 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 
 [node name="BadAction" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("5_5u5l7")
 volume_db = -4.103
-bus = &"SFX"
 
 [node name="WhimsyPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("5_nu03c")
@@ -152,7 +170,7 @@ collision_priority = 2.0
 data = {
 "cells": PackedInt32Array(0, 0, 1245184, 1, 0, 1245184, 2, 0, 1245184, 3, 0, 1245184, 4, 0, 1245184, 5, 0, 1245184, 6, 0, 1245184, 11, 0, 1245184, 12, 0, 1245184, 13, 0, 1245184, 14, 0, 1245184, 15, 0, 1245184, 16, 0, 1245184, 17, 0, 1245184, 18, 0, 1245184, 19, 0, 1245184, 7, 0, 1245184, 8, 0, 1245184, 9, 0, 1245184, 10, 0, 1245184, 0, 1, 1245184, 0, 2, 1245184, 0, 3, 1245184, 0, 4, 1245184, 0, 5, 1245184, 0, 6, 1245184, 0, 7, 1245184, 0, 8, 1245184, 0, 9, 1245184, 0, 10, 1245184, 0, 11, 1245184, 0, 12, 1245184, 0, 13, 1245184, 0, 14, 1245184, 1, 1, 1245184, 1, 2, 1245184, 1, 3, 1245184, 1, 4, 1245184, 1, 5, 1245184, 1, 6, 1245184, 1, 7, 1245184, 1, 8, 1245184, 1, 9, 1245184, 1, 10, 1245184, 1, 11, 1245184, 1, 12, 1245184, 1, 13, 1245184, 1, 14, 1245184, 2, 1, 1245184, 2, 2, 1245184, 2, 3, 1245184, 2, 4, 1245184, 2, 5, 1245184, 2, 6, 1245184, 2, 7, 1245184, 2, 8, 1245184, 2, 9, 1245184, 2, 10, 1245184, 2, 11, 1245184, 2, 12, 1245184, 2, 13, 1245184, 2, 14, 1245184, 3, 1, 1245184, 3, 2, 1245184, 3, 3, 1245184, 3, 4, 1245184, 3, 5, 1245184, 3, 6, 1245184, 3, 7, 1245184, 3, 8, 1245184, 3, 9, 1245184, 3, 10, 1245184, 3, 11, 1245184, 3, 12, 1245184, 3, 13, 1245184, 3, 14, 1245184, 4, 1, 1245184, 4, 2, 1245184, 4, 3, 1245184, 4, 4, 1245184, 4, 5, 1245184, 4, 6, 1245184, 4, 7, 1245184, 4, 8, 1245184, 4, 9, 1245184, 4, 10, 1245184, 4, 11, 1245184, 4, 12, 1245184, 4, 13, 1245184, 4, 14, 1245184, 5, 1, 1245184, 5, 2, 1245184, 5, 3, 1245184, 5, 4, 1245184, 5, 5, 1245184, 5, 6, 1245184, 5, 7, 1245184, 5, 8, 1245184, 5, 9, 1245184, 5, 10, 1245184, 5, 11, 1245184, 5, 12, 1245184, 5, 13, 1245184, 5, 14, 1245184, 6, 1, 1245184, 6, 2, 1245184, 6, 3, 1245184, 6, 4, 1245184, 6, 5, 1245184, 6, 6, 1245184, 6, 7, 1245184, 6, 8, 1245184, 6, 9, 1245184, 6, 10, 1245184, 6, 11, 1245184, 6, 12, 1245184, 6, 13, 1245184, 6, 14, 1245184, 7, 1, 1245184, 7, 2, 1245184, 7, 3, 1245184, 7, 4, 1245184, 7, 5, 1245184, 7, 6, 1245184, 7, 7, 1245184, 7, 8, 1245184, 7, 9, 1245184, 7, 10, 1245184, 7, 11, 1245184, 7, 12, 1245184, 7, 13, 1245184, 7, 14, 1245184, 8, 1, 1245184, 8, 2, 1245184, 8, 3, 1245184, 8, 4, 1245184, 8, 5, 1245184, 8, 6, 1245184, 8, 7, 1245184, 8, 8, 1245184, 8, 9, 1245184, 8, 10, 1245184, 8, 11, 1245184, 8, 12, 1245184, 8, 13, 1245184, 8, 14, 1245184, 9, 1, 1245184, 9, 2, 1245184, 9, 3, 1245184, 9, 4, 1245184, 9, 5, 1245184, 9, 6, 1245184, 9, 7, 1245184, 9, 8, 1245184, 9, 9, 1245184, 9, 10, 1245184, 9, 11, 1245184, 9, 12, 1245184, 9, 13, 1245184, 9, 14, 1245184, 10, 1, 1245184, 10, 2, 1245184, 10, 3, 1245184, 10, 4, 1245184, 10, 5, 1245184, 10, 6, 1245184, 10, 7, 1245184, 10, 8, 1245184, 10, 9, 1245184, 10, 10, 1245184, 10, 11, 1245184, 10, 12, 1245184, 10, 13, 1245184, 10, 14, 1245184, 11, 1, 1245184, 11, 2, 1245184, 11, 3, 1245184, 11, 4, 1245184, 11, 5, 1245184, 11, 6, 1245184, 11, 7, 1245184, 11, 8, 1245184, 11, 9, 1245184, 11, 10, 1245184, 11, 11, 1245184, 11, 12, 1245184, 11, 13, 1245184, 11, 14, 1245184, 12, 1, 1245184, 12, 2, 1245184, 12, 3, 1245184, 12, 4, 1245184, 12, 5, 1245184, 12, 6, 1245184, 12, 7, 1245184, 12, 8, 1245184, 12, 9, 1245184, 12, 10, 1245184, 12, 11, 1245184, 12, 12, 1245184, 12, 13, 1245184, 12, 14, 1245184, 13, 1, 1245184, 13, 2, 1245184, 13, 3, 1245184, 13, 4, 1245184, 13, 5, 1245184, 13, 6, 1245184, 13, 7, 1245184, 13, 8, 1245184, 13, 9, 1245184, 13, 10, 1245184, 13, 11, 1245184, 13, 12, 1245184, 13, 13, 1245184, 13, 14, 1245184, 14, 1, 1245184, 14, 2, 1245184, 14, 3, 1245184, 14, 4, 1245184, 14, 5, 1245184, 14, 6, 1245184, 14, 7, 1245184, 14, 8, 1245184, 14, 9, 1245184, 14, 10, 1245184, 14, 11, 1245184, 14, 12, 1245184, 14, 13, 1245184, 14, 14, 1245184, 15, 1, 1245184, 15, 2, 1245184, 15, 3, 1245184, 15, 4, 1245184, 15, 5, 1245184, 15, 6, 1245184, 15, 7, 1245184, 15, 8, 1245184, 15, 9, 1245184, 15, 10, 1245184, 15, 11, 1245184, 15, 12, 1245184, 15, 13, 1245184, 15, 14, 1245184, 16, 1, 1245184, 16, 2, 1245184, 16, 3, 1245184, 16, 4, 1245184, 16, 5, 1245184, 16, 6, 1245184, 16, 7, 1245184, 16, 8, 1245184, 16, 9, 1245184, 16, 10, 1245184, 16, 11, 1245184, 16, 12, 1245184, 16, 13, 1245184, 16, 14, 1245184, 17, 1, 1245184, 17, 2, 1245184, 17, 3, 1245184, 17, 4, 1245184, 17, 5, 1245184, 17, 6, 1245184, 17, 7, 1245184, 17, 8, 1245184, 17, 9, 1245184, 17, 10, 1245184, 17, 11, 1245184, 17, 12, 1245184, 17, 13, 1245184, 17, 14, 1245184, 18, 1, 1245184, 18, 2, 1245184, 18, 3, 1245184, 18, 4, 1245184, 18, 5, 1245184, 18, 6, 1245184, 18, 7, 1245184, 18, 8, 1245184, 18, 9, 1245184, 18, 10, 1245184, 18, 11, 1245184, 18, 12, 1245184, 18, 13, 1245184, 18, 14, 1245184, 19, 1, 1245184, 19, 2, 1245184, 19, 3, 1245184, 19, 4, 1245184, 19, 5, 1245184, 19, 6, 1245184, 19, 7, 1245184, 19, 8, 1245184, 19, 9, 1245184, 19, 10, 1245184, 19, 11, 1245184, 19, 12, 1245184, 19, 13, 1245184, 19, 14, 1245184, 65539, 8, 1310721, 65540, 8, 1310721, 65553, 1, 1310721, 65554, 1, 1310721, 65554, 3, 1310721, 65554, 2, 1310721, 65544, 13, 1310721, 65545, 13, 1310721, 65545, 0, 1310721, 65546, 0, 1310721, 65547, 0, 1310721, 65548, 0, 1310721, 65555, 13, 1, 65555, 14, 1, 65554, 14, 1, 65551, 7, 1, 65551, 8, 1, 65551, 9, 1)
 }
-metadata/_editor_floor_ = Vector3(0, 1, 0)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Background" type="GridMap" parent="."]
 mesh_library = ExtResource("4_dwd1q")
@@ -169,6 +187,13 @@ script = ExtResource("6_0jpq0")
 
 [node name="Timer" type="Timer" parent="Path1"]
 
+[node name="End Area" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="End Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 1.5, 12.5)
+shape = SubResource("BoxShape3D_evvkq")
+
 [connection signal="start_round" from="UI" to="Path1" method="_on_ui_start_round"]
 [connection signal="button_down" from="UI/EnemyTest" to="UI" method="_on_enemy_test_button_down"]
 [connection signal="button_down" from="UI/GridContainer/SpawnTower1" to="UI" method="_on_spawn_tower_1_button_down"]
@@ -182,3 +207,4 @@ script = ExtResource("6_0jpq0")
 [connection signal="pressed" from="UI/MuteButton" to="Camera3D" method="_on_mute_button_pressed"]
 [connection signal="placedTower" from="Camera3D" to="UI" method="_on_camera_3d_placed_tower"]
 [connection signal="timeout" from="Path1/Timer" to="Path1" method="_on_timer_timeout"]
+[connection signal="area_entered" from="End Area" to="Path1" method="_on_area_3d_area_entered"]
