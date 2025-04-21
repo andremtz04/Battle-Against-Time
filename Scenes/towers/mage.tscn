@@ -1,14 +1,14 @@
 [gd_scene load_steps=20 format=3 uid="uid://c0f6l08qc0qe5"]
 
-[ext_resource type="Shader" path="res://Shaders/test.gdshader" id="1_b0flm"]
 [ext_resource type="Texture2D" uid="uid://def5v5wknj0g1" path="res://Textures/Towers/wizarding.png" id="1_bkebe"]
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_lswyl"]
 [ext_resource type="Script" path="res://Scripts/Tower/mage.gd" id="1_ssjch"]
 [ext_resource type="AudioStream" uid="uid://cej7u3nu1b0qy" path="res://Audio/Effects/MageSpawn.mp3" id="3_3vbe8"]
 [ext_resource type="AudioStream" uid="uid://cnfftgydl53uv" path="res://Audio/Effects/MageShooty.mp3" id="4_h375q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5t4wc"]
 render_priority = 0
-shader = ExtResource("1_b0flm")
+shader = ExtResource("1_lswyl")
 shader_parameter/active = false
 shader_parameter/billboard = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)

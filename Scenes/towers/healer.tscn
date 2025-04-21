@@ -1,51 +1,41 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmtlwkbkhqcuj"]
+[gd_scene load_steps=16 format=3 uid="uid://dmtlwkbkhqcuj"]
 
 [ext_resource type="Script" path="res://Scripts/Tower/healer.gd" id="1_3rqt0"]
-[ext_resource type="Texture2D" uid="uid://dqjnr134aetxi" path="res://Textures/Temp/Character/Robot/Tilesheet/character_robot_sheet.png" id="1_81y18"]
+[ext_resource type="Texture2D" uid="uid://ckjcyj6yl81cc" path="res://Textures/Towers/Priestess.png" id="1_dbvqb"]
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_g57dj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m4kfo"]
-atlas = ExtResource("1_81y18")
-region = Rect2(0, 0, 96, 128)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2c42"]
+render_priority = 0
+shader = ExtResource("1_g57dj")
+shader_parameter/active = false
+shader_parameter/billboard = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/tex = ExtResource("1_dbvqb")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0bhud"]
-atlas = ExtResource("1_81y18")
-region = Rect2(96, 0, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyl3e"]
+atlas = ExtResource("1_dbvqb")
+region = Rect2(0, 125, 125, 125)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_00bmm"]
-atlas = ExtResource("1_81y18")
-region = Rect2(192, 0, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbs87"]
+atlas = ExtResource("1_dbvqb")
+region = Rect2(125, 125, 125, 125)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u34lc"]
-atlas = ExtResource("1_81y18")
-region = Rect2(192, 384, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv72j"]
+atlas = ExtResource("1_dbvqb")
+region = Rect2(0, 0, 125, 125)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1u1co"]
-atlas = ExtResource("1_81y18")
-region = Rect2(96, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_56qat"]
-atlas = ExtResource("1_81y18")
-region = Rect2(768, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w7lpt"]
-atlas = ExtResource("1_81y18")
-region = Rect2(768, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0x833"]
-atlas = ExtResource("1_81y18")
-region = Rect2(96, 128, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1fno"]
+atlas = ExtResource("1_dbvqb")
+region = Rect2(125, 0, 125, 125)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jrsrq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m4kfo")
+"texture": SubResource("AtlasTexture_eyl3e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0bhud")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_00bmm")
+"texture": SubResource("AtlasTexture_gbs87")
 }],
 "loop": true,
 "name": &"Attacking",
@@ -53,19 +43,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u34lc")
+"texture": SubResource("AtlasTexture_pv72j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1u1co")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_56qat")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w7lpt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0x833")
+"texture": SubResource("AtlasTexture_e1fno")
 }],
 "loop": true,
 "name": &"Idle",
@@ -103,11 +84,12 @@ expand_margin_bottom = 3.0
 viewport_path = NodePath("HealthBar/SubViewport")
 
 [node name="Healer" type="AnimatedSprite3D" groups=["Healer", "Tower"]]
+material_override = SubResource("ShaderMaterial_i2c42")
 offset = Vector2(0, 50)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_jrsrq")
 animation = &"Attacking"
-frame_progress = 0.318739
+frame_progress = 0.870658
 script = ExtResource("1_3rqt0")
 
 [node name="AttackTimer" type="Timer" parent="."]

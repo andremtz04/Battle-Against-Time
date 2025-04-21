@@ -39,6 +39,7 @@ func _ready() -> void:
 	mage.play("Idle")
 	$MageSpawn.play()
 
+
 # z = rows , x = columns
 func _process(_delta: float) -> void:
 	print(age)
@@ -53,6 +54,7 @@ func _process(_delta: float) -> void:
 		mage.material_override.set_shader_parameter("flash_color", Color(0, 0, 1))
 		mage.material_override.set_shader_parameter("active",true)
 
+
 # Checks if an enemy enters its strike range
 func _on_attack_area_area_entered(area: Area3D) -> void:
 	if hitbox_area != area: # Ignores its own hitbox
@@ -63,6 +65,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 			attack()
 			#aging()
 			timer.start()
+
 
 # Stops attacking once they leaving the attacking area
 func _on_attack_area_area_exited(area: Area3D) -> void:
@@ -75,10 +78,12 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 					enemyQueue.remove_at(i)
 				i += 1
 
+
 # The attacking timer
 func _on_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
 	attack()
+
 
 func attack() -> void:
 	#mage.material_override.set_shader_parameter("active",true)
@@ -90,12 +95,14 @@ func attack() -> void:
 		num_of_attacks += 1
 		spawn_projectile()
 
+
 func spawn_projectile() -> void:
 	var instance = PROJECTILE.instantiate()
 	map.add_child(instance)
 	instance.global_position = Vector3(mage.global_position.x, mage.global_position.y+1, mage.global_position.z)
 	instance.set_variables(attackingNode, mage)
-	
+
+
 func aging() -> void:
 	if (num_of_attacks >= 5 || age < MAXAGE):
 		if (age <= 5):
@@ -105,4 +112,3 @@ func aging() -> void:
 		num_of_attacks = 0
 		damage = BASEDAMGE + age
 		seconds = age * 0.5
-	
