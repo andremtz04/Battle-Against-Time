@@ -45,6 +45,7 @@ func _process(_delta: float) -> void:
 		timer.stop()
 		attackingNode = null
 		mage.play("Idle")
+		#mage.material_override.set_shader_parameter("active",false)
 
 # Checks if an enemy enters its strike range
 func _on_attack_area_area_entered(area: Area3D) -> void:
@@ -75,6 +76,7 @@ func _on_timer_timeout() -> void:
 	aging()
 
 func attack() -> void:
+	#mage.material_override.set_shader_parameter("active",true)
 	attackingNode = enemyQueue[0]
 	if attackingNode != null:
 		mage.play("Attacking")

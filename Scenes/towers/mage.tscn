@@ -87,6 +87,7 @@ streams_count = 1
 stream_0/stream = ExtResource("4_h375q")
 
 [node name="Mage" type="AnimatedSprite3D" groups=["Tower"]]
+transform = Transform3D(1, -0.000162634, 0.000622827, 0.000163368, 0.999999, -0.00115974, -0.000622634, 0.00115984, 0.999999, 0, 0, 0)
 offset = Vector2(0, 50)
 billboard = 1
 texture_filter = 0

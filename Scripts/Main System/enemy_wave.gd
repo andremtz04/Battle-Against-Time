@@ -5,7 +5,7 @@ extends Path3D
 @onready var ui: Control = $"../UI"
 
 const ENEMY_PATH = preload("res://Scenes/enemy_path.tscn")
-@onready var main_map: GridMap = $"../Main Map"
+@onready var main_map: GridMap = $"../Background Stuff/Main Map"
 
 var moveSpeed : int = 3
 var currEnemyTotal : int = 0
@@ -108,6 +108,7 @@ func _process(_delta: float) -> void:
 		timer.stop()
 	if EnemySpawner.enemykilled == EnemySpawner.path1D[EnemySpawner.roundCounter][0]:
 		print("round over")
+		self.curve.clear_points()
 		currEnemyTotal = 0
 		EnemySpawner.enemykilled = 0
 		if EnemySpawner.roundCounter < EnemySpawner.totalRounds:

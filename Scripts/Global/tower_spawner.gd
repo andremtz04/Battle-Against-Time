@@ -4,8 +4,8 @@ var currentTower : String = "null"
 var SpawnTower : PackedScene
 var mapGrid : Array
 
-var row : int = 15
-var col : int = 20
+var row : int = 9
+var col : int = 15
 
 enum { EMPTY, TOWER, ENEMY, BLOCK }
 
