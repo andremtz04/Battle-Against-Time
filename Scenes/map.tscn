@@ -189,7 +189,7 @@ stream = ExtResource("10_qdetx")
 parameters/looping = true
 
 [node name="Path1" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 1)
 curve = SubResource("Curve3D_i2jhb")
 script = ExtResource("6_0jpq0")
 

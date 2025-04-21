@@ -6,12 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://cej7u3nu1b0qy" path="res://Audio/Effects/MageSpawn.mp3" id="3_3vbe8"]
 [ext_resource type="AudioStream" uid="uid://cnfftgydl53uv" path="res://Audio/Effects/MageShooty.mp3" id="4_h375q"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5t4wc"]
-render_priority = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tn4fm"]
+resource_local_to_scene = true
+render_priority = 1
 shader = ExtResource("1_lswyl")
-shader_parameter/active = false
-shader_parameter/billboard = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/active = true
+shader_parameter/flash_color = Color(1, 0.647059, 0, 1)
+shader_parameter/opacity = 0.0
 shader_parameter/tex = ExtResource("2_gyow2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsl7a"]
@@ -97,7 +98,7 @@ stream_0/stream = ExtResource("4_h375q")
 
 [node name="Mage" type="AnimatedSprite3D" groups=["Tower"]]
 transform = Transform3D(1, -0.000162634, 0.000622827, 0.000163368, 0.999999, -0.00115974, -0.000622634, 0.00115984, 0.999999, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_5t4wc")
+material_overlay = SubResource("ShaderMaterial_tn4fm")
 offset = Vector2(0, 100)
 pixel_size = 0.004
 billboard = 1
