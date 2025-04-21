@@ -103,11 +103,10 @@ func spawn_projectile() -> void:
 
 
 func aging() -> void:
-	if (num_of_attacks >= 2):
+	if (num_of_attacks >= 5):
 		if (age < MAXAGE):
 			age = age + 1
 			opacity += 0.1
-			print(opacity)
 			mage.material_overlay.set_shader_parameter("opacity",opacity)
 		else:
 			health -= 2
