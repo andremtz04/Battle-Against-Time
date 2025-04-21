@@ -5,19 +5,19 @@ render_mode unshaded, cull_disabled, depth_draw_opaque, depth_prepass_alpha;
 // Reference for depth ::: https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/spatial_shader.html#render-modes
 
 uniform bool active = false; // Sets pixels to flash color when true
-uniform bool billboard = false;
 uniform vec4 flash_color: source_color = vec4(1.0,1.0,1.0,1.0); // The color to use when active
 uniform sampler2D tex: source_color; // A copy of the texture for the Sprite3D or AnimatedSprite3D 
+uniform float opacity : hint_range(0.0, 1.0);
 
 void vertex() {
 	// You can comment out this function if you don't need billboarding
-	if (billboard == true) {
-		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(vec4(normalize(cross(vec3(0.0, 1.0, 0.0), INV_VIEW_MATRIX[2].xyz)), 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0), MODEL_MATRIX[3]);
-	}
-	else {
-		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
-	}
-	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	mat4 modified_model_view = VIEW_MATRIX * mat4(
+        INV_VIEW_MATRIX[0],
+        INV_VIEW_MATRIX[1],
+        INV_VIEW_MATRIX[2],
+        MODEL_MATRIX[3]
+    );
+    MODELVIEW_MATRIX = modified_model_view;
 }
 
 void fragment() {
@@ -27,5 +27,5 @@ void fragment() {
 		set_col = flash_color;
 	}
 	ALBEDO = vec3(set_col.r,set_col.g,set_col.b);
-	ALPHA = col.a;
+	ALPHA = col.a * opacity;
 }

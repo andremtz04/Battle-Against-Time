@@ -23,6 +23,7 @@ var attackingNode = null # To save the node that it is attacking
 
 var num_of_attacks : int = 0
 var seconds : float = 0.0
+var opacity : float = 0
 
 var enemyQueue : Array
 
@@ -42,7 +43,6 @@ func _ready() -> void:
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
-	print(age)
 	health_bar.value = health
 	if health <= 0:
 		queue_free()
@@ -50,9 +50,8 @@ func _process(_delta: float) -> void:
 		timer.stop()
 		attackingNode = null
 		mage.play("Idle")
-	if age == 3:
-		mage.material_override.set_shader_parameter("flash_color", Color(0, 0, 1))
-		mage.material_override.set_shader_parameter("active",true)
+	mage.material_overlay.set_shader_parameter("flash_color", Color(1, 0.647, 0))
+	mage.material_overlay.set_shader_parameter("active",true)
 
 
 # Checks if an enemy enters its strike range
@@ -104,11 +103,13 @@ func spawn_projectile() -> void:
 
 
 func aging() -> void:
-	if (num_of_attacks >= 5 || age < MAXAGE):
-		if (age <= 5):
+	if (num_of_attacks >= 5):
+		if (age < MAXAGE):
 			age = age + 1
+			opacity += 0.1
+			mage.material_overlay.set_shader_parameter("opacity",opacity)
 		else:
 			health -= 2
 		num_of_attacks = 0
 		damage = BASEDAMGE + age
-		seconds = age * 0.5
+		seconds = age * 0.2
