@@ -1,16 +1,82 @@
-[gd_scene load_steps=10 format=3 uid="uid://dysyltj04yf18"]
+[gd_scene load_steps=20 format=3 uid="uid://dysyltj04yf18"]
 
 [ext_resource type="Texture2D" uid="uid://dk6oh5ofthkg8" path="res://Textures/Temp/Character/Male adventurer/Tilesheet/character_maleAdventurer_sheet.png" id="1_7fgov"]
 [ext_resource type="Script" path="res://Scripts/Tower/fist_fighter.gd" id="2_mq440"]
+[ext_resource type="AudioStream" uid="uid://ckgc3ew5hkf4e" path="res://Audio/Effects/FistAttack.mp3" id="3_h465w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_quac4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv8n5"]
 atlas = ExtResource("1_7fgov")
-region = Rect2(0, 18, 864, 622)
+region = Rect2(96, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te1xe"]
+atlas = ExtResource("1_7fgov")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4ug5"]
+atlas = ExtResource("1_7fgov")
+region = Rect2(288, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4fsj"]
+atlas = ExtResource("1_7fgov")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x30ef"]
+atlas = ExtResource("1_7fgov")
+region = Rect2(672, 384, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb2tm"]
+atlas = ExtResource("1_7fgov")
+region = Rect2(0, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74si0"]
+atlas = ExtResource("1_7fgov")
+region = Rect2(96, 512, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l78w"]
+atlas = ExtResource("1_7fgov")
+region = Rect2(192, 512, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_elwur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv8n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te1xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4ug5")
+}],
+"loop": true,
+"name": &"Attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4fsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x30ef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb2tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74si0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l78w")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kkffx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aj5nm"]
-size = Vector3(1.25, 0.25, 1.25)
+size = Vector3(2.95, 0.25, 2.95)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1yy2r"]
 
@@ -37,13 +103,19 @@ expand_margin_bottom = 3.0
 [sub_resource type="ViewportTexture" id="ViewportTexture_domdm"]
 viewport_path = NodePath("HealthBar/SubViewport")
 
-[node name="fist_fighter" type="Sprite3D" groups=["Tower"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_um5x6"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_h465w")
+
+[node name="fist_fighter" type="AnimatedSprite3D" groups=["Tower"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 top_level = true
 offset = Vector2(0, 50)
 billboard = 1
-texture = SubResource("AtlasTexture_quac4")
-hframes = 9
-vframes = 5
+sprite_frames = SubResource("SpriteFrames_elwur")
+animation = &"Attacking"
+frame_progress = 0.238342
 script = ExtResource("2_mq440")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -95,6 +167,9 @@ offset = Vector2(0, 100)
 billboard = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_domdm")
+
+[node name="FistAttack" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_um5x6")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

@@ -1,6 +1,7 @@
 extends Node
 
 var riskTable : Array = []
+
 var towerRisk : Dictionary
 
 # Called when the node enters the scene tree for the first time.
@@ -21,10 +22,10 @@ func _ready():
 
 func updateRisk(towerName, row, col, delete) -> int:
 	var SpTowerRisk:Array
+	
 	if towerName in towerRisk:
 		SpTowerRisk = towerRisk[towerName]
 	else:
-		#function fail
 		return 0
 	@warning_ignore("integer_division", "shadowed_global_identifier")
 	var range : int = SpTowerRisk.size()/2
@@ -55,19 +56,25 @@ func calcRisk() -> void:
 	for i in riskTable.size():
 		for j in riskTable[i].size():
 			riskTable[i][j] = 0
-
+	
+	#DEBUG: PRINT MAPGRID
+	#print("PRINTING MAPGRID")
+	#print2DArray(TowerSpawner.mapGrid)
+	
 	for row in TowerSpawner.mapGrid.size():
 		for col in TowerSpawner.mapGrid[row].size():
 			#print(TowerSpawner.mapGrid[row][col])
 			updateRisk(TowerSpawner.mapGrid[row][col], row, col, false)
-			
-			
-			
+
 func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 	if(startPos.x < 0 || goalPos.x < 0 || startPos.x > goalPos.x || goalPos.x > riskTable[0].size()):
 		return ["ERROR pls provide proper vectors for starting"] # this is error
 	#ideally start on the left and try to reach the right center/goal area
-	calcRisk()
+	
+	#calcRisk()
+	#UNCOMMENT IF THINGS START GETTING WIERD (remember to implement blocks into this function)
+	
+	#print2DArray(riskTable)
 	var path : Array = []
 	for i in TowerSpawner.row:
 		path.append([])
@@ -94,9 +101,11 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 		####DON'T FORGET!!! CHANGING x TO COL AND y TO ROW######
 		##IT WORKS ATM##
 		
-		#print("Current col: " + str(col) + " Current row: " + str(row))
+		#DEBUG
+		#print(str(row) +", " + str(col) + ": " + str(riskTable[row][col]))
+		
 		#Is the current position against the bounds of the array?
-		if(col == riskTable[0].size()-1 || row == 0 || row == riskTable.size()-1):
+		if(col == riskTable[0].size() - 1 || row == 0 || row == riskTable.size()-1):
 			#at end
 			if(col == riskTable[0].size()-1):
 				if(row < goalPos.y):
@@ -147,20 +156,10 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 		#notate current position in path
 		path[row][col] = 1
 		
-	
-	
 	return path
 
 #PRINT ARRAY FOR DEBUGGING PURPOSES
 func print2DArray(arr:Array) -> void:
 	for i in arr.size():
 		print(arr[i])
-
-
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
-
-
-func _on_timer_timeout() -> void:
-	pass # Replace with function body.
+	print()

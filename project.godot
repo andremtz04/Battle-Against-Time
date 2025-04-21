@@ -30,6 +30,7 @@ window/stretch/mode="viewport"
 
 Enemy=""
 Tower=""
+Healer=""
 
 [input]
 

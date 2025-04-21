@@ -6,14 +6,23 @@ extends Camera3D
 var rayLength : int = 1000
 var rayCastResult : Dictionary
 var instance
+var dummyInstance
 var inPos
 var testNum = 0;
 
+const DUMMY_TOWER = preload("res://Scenes/towers/dummy_tower.tscn")
+
 signal placedTower
 
+func _ready(): #this is basically for audio
+	$Audio/WhimsyPlayer.play()
+	$Audio/WompPlayer.play()
+	$Audio/KickPlayer.play()
+	$Audio/BassPlayer.play()
+	$Audio/HiTunePlayer.play()
 
 func _process(_delta: float) -> void:
-	# Gets the mouse position
+	# Gets the mouse position	
 	var mousePos := get_viewport().get_mouse_position()
 	var from := project_ray_origin(mousePos)
 	var to := from + project_ray_normal(mousePos) * rayLength 
@@ -28,31 +37,52 @@ func _process(_delta: float) -> void:
 func _input(event) -> void:
 	# Spawns the tower when you left click
 	if event.is_action_pressed("Left Click"):
-		spawn_tower()
+		if !rayCastResult.is_empty() and TowerSpawner.SpawnTower != null:
+			inPos = rayCastResult["position"]
+			dummyInstance = DUMMY_TOWER.instantiate()
+			map.add_child(dummyInstance)
+			dummyInstance.position = Vector3(inPos.x, inPos.y, inPos.z)
+			
 
 	# Drags the tower around when left click is held
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !rayCastResult.is_empty() && instance:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !rayCastResult.is_empty() && dummyInstance:
 		inPos = rayCastResult["position"]
-		instance.position = inPos
+		#if inPos != null:
+		dummyInstance.position = inPos
 
 	# Deletes the tower if it out of bounds
-	if event.is_action_released("Left Click"):
+	if event.is_action_released("Left Click") && dummyInstance:
+		dummyInstance.queue_free()
+		spawn_tower()
 		if delete_tower():
+			$Audio/BadAction.play()
 			pass
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 1)
-			TowerSpawner.mapGrid[inPos.z][inPos.x] = instance
+			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
 			#update risk table
 			testNum = Risk.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
+			
+			#play audio here because i dont care enough to move it
+			#match TowerSpawner.currentTower:
+				#"Fist":
+					#pass #yet to implement
+				#"Mage":
+					#$Audio/MageSpawn.play()
+				#"Healer":
+					#pass #yet to implement
+				#name:
+					#print("Missing Audio File!: " + name)
+
+			
 			#DEBUG
 			if testNum:
-				Risk.print2DArray(Risk.riskTable)
+				#Risk.print2DArray(Risk.riskTable)
 				pass
 			else:
 				print("TOWER NOT RECOGNIZED/CODED: " + TowerSpawner.currentTower)
 			
 			instance.tPosition = inPos
-			#instance.calculate_radius()
 			instance.timer.start()
 			placedTower.emit()
 
@@ -65,8 +95,9 @@ func delete_tower() -> bool:
 			instance.queue_free()
 		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != null:
 			instance.queue_free()
+		elif !Economy.enoughMoney():
+			instance.queue_free()
 		else:
-			#print(TowerSpawner.mapGrid[inPos.z][inPos.x])
 			return false
 	return true
 
@@ -77,3 +108,7 @@ func spawn_tower() -> void:
 		instance = TowerSpawner.SpawnTower.instantiate()
 		instance.position = Vector3(inPos.x, inPos.y, inPos.z)
 		map.add_child(instance)
+
+
+func _on_mute_button_pressed() -> void: #mute or unmute for our earsss
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),!AudioServer.is_bus_mute(AudioServer.get_bus_index("Master")))

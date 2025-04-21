@@ -9,11 +9,14 @@ extends AnimatedSprite3D
 # Add to the correct group
 
 const MAXHEALTH : int = 10
+const MAXAGE : int = 5
+const BASEDAMGE : int = 5
+
 var health : int = MAXHEALTH
 
 var tName : String = "Mage"
-var damage : int = 1
-var base_damage : int = 1
+var damage : int = 5
+
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null # To save the node that it is attacking
@@ -21,23 +24,36 @@ var attackingNode = null # To save the node that it is attacking
 var num_of_attacks : int = 0
 var seconds : float = 0.0
 
+var enemyQueue : Array
+
 @onready var mage: AnimatedSprite3D = $"."
 @onready var timer: Timer = $AttackTimer
 @onready var hitbox_area: Area3D = $HitboxArea
 @onready var health_bar: ProgressBar = $HealthBar/SubViewport/Panel/Health
 @onready var map : Node3D = mage.get_parent_node_3d()
 
-const PROJECTILE = preload("res://Scenes/towers/projectile.tscn")
+const PROJECTILE = preload("res://Scenes/towers/projectile/projectile.tscn")
 
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
 	mage.play("Idle")
+	$MageSpawn.play()
+
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
+	print(age)
 	health_bar.value = health
 	if health <= 0:
 		queue_free()
+	if enemyQueue.is_empty():
+		timer.stop()
+		attackingNode = null
+		mage.play("Idle")
+	if age == 3:
+		mage.material_override.set_shader_parameter("flash_color", Color(0, 0, 1))
+		mage.material_override.set_shader_parameter("active",true)
+
 
 # Checks if an enemy enters its strike range
 func _on_attack_area_area_entered(area: Area3D) -> void:
@@ -45,44 +61,54 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"): # Attack function
 			attackingNode = parent
+			enemyQueue.append(parent)
 			attack()
-			aging()
+			#aging()
 			timer.start()
 
+
 # Stops attacking once they leaving the attacking area
-func _on_attack_area_area_exited(_area: Area3D) -> void:
-	attackingNode = null
-	timer.stop()
-	mage.play("Idle")
+func _on_attack_area_area_exited(area: Area3D) -> void:
+	if hitbox_area != area:
+		var parent = area.get_parent()
+		if parent.is_in_group("Enemy"):
+			var i = 0
+			for enemy in enemyQueue:
+				if enemy == parent:
+					enemyQueue.remove_at(i)
+				i += 1
+
 
 # The attacking timer
 func _on_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
 	attack()
-	aging()
+
 
 func attack() -> void:
-	if attackingNode != null:
+	#mage.material_override.set_shader_parameter("active",true)
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		mage.play("Attacking")
-		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
-		print("num of attacks, ", num_of_attacks)		#to see results, should delete later
-		print("damage is, ", damage)					#to see results, should delete later
-		print("health is, ", health)					#to see results, should delete later
+		aging()
+		$MageShoot.play()
+		num_of_attacks += 1
 		spawn_projectile()
+
 
 func spawn_projectile() -> void:
 	var instance = PROJECTILE.instantiate()
 	map.add_child(instance)
 	instance.global_position = Vector3(mage.global_position.x, mage.global_position.y+1, mage.global_position.z)
 	instance.set_variables(attackingNode, mage)
-	
+
+
 func aging() -> void:
-	if (num_of_attacks >= 5):
+	if (num_of_attacks >= 5 || age < MAXAGE):
 		if (age <= 5):
 			age = age + 1
 		else:
 			health -= 2
 		num_of_attacks = 0
-		damage = base_damage + age
+		damage = BASEDAMGE + age
 		seconds = age * 0.5
-	

@@ -4,8 +4,8 @@ var currentTower : String = "null"
 var SpawnTower : PackedScene
 var mapGrid : Array
 
-var row : int = 15
-var col : int = 20
+var row : int = 9
+var col : int = 15
 
 enum { EMPTY, TOWER, ENEMY, BLOCK }
 
@@ -15,6 +15,9 @@ var TowerDictionary : Dictionary = {
 	"Fist" : preload("res://Scenes/towers/fist_fighter.tscn"),
 	"Healer" : preload("res://Scenes/towers/healer.tscn"),
 	"Mage" : preload("res://Scenes/towers/mage.tscn"),
+	"Tank" : preload("res://Scenes/towers/tank.tscn"),
+	"Archer" : preload("res://Scenes/towers/archer.tscn"),
+	"Farmer" : preload("res://Scenes/towers/farmer.tscn"),
 	"Enemy" : preload("res://Scenes/towers/enemy_1.tscn")
 }
 
