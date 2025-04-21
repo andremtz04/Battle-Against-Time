@@ -7,7 +7,7 @@ render_mode unshaded, cull_disabled, depth_draw_opaque, depth_prepass_alpha;
 uniform bool active = false; // Sets pixels to flash color when true
 uniform bool billboard = false;
 uniform vec4 flash_color: source_color = vec4(1.0,1.0,1.0,1.0); // The color to use when active
-uniform sampler2D tex: source_color; // A copy of the texture for the Sprite3D or AnimatedSprite3D 
+uniform sampler2D tex: source_color; // A copy of the texture for the Sprite3D or AnimatedSprite3D
 
 void vertex() {
 	// You can comment out this function if you don't need billboarding
