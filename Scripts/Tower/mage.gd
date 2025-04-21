@@ -9,11 +9,14 @@ extends AnimatedSprite3D
 # Add to the correct group
 
 const MAXHEALTH : int = 10
+const MAXAGE : int = 5
+const BASEDAMGE : int = 5
+
 var health : int = MAXHEALTH
 
 var tName : String = "Mage"
 var damage : int = 5
-var base_damage : int = 1
+
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null # To save the node that it is attacking
@@ -38,6 +41,7 @@ func _ready() -> void:
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
+	print(age)
 	health_bar.value = health
 	if health <= 0:
 		queue_free()
@@ -45,7 +49,9 @@ func _process(_delta: float) -> void:
 		timer.stop()
 		attackingNode = null
 		mage.play("Idle")
-		#mage.material_override.set_shader_parameter("active",false)
+	if age == 3:
+		mage.material_override.set_shader_parameter("flash_color", Color(0, 0, 1))
+		mage.material_override.set_shader_parameter("active",true)
 
 # Checks if an enemy enters its strike range
 func _on_attack_area_area_entered(area: Area3D) -> void:
@@ -55,7 +61,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 			attackingNode = parent
 			enemyQueue.append(parent)
 			attack()
-			aging()
+			#aging()
 			timer.start()
 
 # Stops attacking once they leaving the attacking area
@@ -73,15 +79,15 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 func _on_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
 	attack()
-	aging()
 
 func attack() -> void:
 	#mage.material_override.set_shader_parameter("active",true)
-	attackingNode = enemyQueue[0]
-	if attackingNode != null:
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		mage.play("Attacking")
+		aging()
 		$MageShoot.play()
-		num_of_attacks = num_of_attacks + 1
+		num_of_attacks += 1
 		spawn_projectile()
 
 func spawn_projectile() -> void:
@@ -91,12 +97,12 @@ func spawn_projectile() -> void:
 	instance.set_variables(attackingNode, mage)
 	
 func aging() -> void:
-	if (num_of_attacks >= 5):
+	if (num_of_attacks >= 5 || age < MAXAGE):
 		if (age <= 5):
 			age = age + 1
 		else:
 			health -= 2
 		num_of_attacks = 0
-		damage = base_damage + age
+		damage = BASEDAMGE + age
 		seconds = age * 0.5
 	
