@@ -12,7 +12,7 @@ const MAXHEALTH : int = 10
 var health : int = MAXHEALTH
 
 var tName : String = "Enemy"
-var damage : int = 2
+var damage : int = 5
 var age : int = 0
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
@@ -39,6 +39,7 @@ func _process(_delta: float) -> void:
 	if health <= 0: # removes itself once it dies
 		EnemySpawner.enemykilled += 1
 		$EnemyDeath.play() ### DOES NOT WORK ATM DUE TO NODE DELETION. CONSIDER "DEATH" STATE.
+		Economy.totalMoney += 15
 		queue_free()
 	if enemyQueue.is_empty():
 		timer.stop()

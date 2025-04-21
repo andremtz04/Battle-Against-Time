@@ -8,12 +8,12 @@ extends AnimatedSprite3D
 # Update name to ui.gd, economy.gd, tower_spawner.gd
 # Add to the correct group
 
-const MAXHEALTH : int = 10
+const MAXHEALTH : int = 50
 var health : int = MAXHEALTH
 
 var tName : String = "Tank"
-var damage : int = 5
-var base_damage : int = 5
+var damage : int = 2
+var base_damage : int = 2
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
