@@ -107,7 +107,7 @@ offset = Vector2(0, 50)
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_jrsrq")
 animation = &"Attacking"
-frame_progress = 0.318739
+frame_progress = 0.728287
 script = ExtResource("1_3rqt0")
 
 [node name="AttackTimer" type="Timer" parent="."]
