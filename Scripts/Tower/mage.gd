@@ -59,10 +59,12 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 	if hitbox_area != area: # Ignores its own hitbox
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"): # Attack function
-			attackingNode = parent
+			#print(parent)
 			enemyQueue.append(parent)
+			print(enemyQueue)
+			print("area attack", parent)
 			attack()
-			#aging()
+			aging()
 			timer.start()
 
 
@@ -71,6 +73,7 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 	if hitbox_area != area:
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"):
+			print(area, "is leaving")
 			var i = 0
 			for enemy in enemyQueue:
 				if enemy == parent:
@@ -82,6 +85,7 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 func _on_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
 	attack()
+	print("timer attack")
 
 
 func attack() -> void:

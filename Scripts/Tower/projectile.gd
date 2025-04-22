@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var speed : int = 10
+var speed : int = 13
 var target_node : Node3D
 var direction : Vector3
 var damage : int
