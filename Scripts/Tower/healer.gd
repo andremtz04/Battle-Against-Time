@@ -68,15 +68,17 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 				i += 1
 
 func attack() -> void:
-	attackingNode = enemyQueue[0]
-	for tower in enemyQueue:
-		if tower.health < attackingNode.health:
-			attackingNode = tower
-	
-	if attackingNode != null:
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
+		for tower in enemyQueue:
+			if tower.health < attackingNode.health:
+				attackingNode = tower
+		
 		healer.play("Attacking")
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		spawn_projectile()
+		await get_tree().create_timer(.50).timeout
+		healer.play("Idle")
 
 func spawn_projectile() -> void:
 	if attackingNode.health < attackingNode.MAXHEALTH:

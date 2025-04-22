@@ -67,7 +67,6 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 
 # The attacking timer
 func _on_timer_timeout() -> void:
-	print("attack")
 	attack()
 	aging()
 
