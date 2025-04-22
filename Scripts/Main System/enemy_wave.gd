@@ -9,7 +9,7 @@ const ENEMY_PATH = preload("res://Scenes/enemy_path.tscn")
 var moveSpeed : int = 3
 var currEnemyTotal : int = 0
 var roundStarted : bool = false
-var blockLocation : Array = []
+@export var blockLocation : Array = []
 var roundCount : int = 0
 
 func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
@@ -179,7 +179,4 @@ func _ready() -> void:
 		var world_position = main_map.map_to_local(cell)
 		if world_position.y == 1.5:
 			blockLocation.append(floor(world_position))
-	
-	for block in blockLocation:
-		Risk.riskTable[block.z][block.x] = 99 
-	print(Risk.riskTable)
+	Risk.INIT(blockLocation)

@@ -1,8 +1,8 @@
 extends Node
 
 var riskTable : Array = []
-
 var towerRisk : Dictionary
+var blockLocation:Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +11,6 @@ func _ready():
 		for j in TowerSpawner.col:
 			riskTable[i].append(0)
 	#print(riskTable)
-	
 	towerRisk = {
 		"Mage" : [[0,0,1,0,0],[0,1,2,1,0],[1,2,3,2,1],[0,1,2,1,0],[0,0,1,0,0]],
 		"Fist" : [[3,3,3],[3,5,3],[3,3,3]],
@@ -51,15 +50,26 @@ func updateRisk(towerName, row, col, delete) -> int:
 	#print("Added risk!!")
 	#print(riskTable)
 
+func INIT(blocks:Array):
+	blockLocation = blocks
+
+func walls():
+#old, moved to calcrisk
+	for block in blockLocation:
+		Risk.riskTable[block.z][block.x] = 99 
+	print(Risk.riskTable)
+
 func calcRisk() -> void:
 	#reset all values to 0 in risktable
 	for i in riskTable.size():
 		for j in riskTable[i].size():
 			riskTable[i][j] = 0
 	
+	
 	#DEBUG: PRINT MAPGRID
 	#print("PRINTING MAPGRID")
 	#print2DArray(TowerSpawner.mapGrid)
+	walls()
 	
 	for row in TowerSpawner.mapGrid.size():
 		for col in TowerSpawner.mapGrid[row].size():
@@ -71,7 +81,7 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 		return ["ERROR pls provide proper vectors for starting"] # this is error
 	#ideally start on the left and try to reach the right center/goal area
 	
-	#calcRisk()
+	calcRisk()
 	#UNCOMMENT IF THINGS START GETTING WIERD (remember to implement blocks into this function)
 	
 	#print2DArray(riskTable)
