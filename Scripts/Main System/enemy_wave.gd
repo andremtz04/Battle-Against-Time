@@ -10,7 +10,7 @@ const ENEMY_PATH = preload("res://Scenes/enemy_path.tscn")
 var moveSpeed : int = 3
 var currEnemyTotal : int = 0
 var roundStarted : bool = false
-var blockLocation : Array = []
+@export var blockLocation : Array = []
 var roundCount : int = 0
 
 func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
@@ -187,6 +187,7 @@ func _ready() -> void:
 	for block in blockLocation:
 		Risk.riskTable[block.z][block.x] = 99 
 	#print(Risk.riskTable)
+	Risk.INIT(blockLocation)
 
 # deletes the enemy if they reach the end
 func _on_area_3d_area_entered(area: Area3D) -> void:
@@ -196,3 +197,4 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		EnemySpawner.enemykilled += 1
 		var pathNode = enemyNode.get_parent()
 		pathNode.queue_free()
+	
