@@ -61,7 +61,7 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_fsyow"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrefv"]
-size = Vector3(4.9, 2, 4.9)
+size = Vector3(5, 2, 5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqrth"]
 
