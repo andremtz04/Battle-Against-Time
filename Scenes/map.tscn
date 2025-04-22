@@ -170,22 +170,27 @@ volume_db = -4.103
 
 [node name="WhimsyPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("5_nu03c")
+bus = &"Whimsy"
 parameters/looping = true
 
 [node name="WompPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("6_5kee7")
+bus = &"Womp"
 parameters/looping = true
 
 [node name="KickPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("8_exuxu")
+bus = &"Kick"
 parameters/looping = true
 
 [node name="BassPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("9_qn2xa")
+bus = &"Bass"
 parameters/looping = true
 
 [node name="HiTunePlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("10_qdetx")
+bus = &"HiTune"
 parameters/looping = true
 
 [node name="Path1" type="Path3D" parent="."]
