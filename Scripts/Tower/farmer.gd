@@ -57,7 +57,7 @@ func spawn_projectile() -> void:
 	instance.set_variables(farmer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 5):
+	if (num_of_attacks >= 20):
 		if (age <= 5):
 			age = age + 1
 		else:

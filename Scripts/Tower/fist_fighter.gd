@@ -80,7 +80,7 @@ func attack() -> void:
 		num_of_attacks = num_of_attacks + 1
 
 func aging() -> void:
-	if (num_of_attacks >= 5):
+	if (num_of_attacks >= 15):
 		if (age < 5):
 			age = age + 1
 		else:

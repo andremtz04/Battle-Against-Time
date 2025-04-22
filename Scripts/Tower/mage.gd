@@ -10,12 +10,12 @@ extends AnimatedSprite3D
 
 const MAXHEALTH : int = 30
 const MAXAGE : int = 5
-const BASEDAMGE : int = 5
+const BASEDAMGE : int = 3
 
 var health : int = MAXHEALTH
 
 var tName : String = "Mage"
-var damage : int = 5
+var damage : int = 3
 
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
@@ -104,7 +104,7 @@ func spawn_projectile() -> void:
 
 
 func aging() -> void:
-	if (num_of_attacks >= 5 || age < MAXAGE):
+	if (num_of_attacks >= 15 || age < MAXAGE):
 		if (age <= 5):
 			age = age + 1
 		else:

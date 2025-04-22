@@ -12,8 +12,8 @@ const MAXHEALTH : int = 50
 var health : int = MAXHEALTH
 
 var tName : String = "Tank"
-var damage : int = 2
-var base_damage : int = 2
+var damage : int = 1
+var base_damage : int = 1
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
@@ -78,7 +78,7 @@ func attack() -> void:
 		num_of_attacks = num_of_attacks + 1
 
 func aging() -> void:
-	if (num_of_attacks >= 5):
+	if (num_of_attacks >= 20):
 		if (age < 5):
 			age = age + 1
 		else:
