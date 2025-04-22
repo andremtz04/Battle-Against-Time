@@ -8,7 +8,7 @@ extends AnimatedSprite3D
 # Update name to ui.gd, economy.gd, tower_spawner.gd
 # Add to the correct group
 
-const MAXHEALTH : int = 10
+const MAXHEALTH : int = 15
 var health : int = MAXHEALTH
 
 var tName : String = "Enemy"

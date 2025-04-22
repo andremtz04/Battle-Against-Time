@@ -2,7 +2,7 @@ extends Control
 
 @onready var moneyLabel : RichTextLabel = $Money
 @onready var healthLabel: RichTextLabel = $Health
-var health = 100
+var health = 20
 signal start_round
 
 func _process(_delta: float) -> void:
