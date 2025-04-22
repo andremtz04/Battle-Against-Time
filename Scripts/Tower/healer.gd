@@ -92,7 +92,7 @@ func aging() -> void:
 		if (age <= 5):
 			age = age + 1
 		else:
-			health -= 2
+			health -= MAXHEALTH * 0.2
 		num_of_attacks = 0
 		seconds = age * 0.5
 	

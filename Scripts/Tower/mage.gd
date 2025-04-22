@@ -115,7 +115,7 @@ func aging() -> void:
 			opacity += 0.1
 			mage.material_overlay.set_shader_parameter("opacity",opacity)
 		else:
-			health -= 2
+			health -= MAXHEALTH * 0.2
 		num_of_attacks = 0
 		damage = BASEDAMGE + age
 		seconds = age * 0.2
