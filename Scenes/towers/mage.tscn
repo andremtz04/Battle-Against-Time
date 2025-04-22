@@ -34,10 +34,10 @@ region = Rect2(249, 0, 249, 250)
 [sub_resource type="SpriteFrames" id="SpriteFrames_0mrvf"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_nsl7a")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_ap7ja")
 }],
 "loop": true,
@@ -59,7 +59,7 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_fsyow"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrefv"]
-size = Vector3(4.9, 2.17029, 4.9)
+size = Vector3(4.9, 2, 4.9)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqrth"]
 
@@ -105,6 +105,7 @@ billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_0mrvf")
 animation = &"Attacking"
+frame_progress = 0.0647437
 script = ExtResource("1_ssjch")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -121,7 +122,7 @@ collision_layer = 2
 monitorable = false
 
 [node name="AttackBox" type="CollisionShape3D" parent="AttackArea"]
-transform = Transform3D(1, -1.54019e-08, 6.15837e-08, 1.37806e-08, 1, 0, -6.15837e-08, 0, 1, 1.24098e-08, -0.460144, 1.16415e-10)
+transform = Transform3D(1, -1.35112e-08, 6.09434e-08, 1.37783e-08, 1, -6.98492e-10, -6.15837e-08, 0, 0.999996, 1.11702e-08, -0.380706, 8.73115e-11)
 shape = SubResource("BoxShape3D_rrefv")
 
 [node name="HealthBar" type="Node3D" parent="."]

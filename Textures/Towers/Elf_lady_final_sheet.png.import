@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://def5v5wknj0g1"
-path.s3tc="res://.godot/imported/wizarding.png-1619ff3be826404f4fa570da5c41d15f.s3tc.ctex"
+uid="uid://dxbt32fqgpghj"
+path.s3tc="res://.godot/imported/Elf_lady_final_sheet.png-6d438351351b9aeb3de9a499c122d563.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Towers/wizarding.png"
-dest_files=["res://.godot/imported/wizarding.png-1619ff3be826404f4fa570da5c41d15f.s3tc.ctex"]
+source_file="res://Textures/Towers/Elf_lady_final_sheet.png"
+dest_files=["res://.godot/imported/Elf_lady_final_sheet.png-6d438351351b9aeb3de9a499c122d563.s3tc.ctex"]
 
 [params]
 

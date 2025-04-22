@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckjcyj6yl81cc"
-path.s3tc="res://.godot/imported/Priestess.png-0a0a2df386e6746ba4f10801008856a4.s3tc.ctex"
+uid="uid://bhqbrectmi14j"
+path.s3tc="res://.godot/imported/All_Towers.png-241d73fd1751bda83ec7136e1a7f5c3a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Towers/Priestess.png"
-dest_files=["res://.godot/imported/Priestess.png-0a0a2df386e6746ba4f10801008856a4.s3tc.ctex"]
+source_file="res://Textures/Towers/All_Towers.png"
+dest_files=["res://.godot/imported/All_Towers.png-241d73fd1751bda83ec7136e1a7f5c3a.s3tc.ctex"]
 
 [params]
 
