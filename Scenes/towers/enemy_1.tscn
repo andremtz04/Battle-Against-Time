@@ -1,58 +1,44 @@
-[gd_scene load_steps=18 format=3 uid="uid://djfr0wtn0nyus"]
+[gd_scene load_steps=16 format=3 uid="uid://djfr0wtn0nyus"]
 
-[ext_resource type="Texture2D" uid="uid://cufx3s0p6sj4m" path="res://Textures/Temp/Character/Zombie/Tilesheet/character_zombie_sheet.png" id="1_1h3b1"]
 [ext_resource type="Script" path="res://Scripts/Tower/enemy_1.gd" id="1_ettbt"]
+[ext_resource type="Texture2D" uid="uid://btk36jhkbb0he" path="res://Textures/Towers/Goblin.png" id="1_iu05q"]
 [ext_resource type="AudioStream" uid="uid://6uamtrhixq6g" path="res://Audio/Effects/EnemyDeath.mp3" id="3_k8ww7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggof0"]
-atlas = ExtResource("1_1h3b1")
-region = Rect2(0, 384, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv0m"]
+atlas = ExtResource("1_iu05q")
+region = Rect2(0, 258, 250, 258)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yxedi"]
-atlas = ExtResource("1_1h3b1")
-region = Rect2(96, 384, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtvep"]
+atlas = ExtResource("1_iu05q")
+region = Rect2(250, 258, 250, 258)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j8n3m"]
-atlas = ExtResource("1_1h3b1")
-region = Rect2(192, 384, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqbob"]
+atlas = ExtResource("1_iu05q")
+region = Rect2(0, 0, 250, 258)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p86nv"]
-atlas = ExtResource("1_1h3b1")
-region = Rect2(576, 256, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tkq74"]
-atlas = ExtResource("1_1h3b1")
-region = Rect2(672, 256, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nwmin"]
-atlas = ExtResource("1_1h3b1")
-region = Rect2(768, 256, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c0jw"]
+atlas = ExtResource("1_iu05q")
+region = Rect2(250, 0, 250, 258)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3wpsd"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ggof0")
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_jkv0m")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yxedi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j8n3m")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_vtvep")
 }],
 "loop": true,
 "name": &"Attacking",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p86nv")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_lqbob")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tkq74")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nwmin")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5c0jw")
 }],
 "loop": true,
 "name": &"Walking",
@@ -96,11 +82,13 @@ stream_0/stream = ExtResource("3_k8ww7")
 
 [node name="Enemy1" type="AnimatedSprite3D" groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
-offset = Vector2(0, 50)
+offset = Vector2(0, 100)
+pixel_size = 0.0045
 billboard = 1
+texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_3wpsd")
 animation = &"Attacking"
-frame_progress = 0.219944
+frame_progress = 0.528027
 script = ExtResource("1_ettbt")
 
 [node name="AttackTimer" type="Timer" parent="."]
