@@ -67,6 +67,7 @@ func _input(event) -> void:
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 1)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
+			print(instance.global_position, " ", inPos.z, " ", inPos.x)
 			#update risk table
 			testNum = Risk.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
 
@@ -102,7 +103,7 @@ func spawn_tower() -> void:
 	if !rayCastResult.is_empty() and TowerSpawner.SpawnTower != null:
 		inPos = rayCastResult["position"]
 		instance = TowerSpawner.SpawnTower.instantiate()
-		instance.position = Vector3(inPos.x, inPos.y, inPos.z)
+		instance.position = inPos
 		map.add_child(instance)
 
 

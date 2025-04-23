@@ -39,6 +39,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	health_bar.value = health
 	if health <= 0:
+		TowerSpawner.mapGrid[global_position.z-1][floor(global_position.x)] = null
 		queue_free()
 	if enemyQueue.is_empty():
 		timer.stop()

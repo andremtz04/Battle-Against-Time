@@ -243,6 +243,7 @@ mesh = SubResource("BoxMesh_4vubw")
 shape = SubResource("ConcavePolygonShape3D_ptw00")
 
 [node name="Stairs" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_bmkna")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Stairs"]
