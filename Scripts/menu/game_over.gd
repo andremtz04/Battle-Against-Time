@@ -1,9 +1,14 @@
 extends Node2D
 
+@onready var victory_defeat: RichTextLabel = $Victory_Defeat
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if EnemySpawner.didWin:
+		victory_defeat.text = "Victory"
+	else:
+		victory_defeat.text = "Defeat"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

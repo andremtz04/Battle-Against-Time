@@ -6,7 +6,7 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_g1g75")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Victory_Defeat" type="RichTextLabel" parent="."]
 offset_left = 383.0
 offset_top = 175.0
 offset_right = 423.0

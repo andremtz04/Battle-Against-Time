@@ -55,8 +55,9 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 		if parent.is_in_group("Tower"): # Attack function
 			attackingNode = parent
 			enemyQueue.append(parent)
-			attack()
-			aging()
+			if EnemySpawner.roundStarted:
+				attack()
+				aging()
 			timer.start()
 
 # Stops attacking once they leaving the attacking area
@@ -103,5 +104,6 @@ func aging() -> void:
 
 func _on_attack_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
-	attack()
-	aging()
+	if EnemySpawner.roundStarted:
+		attack()
+		aging()
