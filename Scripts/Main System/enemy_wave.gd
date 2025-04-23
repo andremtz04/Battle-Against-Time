@@ -171,8 +171,8 @@ func _process(_delta: float) -> void:
 		EnemySpawner.enemykilled = 0
 		if EnemySpawner.roundCounter < EnemySpawner.totalRounds:
 			EnemySpawner.roundCounter += 1
-		else:
-			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		else: # theres no more rounds
+			get_tree().change_scene_to_file("res://Scenes/victory.tscn")
 		EnemySpawner.roundStarted = false
 	music(roundCount)
 

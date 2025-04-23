@@ -10,6 +10,8 @@ var health = 20
 signal start_round
 
 func _ready() -> void:
+	EnemySpawner.roundStarted = false
+	
 	$TowerPrice/HealerPrice.text = "$" + str(Economy.moneyDictinary["Healer"])
 	$TowerPrice/FistPrice.text = "$" + str(Economy.moneyDictinary["Fist"])
 	$TowerPrice/MagePrice.text = "$" + str(Economy.moneyDictinary["Mage"])
