@@ -7,19 +7,27 @@
 script = ExtResource("1_g1g75")
 
 [node name="Victory_Defeat" type="RichTextLabel" parent="."]
-offset_left = 383.0
-offset_top = 175.0
-offset_right = 423.0
-offset_bottom = 215.0
-text = "Game Over"
+offset_left = 478.0
+offset_top = 160.0
+offset_right = 598.0
+offset_bottom = 200.0
+text = "PLACE_HOLDER"
 fit_content = true
 autowrap_mode = 0
 
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 383.0
-offset_top = 262.0
-offset_right = 511.0
-offset_bottom = 390.0
+[node name="Buttons" type="VBoxContainer" parent="."]
+offset_left = 466.0
+offset_top = 263.0
+offset_right = 594.0
+offset_bottom = 523.0
+
+[node name="ReturnMenu" type="TextureButton" parent="Buttons"]
+layout_mode = 2
 texture_normal = ExtResource("2_3vweo")
 
-[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
+[node name="Quit" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("2_3vweo")
+
+[connection signal="button_down" from="Buttons/ReturnMenu" to="." method="_on_return_menu_button_down"]
+[connection signal="button_down" from="Buttons/Quit" to="." method="_on_quit_button_down"]
