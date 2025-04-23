@@ -82,6 +82,7 @@ func _input(event) -> void:
 			instance.tPosition = inPos
 			instance.timer.start()
 			placedTower.emit()
+			
 
 func delete_tower() -> bool:
 	if instance:

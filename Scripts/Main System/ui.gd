@@ -2,14 +2,28 @@ extends Control
 
 @onready var moneyLabel : RichTextLabel = $Money
 @onready var healthLabel: RichTextLabel = $Health
+@onready var roundLabel: RichTextLabel = $Round
+@onready var path_1: Path3D = $"../Path1"
+
+
 var health = 20
 signal start_round
+
+func _ready() -> void:
+	$TowerPrice/HealerPrice.text = "$" + str(Economy.moneyDictinary["Healer"])
+	$TowerPrice/FistPrice.text = "$" + str(Economy.moneyDictinary["Fist"])
+	$TowerPrice/MagePrice.text = "$" + str(Economy.moneyDictinary["Mage"])
+	$TowerPrice/TankPrice.text = "$" + str(Economy.moneyDictinary["Tank"])
+	$TowerPrice/ArcherPrice.text = "$" + str(Economy.moneyDictinary["Archer"])
+	$TowerPrice/FarmerPrice.text = "$" + str(Economy.moneyDictinary["Farmer"])
+
 
 func _process(_delta: float) -> void:
 	if health <= 0:
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
-	moneyLabel.text = str(Economy.totalMoney)
-	healthLabel.text = str(health)
+	moneyLabel.text = "Money: " + str(Economy.totalMoney)
+	healthLabel.text = "Health: " + str(health)
+	roundLabel.text = "Round: " + str(path_1.roundCount)
 
 
 # Spawn Tower Buttons
