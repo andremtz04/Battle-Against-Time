@@ -36,6 +36,7 @@ func _ready() -> void:
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
+	farmer.material_overlay.set_shader_parameter("opacity",opacity)
 	health_bar.value = health
 	if health <= 0:
 		TowerSpawner.mapGrid[global_position.z-1][floor(global_position.x)] = null
@@ -66,7 +67,6 @@ func aging() -> void:
 		if (age <= 5):
 			age = age + 1
 			opacity += 0.1
-			farmer.material_overlay.set_shader_parameter("opacity",opacity)
 		else:
 			health -= MAXHEALTH * 0.2
 		num_of_attacks = 0
