@@ -87,6 +87,8 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 	calcRisk()
 	#UNCOMMENT IF THINGS START GETTING WIERD (remember to implement blocks into this function)
 	
+	return new_calculate_path(startPos, goalPos)
+	
 	#print2DArray(riskTable)
 	var path : Array = []
 	for i in TowerSpawner.row:
@@ -170,6 +172,67 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 		path[row][col] = 1
 		
 	return path
+
+func new_calculate_path(currPos:Vector2i, goalPos:Vector2i, currentPath:Array = [], iteration:int = 0, risk:int = 0) -> Array:
+	print("StARTOMG NEW")
+	if(currPos.x < 0 || currPos.x < 0 || currPos.x > goalPos.x || goalPos.x > riskTable[0].size()):
+		return ["ERROR pls provide proper vectors for starting"] # this is error
+		
+	if(iteration == 0):
+		calcRisk()
+		for i in TowerSpawner.row:
+			currentPath.append([])
+			for j in TowerSpawner.col:
+				currentPath[i].append(0)
+		var ultPath:Array = new_calculate_path(currPos,goalPos,currentPath,iteration + 1)[0]
+		print2DArray(ultPath)
+		return ultPath
+	
+	if(iteration%10 == 0):
+		print2DArray(currentPath)
+		print(risk)
+	
+	#####SECOND ITERATION#####
+	var optionUp:Array = [[],999]
+	var optionDown:Array = [[],999]
+	var optionLeft:Array = [[],999]
+	var optionRight:Array = [[],999]
+	
+	currentPath[currPos.y][currPos.x] = iteration
+	
+	if(currPos == goalPos):
+		return [currentPath, risk]
+	
+	risk += riskTable[currPos.y][currPos.x] + 1
+	
+	if(currPos.x != riskTable[0].size()-1 && currentPath[currPos.y][currPos.x+1] == 0):
+		currPos.x += 1
+		optionRight = new_calculate_path(currPos, goalPos, currentPath, iteration+1, risk)
+	
+	if(currPos.x != 0 && currentPath[currPos.y][currPos.x-1] == 0):
+		currPos.x -= 1
+		optionLeft = new_calculate_path(currPos, goalPos, currentPath, iteration+1, risk)
+	
+	
+	if(currPos.y != 0 && currentPath[currPos.y-1][currPos.x] == 0):
+		currPos.y -= 1
+		optionUp = new_calculate_path(currPos, goalPos, currentPath, iteration+1, risk)
+		
+	if(currPos.y != riskTable.size()-1 && currentPath[currPos.y+1][currPos.x] == 0):
+		currPos.y += 1
+		optionDown = new_calculate_path(currPos, goalPos, currentPath, iteration+1, risk)
+	
+	
+	
+	
+	var options:Array = [optionUp,optionDown,optionLeft,optionRight]
+	var index:int = 0
+	var leastRisk:int = 999
+	for i in options.size():
+		if(options[i][1] <= leastRisk):
+			leastRisk = options[i][1]
+			index = i
+	return options[index]
 
 #PRINT ARRAY FOR DEBUGGING PURPOSES
 func print2DArray(arr:Array) -> void:
