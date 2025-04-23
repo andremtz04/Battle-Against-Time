@@ -28,7 +28,7 @@ Risk="*res://Scripts/Main System/risk.gd"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [global_group]
 

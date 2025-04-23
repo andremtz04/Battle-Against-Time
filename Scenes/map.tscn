@@ -51,30 +51,30 @@ region = Rect2(36, 5, 154, 230)
 [sub_resource type="BoxShape3D" id="BoxShape3D_evvkq"]
 size = Vector3(0.5, 1, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5r03p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ctc61"]
 albedo_texture = ExtResource("18_sky8f")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yxa4q"]
-material = SubResource("StandardMaterial3D_5r03p")
+material = SubResource("StandardMaterial3D_ctc61")
 size = Vector2(40, 40)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iqtvg"]
 data = PackedVector3Array(20, 0, 20, -20, 0, 20, 20, 0, -20, -20, 0, 20, -20, 0, -20, 20, 0, -20)
 
-[sub_resource type="Gradient" id="Gradient_6grjo"]
+[sub_resource type="Gradient" id="Gradient_hghti"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.674603)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2mky6"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fqj1s"]
 noise_type = 2
 seed = 15
 frequency = 0.0095
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1nff1"]
-color_ramp = SubResource("Gradient_6grjo")
-noise = SubResource("FastNoiseLite_2mky6")
+color_ramp = SubResource("Gradient_hghti")
+noise = SubResource("FastNoiseLite_fqj1s")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6k13"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_et3jg"]
 render_priority = 0
 shader = ExtResource("21_pnqap")
 shader_parameter/size = 0.3
@@ -86,18 +86,18 @@ shader_parameter/noise = SubResource("NoiseTexture2D_1nff1")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cer8c"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_f6k13")
+material = SubResource("ShaderMaterial_et3jg")
 size = Vector2(1.5, 1.5)
 
-[sub_resource type="Gradient" id="Gradient_pj6gx"]
+[sub_resource type="Gradient" id="Gradient_7wmlu"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_258bf"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v2nf8"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p8ldj"]
-color_ramp = SubResource("Gradient_pj6gx")
-noise = SubResource("FastNoiseLite_258bf")
+color_ramp = SubResource("Gradient_7wmlu")
+noise = SubResource("FastNoiseLite_v2nf8")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_01c3f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0lxe"]
 render_priority = 0
 shader = ExtResource("21_pnqap")
 shader_parameter/size = 0.3
@@ -108,7 +108,7 @@ shader_parameter/inner = null
 shader_parameter/noise = SubResource("NoiseTexture2D_p8ldj")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_e3fqb"]
-material = SubResource("ShaderMaterial_01c3f")
+material = SubResource("ShaderMaterial_c0lxe")
 size = Vector2(1.5, 1.5)
 
 [node name="Map" type="Node3D"]
