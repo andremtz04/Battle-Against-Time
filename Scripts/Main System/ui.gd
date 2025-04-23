@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 	moneyLabel.text = "Money: " + str(Economy.totalMoney)
 	healthLabel.text = "Health: " + str(health)
-	roundLabel.text = "Round: " + str(path_1.roundCount)
+	roundLabel.text = "Round: " + str(path_1.roundCount) + "/5"
 
 
 # Spawn Tower Buttons
