@@ -1,7 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://w0fmp2ompqcd"]
+[gd_scene load_steps=18 format=3 uid="uid://w0fmp2ompqcd"]
 
 [ext_resource type="Texture2D" uid="uid://dxbt32fqgpghj" path="res://Textures/Towers/Elf_lady_final_sheet.png" id="1_cwed0"]
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_f62i1"]
 [ext_resource type="Script" path="res://Scripts/Tower/archer.gd" id="2_3rkct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdbqr"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("1_f62i1")
+shader_parameter/active = true
+shader_parameter/flash_color = Color(1, 0.647059, 0, 1)
+shader_parameter/opacity = 0.0
+shader_parameter/tex = ExtResource("1_cwed0")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5icrj"]
 atlas = ExtResource("1_cwed0")
@@ -90,6 +100,7 @@ viewport_path = NodePath("HealthBar/SubViewport")
 
 [node name="Archer" type="AnimatedSprite3D" groups=["Tower"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+material_overlay = SubResource("ShaderMaterial_wdbqr")
 offset = Vector2(0, 100)
 pixel_size = 0.0045
 billboard = 1

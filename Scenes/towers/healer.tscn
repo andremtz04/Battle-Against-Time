@@ -8,9 +8,9 @@
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("1_g57dj")
-shader_parameter/active = false
-shader_parameter/flash_color = Color(1, 0.294118, 1, 1)
-shader_parameter/opacity = 0.65
+shader_parameter/active = true
+shader_parameter/flash_color = Color(1, 0.647059, 0, 1)
+shader_parameter/opacity = 0.0
 shader_parameter/tex = ExtResource("3_0f0vk")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kmcd6"]

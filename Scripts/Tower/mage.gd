@@ -51,8 +51,6 @@ func _process(_delta: float) -> void:
 		timer.stop()
 		attackingNode = null
 		mage.play("Idle")
-	mage.material_overlay.set_shader_parameter("flash_color", Color(1, 0.647, 0))
-	mage.material_overlay.set_shader_parameter("active",true)
 
 
 # Checks if an enemy enters its strike range

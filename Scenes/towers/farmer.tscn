@@ -1,7 +1,17 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0r2p7qgcorhd"]
+[gd_scene load_steps=24 format=3 uid="uid://b0r2p7qgcorhd"]
 
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_21qpw"]
 [ext_resource type="Texture2D" uid="uid://dgjr3jn55ikpg" path="res://Textures/Temp/Character/Female adventurer/Tilesheet/character_femaleAdventurer_sheet.png" id="1_ao5ja"]
 [ext_resource type="Script" path="res://Scripts/Tower/farmer.gd" id="2_knww6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2770h"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("1_21qpw")
+shader_parameter/active = true
+shader_parameter/flash_color = Color(1, 0.647059, 0, 1)
+shader_parameter/opacity = 0.0
+shader_parameter/tex = ExtResource("1_ao5ja")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5qucq"]
 atlas = ExtResource("1_ao5ja")
@@ -131,6 +141,7 @@ expand_margin_bottom = 3.0
 viewport_path = NodePath("HealthBar/SubViewport")
 
 [node name="Farmer" type="AnimatedSprite3D" groups=["Tower"]]
+material_overlay = SubResource("ShaderMaterial_2770h")
 offset = Vector2(0, 50)
 billboard = 1
 texture_filter = 0

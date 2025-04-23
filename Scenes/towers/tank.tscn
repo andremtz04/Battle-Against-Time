@@ -1,7 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://l080ok1m5774"]
+[gd_scene load_steps=16 format=3 uid="uid://l080ok1m5774"]
 
 [ext_resource type="Texture2D" uid="uid://wvucpxswbxbs" path="res://Textures/Towers/Shield_Girl.png" id="1_1814q"]
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_ktbig"]
 [ext_resource type="Script" path="res://Scripts/Tower/tank.gd" id="2_wng8e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8rvc3"]
+render_priority = 1
+shader = ExtResource("1_ktbig")
+shader_parameter/active = true
+shader_parameter/flash_color = Color(1, 0.647059, 0, 1)
+shader_parameter/opacity = 0.0
+shader_parameter/tex = ExtResource("1_1814q")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83aem"]
 atlas = ExtResource("1_1814q")
@@ -77,6 +86,7 @@ viewport_path = NodePath("HealthBar/SubViewport")
 [node name="tank" type="AnimatedSprite3D" groups=["Tower"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 top_level = true
+material_overlay = SubResource("ShaderMaterial_8rvc3")
 offset = Vector2(0, 100)
 pixel_size = 0.005
 billboard = 1
