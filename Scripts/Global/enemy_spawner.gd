@@ -3,6 +3,7 @@ extends Node
 var roundCounter : int = 1
 var enemykilled : int = 0
 var totalRounds : int = 5
+var roundStarted : bool = false
 
 # [# of enemy, time of spawn]
 var path1D : Dictionary = {

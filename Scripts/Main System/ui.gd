@@ -49,7 +49,7 @@ func _on_camera_3d_placed_tower() -> void:
 
 func _on_play_button_button_down() -> void:
 	start_round.emit()
-	$"../Path1".roundStarted = true
+	EnemySpawner.roundStarted = true
 
 
 func _on_button_button_down() -> void:

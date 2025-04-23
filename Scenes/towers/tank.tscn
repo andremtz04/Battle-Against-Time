@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://l080ok1m5774"]
 
-[ext_resource type="Texture2D" uid="uid://wvucpxswbxbs" path="res://Textures/Towers/Shield_Girl.png" id="1_1814q"]
 [ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_ktbig"]
 [ext_resource type="Script" path="res://Scripts/Tower/tank.gd" id="2_wng8e"]
+[ext_resource type="Texture2D" uid="uid://cwba68kv7w0k5" path="res://Textures/Towers/Shield_girl_final.png" id="3_f44wg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8rvc3"]
 render_priority = 1
@@ -10,32 +10,32 @@ shader = ExtResource("1_ktbig")
 shader_parameter/active = true
 shader_parameter/flash_color = Color(1, 0.647059, 0, 1)
 shader_parameter/opacity = 0.0
-shader_parameter/tex = ExtResource("1_1814q")
+shader_parameter/tex = ExtResource("3_f44wg")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_83aem"]
-atlas = ExtResource("1_1814q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_la7si"]
+atlas = ExtResource("3_f44wg")
 region = Rect2(0, 250, 250, 250)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqdgj"]
-atlas = ExtResource("1_1814q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3acty"]
+atlas = ExtResource("3_f44wg")
 region = Rect2(250, 250, 250, 250)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ukkou"]
-atlas = ExtResource("1_1814q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b5uw"]
+atlas = ExtResource("3_f44wg")
 region = Rect2(0, 0, 250, 250)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kcels"]
-atlas = ExtResource("1_1814q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7q4x"]
+atlas = ExtResource("3_f44wg")
 region = Rect2(250, 0, 250, 250)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dycr1"]
 animations = [{
 "frames": [{
 "duration": 3.0,
-"texture": SubResource("AtlasTexture_83aem")
+"texture": SubResource("AtlasTexture_la7si")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rqdgj")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3acty")
 }],
 "loop": true,
 "name": &"Attacking",
@@ -43,10 +43,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 2.0,
-"texture": SubResource("AtlasTexture_ukkou")
+"texture": SubResource("AtlasTexture_7b5uw")
 }, {
 "duration": 2.0,
-"texture": SubResource("AtlasTexture_kcels")
+"texture": SubResource("AtlasTexture_o7q4x")
 }],
 "loop": true,
 "name": &"Idle",
@@ -92,7 +92,7 @@ pixel_size = 0.005
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_dycr1")
 animation = &"Attacking"
-frame_progress = 0.461087
+frame_progress = 0.23045
 script = ExtResource("2_wng8e")
 
 [node name="AttackTimer" type="Timer" parent="."]

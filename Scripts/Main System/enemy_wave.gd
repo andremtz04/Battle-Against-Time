@@ -9,7 +9,6 @@ const ENEMY_PATH = preload("res://Scenes/enemy_path.tscn")
 
 var moveSpeed : int = 3
 var currEnemyTotal : int = 0
-var roundStarted : bool = false
 @export var blockLocation : Array = []
 var roundCount : int = 0
 
@@ -95,7 +94,7 @@ func newPath() -> void:
 
 func music(round:int) -> void:
 	#print(AudioServer.get_bus_volume_db(3))
-	if roundStarted:
+	if EnemySpawner.roundStarted:
 		var setVol:float = AudioServer.get_bus_volume_db(3)/1.06
 		if setVol >= -0.05:
 			setVol = 0;
@@ -154,7 +153,7 @@ func _on_ui_start_round() -> void:
 	#print("Creating Curve") #debug
 	#Risk.print2DArray(Risk.calculate_path(Vector2i(0,0),Vector2i(19,14)))
 	#var curve:Curve3D = $"../Path3D".newCurve()
-	if !roundStarted:
+	if !EnemySpawner.roundStarted:
 		newPath()
 		print("round start: ")
 		roundCount += 1
@@ -174,7 +173,7 @@ func _process(_delta: float) -> void:
 			EnemySpawner.roundCounter += 1
 		else:
 			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
-		roundStarted = false
+		EnemySpawner.roundStarted = false
 	music(roundCount)
 
 func _ready() -> void:

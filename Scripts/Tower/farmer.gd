@@ -44,13 +44,16 @@ func _process(_delta: float) -> void:
 # The attacking timer
 func _on_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
-	attack()
-	aging()
+	if EnemySpawner.roundStarted:
+		attack()
+		aging()
 
 func attack() -> void:
 	farmer.play("Attacking")
 	num_of_attacks = num_of_attacks + 1
 	spawn_projectile()
+	await get_tree().create_timer(0.50).timeout
+	farmer.play("Idle")
 
 func spawn_projectile() -> void:
 	var instance = PROJECTILE.instantiate()
