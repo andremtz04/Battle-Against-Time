@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://b0r2p7qgcorhd"]
+[gd_scene load_steps=17 format=3 uid="uid://b0r2p7qgcorhd"]
 
 [ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_21qpw"]
 [ext_resource type="Texture2D" uid="uid://dgjr3jn55ikpg" path="res://Textures/Temp/Character/Female adventurer/Tilesheet/character_femaleAdventurer_sheet.png" id="1_ao5ja"]
 [ext_resource type="Script" path="res://Scripts/Tower/farmer.gd" id="2_knww6"]
+[ext_resource type="Texture2D" uid="uid://cfqqw2h5276nm" path="res://Textures/Towers/Banker.png" id="3_dj7rv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2770h"]
 resource_local_to_scene = true
@@ -13,97 +14,41 @@ shader_parameter/flash_color = Color(1, 0.647059, 0, 1)
 shader_parameter/opacity = 0.0
 shader_parameter/tex = ExtResource("1_ao5ja")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qucq"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(576, 256, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nkrk"]
+atlas = ExtResource("3_dj7rv")
+region = Rect2(0, 225, 250, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yaqe7"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(672, 256, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8alxo"]
+atlas = ExtResource("3_dj7rv")
+region = Rect2(250, 225, 250, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fg0br"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(768, 256, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2r8s"]
+atlas = ExtResource("3_dj7rv")
+region = Rect2(0, 25, 250, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_satgm"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(0, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wkuhp"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(96, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkriu"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(192, 384, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3krsn"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(0, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lf02j"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(96, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iaqui"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(192, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w8l8t"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(288, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ge7mv"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(384, 512, 96, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_15sib"]
-atlas = ExtResource("1_ao5ja")
-region = Rect2(480, 512, 96, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskkj"]
+atlas = ExtResource("3_dj7rv")
+region = Rect2(250, 25, 250, 200)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0mrvf"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5qucq")
+"duration": 2.2,
+"texture": SubResource("AtlasTexture_8nkrk")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yaqe7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fg0br")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_satgm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wkuhp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dkriu")
+"duration": 2.2,
+"texture": SubResource("AtlasTexture_8alxo")
 }],
 "loop": true,
 "name": &"Attacking",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3krsn")
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_j2r8s")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lf02j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iaqui")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w8l8t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ge7mv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_15sib")
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_lskkj")
 }],
 "loop": true,
 "name": &"Idle",
@@ -143,11 +88,12 @@ viewport_path = NodePath("HealthBar/SubViewport")
 [node name="Farmer" type="AnimatedSprite3D" groups=["Tower"]]
 material_overlay = SubResource("ShaderMaterial_2770h")
 offset = Vector2(0, 50)
+pixel_size = 0.006
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_0mrvf")
 animation = &"Attacking"
-frame_progress = 0.317667
+frame_progress = 0.885153
 script = ExtResource("2_knww6")
 
 [node name="AttackTimer" type="Timer" parent="."]

@@ -5,12 +5,12 @@ var frameNum = null
 
 var SpritePos : Dictionary = {
 	"null" : 0,
-	"Mage" : 2,
-	"Fist" : -1,
+	"Mage" : 3,
+	"Fist" : 5, # Change to 5
 	"Healer" : 1,
-	"Tank" : 3,
+	"Tank" : 4,
 	"Archer" : 0,
-	"Farmer" : 0,
+	"Farmer" : 2,
 	"Enemy" : 0
 }
 
