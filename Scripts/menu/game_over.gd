@@ -7,9 +7,10 @@ extends Node2D
 func _ready() -> void:
 	if EnemySpawner.didWin:
 		victory_defeat.text = "Victory"
+		$VictoryTexture.show()
 	else:
 		victory_defeat.text = "Defeat"
-
+		$DefeatTexture.show()
 
 func _on_return_menu_button_down() -> void:
 	get_tree().change_scene_to_file("res://Scenes/menu.tscn")

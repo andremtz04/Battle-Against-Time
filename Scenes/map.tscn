@@ -1,19 +1,15 @@
-[gd_scene load_steps=43 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=40 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
-[ext_resource type="Texture2D" uid="uid://bce2t5twq8i6q" path="res://Textures/Towers/priestess_fix.png" id="2_nof5b"]
 [ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
+[ext_resource type="Texture2D" uid="uid://bhqbrectmi14j" path="res://Textures/Towers/All_Towers.png" id="3_ldxms"]
 [ext_resource type="Texture2D" uid="uid://b0l7py1rdquvu" path="res://Textures/GUI/MuteButton.png" id="3_rg7c8"]
 [ext_resource type="Texture2D" uid="uid://rrhlhmcbsrqv" path="res://Textures/Temp/Character/Male adventurer/PNG/Poses/character_maleAdventurer_attack0.png" id="4_jguus"]
-[ext_resource type="Texture2D" uid="uid://dmyb86xsburbj" path="res://Textures/Towers/Wizard_final_fix.png" id="4_s1irv"]
 [ext_resource type="AudioStream" uid="uid://dwiowodyq12rj" path="res://Audio/Effects/BadAction.mp3" id="5_5u5l7"]
 [ext_resource type="AudioStream" uid="uid://bebyl24s5s1gd" path="res://Audio/Music/CheekyHorn.mp3" id="5_nu03c"]
-[ext_resource type="Texture2D" uid="uid://wvucpxswbxbs" path="res://Textures/Towers/Shield_Girl.png" id="5_uujvr"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
 [ext_resource type="AudioStream" uid="uid://d2stov0k3ufj1" path="res://Audio/Music/TromboneSadge.mp3" id="6_5kee7"]
-[ext_resource type="Texture2D" uid="uid://dxbt32fqgpghj" path="res://Textures/Towers/Elf_lady_final_sheet.png" id="6_xtxf2"]
-[ext_resource type="Texture2D" uid="uid://bhpaf7pegoclk" path="res://Textures/Temp/Character/Female adventurer/PNG/Poses/character_femaleAdventurer_attack0.png" id="8_1y1mp"]
 [ext_resource type="AudioStream" uid="uid://xa1rxri2spvr" path="res://Audio/Music/Kick.mp3" id="8_exuxu"]
 [ext_resource type="AudioStream" uid="uid://ch5a1flc2esql" path="res://Audio/Music/AtariBass.mp3" id="9_qn2xa"]
 [ext_resource type="AudioStream" uid="uid://bs7xjlov6cm88" path="res://Audio/Music/MusicBox.mp3" id="10_qdetx"]
@@ -29,20 +25,24 @@ shader_parameter/MainAlpha = 0.783
 shader_parameter/vignette_color = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnpie"]
-atlas = ExtResource("2_nof5b")
-region = Rect2(30, 12, 200, 220)
+atlas = ExtResource("3_ldxms")
+region = Rect2(268, 15, 216, 220)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4sn0"]
-atlas = ExtResource("4_s1irv")
-region = Rect2(17, 9, 183, 221)
+atlas = ExtResource("3_ldxms")
+region = Rect2(21, 259, 184, 220)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcoat"]
-atlas = ExtResource("5_uujvr")
-region = Rect2(13, 25, 193, 205)
+atlas = ExtResource("3_ldxms")
+region = Rect2(292, 267, 185, 206)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7dlls"]
-atlas = ExtResource("6_xtxf2")
-region = Rect2(36, 5, 154, 230)
+atlas = ExtResource("3_ldxms")
+region = Rect2(6, 5, 184, 230)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3as2"]
+atlas = ExtResource("3_ldxms")
+region = Rect2(539, 18, 168, 197)
 
 [sub_resource type="Environment" id="Environment_yeaxu"]
 
@@ -236,7 +236,7 @@ texture_normal = SubResource("AtlasTexture_7dlls")
 
 [node name="SpawnTower6" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("8_1y1mp")
+texture_normal = SubResource("AtlasTexture_e3as2")
 
 [node name="Play Button" type="TextureButton" parent="UI"]
 layout_mode = 0
@@ -248,10 +248,10 @@ texture_normal = ExtResource("2_hl03d")
 
 [node name="EnemyTest2" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 1062.0
-offset_top = 434.0
-offset_right = 1123.0
-offset_bottom = 465.0
+offset_left = 1051.0
+offset_top = 462.0
+offset_right = 1112.0
+offset_bottom = 493.0
 text = "Enemy"
 
 [node name="MuteButton" type="TextureButton" parent="UI"]
