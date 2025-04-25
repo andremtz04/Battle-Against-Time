@@ -57,17 +57,6 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 			timer.start() # Starts the attack
 			stop_movement.emit() # Tells enemy_path.gd to stop moving
 
-# Checks if there's something in its way
-func _on_hitbox_area_area_entered(_area: Area3D) -> void:
-	#stop_movement.emit() # Tells enemy_path.gd to stop moving
-	pass
-
-
-# Starts to move if nothing is in the way 
-func _on_hitbox_area_area_exited(_area: Area3D) -> void:
-	#start_movement.emit()
-	pass
-
 
 # Attackingggg
 func _on_timer_timeout() -> void: 

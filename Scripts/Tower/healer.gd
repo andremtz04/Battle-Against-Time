@@ -9,8 +9,9 @@ extends AnimatedSprite3D
 # Add to the correct group
 
 const MAXHEALTH : int = 15
-var health : float = MAXHEALTH
+const MAXAGE : int = 5
 
+var health : float = MAXHEALTH
 var tName : String = "Healer"
 var damage : int = 5
 
@@ -92,12 +93,10 @@ func spawn_projectile() -> void:
 		instance.set_variables(attackingNode, healer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 10):
-		if (age <= 5):
+	if (num_of_attacks >= 10 && age <=MAXAGE):
+		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
-		else:
-			health -= MAXHEALTH * 0.2
 		num_of_attacks = 0
 		seconds = age * 0.5
 	

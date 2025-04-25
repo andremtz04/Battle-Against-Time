@@ -9,11 +9,12 @@ extends AnimatedSprite3D
 # Add to the correct group
 
 const MAXHEALTH : int = 15
-var health : float = MAXHEALTH
+const MAXAGE : int = 5
+const BASEDAMAGE : int = 4
 
+var health : float = MAXHEALTH
 var tName : String = "Archer"
 var damage : int = 4
-var base_damage : int = 4
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null # To save the node that it is attacking
@@ -93,13 +94,11 @@ func spawn_projectile() -> void:
 	instance.set_variables(attackingNode, archer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 1):
-		if (age <= 5):
+	if (num_of_attacks >= 1 && age <= MAXAGE):
+		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
-		else:
-			health -= MAXHEALTH * 0.2
 		num_of_attacks = 0
-		damage = base_damage + age
+		damage = BASEDAMAGE + age
 		seconds = age * 0.5
 	

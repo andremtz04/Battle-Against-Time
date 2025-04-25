@@ -9,11 +9,13 @@ extends AnimatedSprite3D
 # Add to the correct group
 
 const MAXHEALTH : int = 50
+const BASEDAMAGE : int = 1
+const MAXAGE : int = 5
+
 var health : float = MAXHEALTH
 
 var tName : String = "Tank"
 var damage : int = 1
-var base_damage : int = 1
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
@@ -81,13 +83,11 @@ func attack() -> void:
 		num_of_attacks = num_of_attacks + 1
 
 func aging() -> void:
-	if (num_of_attacks >= 20):
-		if (age < 5):
+	if (num_of_attacks >= 20 && age <= MAXAGE):
+		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
-		else:
-			health -= MAXHEALTH * 0.2
 		num_of_attacks = 0
-		damage = base_damage + age
+		damage = BASEDAMAGE + age
 		seconds = age * 0.5
 	
