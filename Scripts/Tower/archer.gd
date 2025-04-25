@@ -94,7 +94,7 @@ func spawn_projectile() -> void:
 	instance.set_variables(attackingNode, archer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 8):
+	if (num_of_attacks >= 5):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1

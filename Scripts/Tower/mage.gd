@@ -104,7 +104,7 @@ func spawn_projectile() -> void:
 
 
 func aging() -> void:
-	if (num_of_attacks >= 8 && age <= MAXAGE):
+	if (num_of_attacks >= 5):
 		if (age <= MAXAGE):
 			age += 1
 			opacity += 0.1

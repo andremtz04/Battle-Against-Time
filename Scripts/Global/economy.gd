@@ -1,6 +1,6 @@
 extends Node
 
-const STARTINGMONEY : int = 100
+const STARTINGMONEY : int = 150
 var totalMoney : int = STARTINGMONEY
 var tempMoney : int
 
