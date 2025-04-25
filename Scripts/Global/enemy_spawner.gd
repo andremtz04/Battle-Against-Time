@@ -8,9 +8,9 @@ var didWin : bool = false
 
 # [# of enemy, time of spawn]
 var path1D : Dictionary = {
-	1 : [5,2],
-	2 : [10,1], 
-	3 : [15,2],
-	4 : [20,1],
-	5 : [25, 2]
+	1 : [10,3],
+	2 : [15,2], 
+	3 : [20,3],
+	4 : [25,2],
+	5 : [30, 2]
 }
