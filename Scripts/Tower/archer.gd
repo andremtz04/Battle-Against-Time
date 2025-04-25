@@ -84,7 +84,7 @@ func attack() -> void:
 		archer.play("Attacking")
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		spawn_projectile()
-		await get_tree().create_timer(seconds).timeout
+		await get_tree().create_timer(0.50).timeout
 		archer.play("Idle")
 
 func spawn_projectile() -> void:
@@ -94,7 +94,7 @@ func spawn_projectile() -> void:
 	instance.set_variables(attackingNode, archer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 1 && age <= MAXAGE):
+	if (num_of_attacks >= 8):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1

@@ -72,6 +72,7 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 
 # The attacking timer
 func _on_timer_timeout() -> void:
+	await get_tree().create_timer(seconds).timeout
 	attack()
 	aging()
 
@@ -83,7 +84,7 @@ func attack() -> void:
 		num_of_attacks = num_of_attacks + 1
 
 func aging() -> void:
-	if (num_of_attacks >= 10 && age <= MAXAGE):
+	if (num_of_attacks >= 10):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1

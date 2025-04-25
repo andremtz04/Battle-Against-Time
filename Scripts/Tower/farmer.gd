@@ -54,7 +54,7 @@ func _on_timer_timeout() -> void:
 func attack() -> void:
 	farmer.play("Attacking")
 	num_of_attacks = num_of_attacks + 1
-	await get_tree().create_timer(seconds).timeout
+	await get_tree().create_timer(0.50).timeout
 	spawn_projectile()
 	farmer.play("Idle")
 
@@ -65,7 +65,7 @@ func spawn_projectile() -> void:
 	instance.set_variables(farmer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 10 && age <= MAXAGE):
+	if (num_of_attacks >= 10):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1

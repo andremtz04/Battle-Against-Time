@@ -6,7 +6,7 @@ var tempMoney : int
 
 var moneyDictinary : Dictionary = {
 	"null" : 0,
-	"Fist" : 15, 
+	"Fist" : 20, 
 	"Healer" : 30,
 	"Mage" : 50,
 	"Tank" : 40,

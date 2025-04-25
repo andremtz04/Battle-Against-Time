@@ -97,7 +97,7 @@ func attack() -> void:
 		$MageShoot.play()
 		num_of_attacks += 1
 		spawn_projectile()
-		await get_tree().create_timer(seconds).timeout
+		await get_tree().create_timer(0.50).timeout
 		mage.play("Idle")
 
 
@@ -117,4 +117,4 @@ func aging() -> void:
 			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
 		damage = BASEDAMGE + floor(age/2)
-		seconds = age * 0.2
+		seconds = age * 0.5
