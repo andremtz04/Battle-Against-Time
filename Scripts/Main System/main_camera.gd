@@ -16,6 +16,7 @@ signal placedTower
 
 func _ready():
 	TowerSpawner.reset_map()
+	EnemySpawner.enemykilled = 0
 	 #this is basically for audio
 	$Audio/WhimsyPlayer.play()
 	$Audio/WompPlayer.play()
