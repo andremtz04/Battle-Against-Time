@@ -14,7 +14,9 @@ const DUMMY_TOWER = preload("res://Scenes/towers/dummy_tower.tscn")
 
 signal placedTower
 
-func _ready(): #this is basically for audio
+func _ready():
+	TowerSpawner.reset_map()
+	 #this is basically for audio
 	$Audio/WhimsyPlayer.play()
 	$Audio/WompPlayer.play()
 	$Audio/KickPlayer.play()
@@ -92,6 +94,7 @@ func delete_tower() -> bool:
 		elif inPos.y < 0.95:
 			instance.queue_free()
 		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != null:
+			print("alkjsdlksaj")
 			instance.queue_free()
 		elif !Economy.enoughMoney():
 			instance.queue_free()
