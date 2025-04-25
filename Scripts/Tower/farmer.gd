@@ -15,7 +15,7 @@ const MAXAGE : int = 5
 var health : float = MAXHEALTH
 
 var tName : String = "Farmer"
-var damage : int = 5
+var damage : int = 1
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 
@@ -54,7 +54,7 @@ func _on_timer_timeout() -> void:
 func attack() -> void:
 	farmer.play("Attacking")
 	num_of_attacks = num_of_attacks + 1
-	await get_tree().create_timer(0.70).timeout
+	await get_tree().create_timer(seconds).timeout
 	spawn_projectile()
 	farmer.play("Idle")
 

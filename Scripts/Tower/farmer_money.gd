@@ -17,5 +17,5 @@ func set_variables(origin : Node3D):
 	direction = Vector3(0,0,-speed)
 
 func _on_timer_timeout() -> void:
-	Economy.totalMoney += 4
+	Economy.totalMoney += 2
 	queue_free()

@@ -97,7 +97,7 @@ func attack() -> void:
 		$MageShoot.play()
 		num_of_attacks += 1
 		spawn_projectile()
-		await get_tree().create_timer(.50).timeout
+		await get_tree().create_timer(seconds).timeout
 		mage.play("Idle")
 
 

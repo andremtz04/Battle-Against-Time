@@ -73,10 +73,12 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 
 # The attacking timer
 func _on_timer_timeout() -> void:
+	await get_tree().create_timer(seconds).timeout
 	attack()
 	aging()
 
 func attack() -> void:
+	await get_tree().create_timer(seconds).timeout
 	attackingNode = enemyQueue[0]
 	if attackingNode != null:
 		fist.play("Attacking")

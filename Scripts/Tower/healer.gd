@@ -82,7 +82,7 @@ func attack() -> void:
 		healer.play("Attacking")
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		spawn_projectile()
-		await get_tree().create_timer(.50).timeout
+		await get_tree().create_timer(seconds).timeout
 		healer.play("Idle")
 
 func spawn_projectile() -> void:
