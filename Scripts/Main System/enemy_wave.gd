@@ -27,6 +27,8 @@ func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	var endPos = Vector2i(endX,endZ)
 	#print("Calculating path (Curve)\n path:\n")
 	var path:Array = Risk.calculate_path(startPos,endPos)
+	Risk.print2DArray(path)
+	print("Something worked??")
 	#Risk.print2DArray(path)
 	
 	var zVector = Vector3(0,0,0)
@@ -37,7 +39,7 @@ func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	
 	#debug
 	#print("New point at x:" + str(x) + ", z:" + str(z))
-
+	
 	path[x][z] = 0
 	
 	while(x != endX || z != endZ):
@@ -91,7 +93,6 @@ func newPath() -> void:
 	var cols = TowerSpawner.row - 1 #(z)
 	self.curve = newCurve(startPos,rows,cols)
 
-
 func music(round:int) -> void:
 	#print(AudioServer.get_bus_volume_db(3))
 	if EnemySpawner.roundStarted:
@@ -142,7 +143,6 @@ func music(round:int) -> void:
 					pass
 				_:
 					print("Error: fadeIn: Uncoded round")
-
 
 func _on_timer_timeout() -> void:
 	var newEnemy = ENEMY_PATH.instantiate()

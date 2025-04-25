@@ -3,6 +3,8 @@ extends Node
 var riskTable : Array = []
 var towerRisk : Dictionary
 var blockLocation:Array = []
+var bestRisk:int = 200
+var tripped = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +15,7 @@ func _ready():
 	#print(riskTable)
 	towerRisk = {
 		"Mage" : [[1,1,1,1,1],[1,2,2,2,1],[1,2,-2,2,1],[1,2,2,2,1],[1,1,1,1,1]],
-		"Fist" : [[2,2,2],[2,-1,2],[2,2,2]],
+		"Fist" : [[3,3,3],[3,-1,3],[3,3,3]],
 		"Enemy" : [[0]],
 		null : [[0]],
 		"Healer": [[-5]],
@@ -79,13 +81,14 @@ func calcRisk() -> void:
 			#print(TowerSpawner.mapGrid[row][col])
 			updateRisk(TowerSpawner.mapGrid[row][col], row, col, false)
 
-func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
+func calc_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 	if(startPos.x < 0 || goalPos.x < 0 || startPos.x > goalPos.x || goalPos.x > riskTable[0].size()):
 		return ["ERROR pls provide proper vectors for starting"] # this is error
 	#ideally start on the left and try to reach the right center/goal area
 	
 	calcRisk()
 	#UNCOMMENT IF THINGS START GETTING WIERD (remember to implement blocks into this function)
+	
 	
 	#print2DArray(riskTable)
 	var path : Array = []
@@ -170,6 +173,179 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 		path[row][col] = 1
 		
 	return path
+
+func new_calculate_path(currPos:Vector2i, goalPos:Vector2i, currentPath:Array = [], iteration:int = 0, risk:int = 0) -> Array:
+	if(iteration == 0):
+		calcRisk()
+		for i in TowerSpawner.row:
+			currentPath.append([])
+			for j in TowerSpawner.col:
+				currentPath[i].append(0)
+		bestRisk = 200
+		tripped = false
+		var ultPath:Array = new_calculate_path(currPos,goalPos,currentPath,iteration + 1)[0]
+		print2DArray(ultPath)
+		return ultPath
+	
+	#####SECOND ITERATION#####
+	if(risk >= bestRisk || riskTable[currPos.y][currPos.x] >= 50 || tripped):
+		return [[],999]
+	
+	var optionUp:Array = [[],999]
+	var optionDown:Array = [[],999]
+	var optionLeft:Array = [[],999]
+	var optionRight:Array = [[],999]
+	
+	var pathCopy = []
+	for i in currentPath.size():
+		pathCopy.append([])
+		for j in currentPath[i]:
+			pathCopy[i].append(j)
+	
+	pathCopy[currPos.y][currPos.x] = iteration
+	
+	if(currPos == goalPos):
+		bestRisk = risk
+		tripped = true
+		print("SUCCESS " + str(risk))
+		print2DArray(pathCopy)
+		return [pathCopy, risk]
+	
+	risk += riskTable[currPos.y][currPos.x] + 1
+	
+	if(currPos.x != riskTable[0].size()-1 && pathCopy[currPos.y][currPos.x+1] == 0):
+		currPos.x += 1
+		optionRight = new_calculate_path(currPos, goalPos, pathCopy, iteration+1, risk)
+		currPos.x -= 1
+	
+	if(currPos.y != 0 && currentPath[currPos.y-1][currPos.x] == 0):
+		currPos.y -= 1
+		optionUp = new_calculate_path(currPos, goalPos, pathCopy, iteration+1, risk)
+		currPos.y += 1
+		
+	if(currPos.y != riskTable.size()-1 && currentPath[currPos.y+1][currPos.x] == 0):
+		currPos.y += 1
+		optionDown = new_calculate_path(currPos, goalPos, pathCopy, iteration+1, risk)
+		currPos.y -= 1
+	
+	var options:Array = [optionUp,optionDown,optionLeft,optionRight]
+	var index:int = 0
+	var leastRisk:int = 998
+	for i in options.size():
+		if(options[i][1] <= leastRisk):
+			leastRisk = options[i][1]
+			index = i
+	return options[index]
+
+class mapNode:
+	
+	var risk:int
+	var position:Vector2i 
+	var path:Array
+	
+	func _init(r:int, pos:Vector2i, p:Array):
+		risk = r
+		position = pos
+		path = p
+
+func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
+	var finish = false
+	var check = false
+	var currentPath = []
+	var currNodes = []
+	var trashedNodes = []
+	var potentialLoc:Vector2i
+	var index = 0
+	var currNode:mapNode = mapNode.new(0,startPos,[])
+	
+	calcRisk()
+	print2DArray(riskTable)
+	
+	currNodes.append(currNode)
+	
+	print("starting node added to currNodes")
+	
+	#TENTATIVE A* ALGORITHM
+	while(!finish):
+		#determine focus node for group based on least risk
+		index = 0
+		for i in currNodes.size():
+			if(currNode.risk > currNodes[i].risk):
+				index = i
+				currNode = currNodes[i]
+				
+		if(currNode.position == goalPos):
+			
+			for i in riskTable.size():
+				currentPath.append([])
+				for j in riskTable[0].size():
+					currentPath[i].append(0)
+					
+			finish = true
+			for node in currNode.path + [currNode]:
+				currentPath[node.position.y][node.position.x] = 1
+			break
+			#IMPLEMENT PATH GETTER
+		
+		print("Evaluating current node:")
+		print("Risk: " + str(currNode.risk) + ", position: (" + str(currNode.position.x) + ", " + str(currNode.position.y) +"), Amount of nodes before: " + str(currNode.path.size()))
+		
+		check = true
+		for node in trashedNodes:
+			if node.position == currNode.position:
+				check = false
+		
+		if(currNode.risk<100 && check):
+			
+			if(currNode.position.x < riskTable[0].size()-1):
+				#check = true
+				potentialLoc = Vector2i(currNode.position.x+1,currNode.position.y)
+				#for node in currNode.path:
+					#if node.position == potentialLoc:
+						#check=false
+						#break
+				#if check:
+				currNodes.append(mapNode.new(currNode.risk+riskTable[currNode.position.y][currNode.position.x+1]+1,potentialLoc,currNode.path+[currNode]))
+			
+			if(currNode.position.y < riskTable.size()-1):
+				#check = true
+				potentialLoc = Vector2i(currNode.position.x,currNode.position.y+1)
+				#for node in currNode.path:
+					#if node.position == potentialLoc:
+						#check=false
+						#break
+				#if check:
+				currNodes.append(mapNode.new(currNode.risk+riskTable[currNode.position.y+1][currNode.position.x]+1,potentialLoc,currNode.path+[currNode]))
+			
+			if(currNode.position.y > 0):
+				#check = true
+				potentialLoc = Vector2i(currNode.position.x,currNode.position.y-1)
+				#for node in currNode.path:
+					#if node.position == potentialLoc:
+						#check=false
+						#break
+				#if check:
+				currNodes.append(mapNode.new(currNode.risk+riskTable[currNode.position.y-1][currNode.position.x]+1,potentialLoc,currNode.path+[currNode]))
+				
+			
+		else:
+			print("Trashing node")
+			pass
+		
+		print()
+		trashedNodes.append(currNode)
+		currNodes.remove_at(index)
+		
+		if(currNodes.is_empty()):
+			print("NODES EXHAUSTED, NO POSSIBLE PATH OR ERROR")
+			break
+		
+		currNode = currNodes[0]
+		
+	print("While loop complete!\n")
+	print2DArray(currentPath)
+	
+	return currentPath
 
 #PRINT ARRAY FOR DEBUGGING PURPOSES
 func print2DArray(arr:Array) -> void:
