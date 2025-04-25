@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
 [ext_resource type="Texture2D" uid="uid://bhqbrectmi14j" path="res://Textures/Towers/All_Towers.png" id="3_ldxms"]
 [ext_resource type="Texture2D" uid="uid://b0l7py1rdquvu" path="res://Textures/GUI/MuteButton.png" id="3_rg7c8"]
-[ext_resource type="Texture2D" uid="uid://rrhlhmcbsrqv" path="res://Textures/Temp/Character/Male adventurer/PNG/Poses/character_maleAdventurer_attack0.png" id="4_jguus"]
 [ext_resource type="AudioStream" uid="uid://dwiowodyq12rj" path="res://Audio/Effects/BadAction.mp3" id="5_5u5l7"]
 [ext_resource type="AudioStream" uid="uid://bebyl24s5s1gd" path="res://Audio/Music/CheekyHorn.mp3" id="5_nu03c"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
@@ -28,6 +27,11 @@ shader_parameter/vignette_color = null
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnpie"]
 atlas = ExtResource("3_ldxms")
 region = Rect2(268, 15, 216, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6erso"]
+resource_local_to_scene = true
+atlas = ExtResource("3_ldxms")
+region = Rect2(520, 266, 200, 198)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4sn0"]
 atlas = ExtResource("3_ldxms")
@@ -253,7 +257,7 @@ texture_normal = SubResource("AtlasTexture_wnpie")
 
 [node name="SpawnTower2" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("4_jguus")
+texture_normal = SubResource("AtlasTexture_6erso")
 
 [node name="SpawnTower3" type="TextureButton" parent="UI/GridContainer"]
 layout_mode = 2
