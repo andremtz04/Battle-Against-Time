@@ -259,11 +259,11 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 	var currNode:mapNode = mapNode.new(0,startPos,[])
 	
 	calcRisk()
-	print2DArray(riskTable)
+	#print2DArray(riskTable)
 	
 	currNodes.append(currNode)
 	
-	print("starting node added to currNodes")
+	#print("starting node added to currNodes")
 	
 	#TENTATIVE A* ALGORITHM
 	while(!finish):
@@ -287,8 +287,9 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 			break
 			#IMPLEMENT PATH GETTER
 		
-		print("Evaluating current node:")
-		print("Risk: " + str(currNode.risk) + ", position: (" + str(currNode.position.x) + ", " + str(currNode.position.y) +"), Amount of nodes before: " + str(currNode.path.size()))
+		#DEBUG
+		#print("Evaluating current node:")
+		#print("Risk: " + str(currNode.risk) + ", position: (" + str(currNode.position.x) + ", " + str(currNode.position.y) +"), Amount of nodes before: " + str(currNode.path.size()))
 		
 		check = true
 		for node in trashedNodes:
@@ -329,10 +330,10 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 				
 			
 		else:
-			print("Trashing node")
+			#print("Trashing node")
 			pass
+		#print()
 		
-		print()
 		trashedNodes.append(currNode)
 		currNodes.remove_at(index)
 		
@@ -342,8 +343,9 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 		
 		currNode = currNodes[0]
 		
-	print("While loop complete!\n")
-	print2DArray(currentPath)
+	#DEBUG
+	#print("While loop complete!\n")
+	#print2DArray(currentPath)
 	
 	return currentPath
 
