@@ -7,6 +7,7 @@ extends Control
 
 
 var health = 20
+var isButtonDown : bool = false
 signal start_round
 
 func _ready() -> void:

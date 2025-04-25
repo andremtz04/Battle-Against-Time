@@ -23,7 +23,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-z_index = 1
+top_level = true
 offset_left = 466.0
 offset_top = 263.0
 offset_right = 594.0
@@ -37,25 +37,14 @@ texture_normal = ExtResource("2_3vweo")
 layout_mode = 2
 texture_normal = ExtResource("2_3vweo")
 
-[node name="DefeatTexture" type="TextureRect" parent="."]
+[node name="DefeatTexture" type="Sprite2D" parent="."]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -208.0
-offset_top = -280.0
-offset_right = 1376.0
-offset_bottom = 872.0
-grow_horizontal = 2
-grow_vertical = 2
+position = Vector2(560, 404)
 texture = ExtResource("3_ghr1c")
 
-[node name="VictoryTexture" type="TextureRect" parent="."]
+[node name="VictoryTexture" type="Sprite2D" parent="."]
 visible = false
-offset_left = -296.0
-offset_top = -204.0
-offset_right = 1432.0
-offset_bottom = 2316.0
+position = Vector2(582, 1097)
 texture = ExtResource("3_pd65i")
 
 [connection signal="button_down" from="Buttons/ReturnMenu" to="." method="_on_return_menu_button_down"]
