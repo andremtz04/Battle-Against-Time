@@ -40,7 +40,7 @@ func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	
 	#debug
 	#print("New point at x:" + str(x) + ", z:" + str(z))
-
+	
 	path[x][z] = 0
 	
 	while(x != endX || z != endZ):

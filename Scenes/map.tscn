@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://rrhlhmcbsrqv" path="res://Textures/Temp/Character/Male adventurer/PNG/Poses/character_maleAdventurer_attack0.png" id="4_jguus"]
 [ext_resource type="Texture2D" uid="uid://dmyb86xsburbj" path="res://Textures/Towers/Wizard_final_fix.png" id="4_s1irv"]
 [ext_resource type="AudioStream" uid="uid://dwiowodyq12rj" path="res://Audio/Effects/BadAction.mp3" id="5_5u5l7"]
-[ext_resource type="AudioStream" uid="uid://bebyl24s5s1gd" path="res://Audio/Music/CheekyHorn.mp3" id="5_nu03c"]
 [ext_resource type="Texture2D" uid="uid://wvucpxswbxbs" path="res://Textures/Towers/Shield_Girl.png" id="5_uujvr"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
 [ext_resource type="AudioStream" uid="uid://d2stov0k3ufj1" path="res://Audio/Music/TromboneSadge.mp3" id="6_5kee7"]
@@ -17,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://xa1rxri2spvr" path="res://Audio/Music/Kick.mp3" id="8_exuxu"]
 [ext_resource type="AudioStream" uid="uid://ch5a1flc2esql" path="res://Audio/Music/AtariBass.mp3" id="9_qn2xa"]
 [ext_resource type="AudioStream" uid="uid://bs7xjlov6cm88" path="res://Audio/Music/MusicBox.mp3" id="10_qdetx"]
+[ext_resource type="AudioStream" uid="uid://bsw32ladatvnx" path="res://Audio/Music/SillyWhimsy.mp3" id="13_n3v6b"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="17_hwd1k"]
 [ext_resource type="Texture2D" uid="uid://bx01w75h7o3j" path="res://Textures/Map/oak_veneer_01_diff_1k.jpg" id="18_sky8f"]
 [ext_resource type="MeshLibrary" uid="uid://cy8f7gd0l6jjl" path="res://Meshes/Dungeon.tres" id="22_mjaxf"]
@@ -183,7 +183,7 @@ stream = ExtResource("5_5u5l7")
 volume_db = -4.103
 
 [node name="WhimsyPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
-stream = ExtResource("5_nu03c")
+stream = ExtResource("13_n3v6b")
 bus = &"Whimsy"
 parameters/looping = true
 
