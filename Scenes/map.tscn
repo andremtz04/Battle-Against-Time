@@ -280,6 +280,7 @@ offset_bottom = 637.0
 texture_normal = ExtResource("2_hl03d")
 
 [node name="EnemyTest2" type="Button" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 1051.0
 offset_top = 462.0
