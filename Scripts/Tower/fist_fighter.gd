@@ -8,8 +8,8 @@ extends AnimatedSprite3D
 # Update name to ui.gd, economy.gd, tower_spawner.gd
 # Add to the correct group
 
-const MAXHEALTH : int = 30
-const BASEDAMAGE : int = 5
+const MAXHEALTH : int = 20
+const BASEDAMAGE : int = 3
 const MAXAGE : int = 5
 
 var health : float = MAXHEALTH
@@ -89,7 +89,9 @@ func aging() -> void:
 		if (age < 5):
 			age = age + 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMAGE + age
+		damage = BASEDAMAGE + floor(age/2)
 		seconds = age * 0.5
 	

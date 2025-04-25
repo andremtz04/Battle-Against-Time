@@ -15,7 +15,7 @@ const BASEDAMGE : int = 3
 var health : float = MAXHEALTH
 
 var tName : String = "Mage"
-var damage : int = 3
+var damage : int = 5
 
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
@@ -109,10 +109,12 @@ func spawn_projectile() -> void:
 
 
 func aging() -> void:
-	if (num_of_attacks >= 15 && age <= MAXAGE):
+	if (num_of_attacks >= 8 && age <= MAXAGE):
 		if (age <= MAXAGE):
 			age += 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMGE + age
+		damage = BASEDAMGE + floor(age/2)
 		seconds = age * 0.2

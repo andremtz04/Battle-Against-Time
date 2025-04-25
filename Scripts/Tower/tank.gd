@@ -15,7 +15,7 @@ const MAXAGE : int = 5
 var health : float = MAXHEALTH
 
 var tName : String = "Tank"
-var damage : int = 1
+var damage : int = 2
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
@@ -83,11 +83,13 @@ func attack() -> void:
 		num_of_attacks = num_of_attacks + 1
 
 func aging() -> void:
-	if (num_of_attacks >= 20 && age <= MAXAGE):
+	if (num_of_attacks >= 10 && age <= MAXAGE):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMAGE + age
+		damage = BASEDAMAGE + floor(age/2)
 		seconds = age * 0.5
 	

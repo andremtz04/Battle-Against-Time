@@ -65,11 +65,13 @@ func spawn_projectile() -> void:
 	instance.set_variables(farmer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 20 && age <= MAXAGE):
+	if (num_of_attacks >= 10 && age <= MAXAGE):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMAGE + age
+		damage = BASEDAMAGE + floor(age/2)
 		seconds = age * 0.5
 	

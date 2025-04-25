@@ -10,11 +10,11 @@ extends AnimatedSprite3D
 
 const MAXHEALTH : int = 15
 const MAXAGE : int = 5
-const BASEDAMAGE : int = 4
+const BASEDAMAGE : int = 2
 
 var health : float = MAXHEALTH
 var tName : String = "Archer"
-var damage : int = 4
+var damage : int = 3
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null # To save the node that it is attacking
@@ -98,7 +98,9 @@ func aging() -> void:
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMAGE + age
+		damage = BASEDAMAGE + floor(age/2)
 		seconds = age * 0.5
 	
