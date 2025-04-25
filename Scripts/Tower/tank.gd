@@ -77,8 +77,8 @@ func _on_timer_timeout() -> void:
 	aging()
 
 func attack() -> void:
-	attackingNode = enemyQueue[0]
-	if attackingNode != null:
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		tank.play("Attacking")
 		attackingNode.health -= damage
 		num_of_attacks = num_of_attacks + 1

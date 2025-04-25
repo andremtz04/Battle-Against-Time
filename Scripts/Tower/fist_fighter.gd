@@ -79,8 +79,8 @@ func _on_timer_timeout() -> void:
 
 func attack() -> void:
 	await get_tree().create_timer(seconds).timeout
-	attackingNode = enemyQueue[0]
-	if attackingNode != null:
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		fist.play("Attacking")
 		$FistAttack.play()
 		attackingNode.health -= damage

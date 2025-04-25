@@ -79,8 +79,8 @@ func _on_timer_timeout() -> void:
 	aging()
 
 func attack() -> void:
-	attackingNode = enemyQueue[0]
-	if attackingNode != null:
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		archer.play("Attacking")
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		spawn_projectile()
