@@ -92,7 +92,7 @@ func delete_tower() -> bool:
 		inPos = Vector3(floor(inPos.x), round(inPos.y), floor(inPos.z))
 		if rayCastResult.is_empty():
 			instance.queue_free()
-		elif inPos.y < 0.95:
+		elif inPos.y < 1 || inPos.y > 1:
 			instance.queue_free()
 		elif TowerSpawner.mapGrid[inPos.z][inPos.x] != null:
 			instance.queue_free()

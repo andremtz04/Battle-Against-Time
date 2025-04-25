@@ -92,6 +92,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 53.0
 offset_right = 1.50001e+07
