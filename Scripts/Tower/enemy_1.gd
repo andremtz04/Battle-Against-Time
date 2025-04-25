@@ -70,7 +70,7 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 		if parent.is_in_group("Tower"):
 			var i = 0
 			for tower in enemyQueue:
-				if tower == parent || tower.is_queued_free():
+				if tower == parent:
 					enemyQueue.remove_at(i)
 				i += 1
 
@@ -78,5 +78,4 @@ func attack():
 	attackingNode = enemyQueue[0]
 	if attackingNode != null:
 		enemy1.play("Attacking")
-		#print("attacking", attackingNode)
 		attackingNode.health -= damage

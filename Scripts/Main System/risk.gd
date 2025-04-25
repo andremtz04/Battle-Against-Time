@@ -62,7 +62,7 @@ func walls():
 #old, moved to calcrisk
 	for block in blockLocation:
 		Risk.riskTable[block.z][block.x] = 99 
-	print(Risk.riskTable)
+	#print(Risk.riskTable)
 
 func calcRisk() -> void:
 	#reset all values to 0 in risktable

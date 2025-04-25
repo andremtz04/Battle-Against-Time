@@ -28,7 +28,7 @@ func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	#print("Calculating path (Curve)\n path:\n")
 	var path:Array = Risk.calculate_path(startPos,endPos)
 	Risk.print2DArray(path)
-	print("Something worked??")
+	#print("Something worked??")
 	#Risk.print2DArray(path)
 	
 	var zVector = Vector3(0,0,0)
@@ -155,9 +155,9 @@ func _on_ui_start_round() -> void:
 	#var curve:Curve3D = $"../Path3D".newCurve()
 	if !EnemySpawner.roundStarted:
 		newPath()
-		print("round start: ")
+		#print("round start: ")
 		roundCount += 1
-		print(roundCount)
+		#print(roundCount)
 		timer.set_wait_time(EnemySpawner.path1D[EnemySpawner.roundCounter][1])
 		timer.start()
 
@@ -165,7 +165,7 @@ func _process(_delta: float) -> void:
 	if currEnemyTotal == EnemySpawner.path1D[EnemySpawner.roundCounter][0]:
 		timer.stop()
 	if EnemySpawner.enemykilled == EnemySpawner.path1D[EnemySpawner.roundCounter][0]:
-		print("round over")
+		#print("round over")
 		self.curve.clear_points()
 		currEnemyTotal = 0
 		EnemySpawner.enemykilled = 0
