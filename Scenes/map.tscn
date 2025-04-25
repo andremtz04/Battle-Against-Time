@@ -1,10 +1,10 @@
 [gd_scene load_steps=41 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
-[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
 [ext_resource type="FontFile" uid="uid://jc25fklm5p5m" path="res://Textures/Lazy Fight.otf" id="3_4gy1q"]
 [ext_resource type="Script" path="res://Scripts/Main System/main_camera.gd" id="3_a5gf1"]
 [ext_resource type="Texture2D" uid="uid://bhqbrectmi14j" path="res://Textures/Towers/All_Towers.png" id="3_ldxms"]
+[ext_resource type="Texture2D" uid="uid://b2girjxld6pru" path="res://Textures/GUI/PlayButton.png" id="5_2srd1"]
 [ext_resource type="AudioStream" uid="uid://dwiowodyq12rj" path="res://Audio/Effects/BadAction.mp3" id="5_5u5l7"]
 [ext_resource type="AudioStream" uid="uid://bebyl24s5s1gd" path="res://Audio/Music/CheekyHorn.mp3" id="5_nu03c"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
@@ -281,7 +281,7 @@ offset_left = 1004.0
 offset_top = 509.0
 offset_right = 1132.0
 offset_bottom = 637.0
-texture_normal = ExtResource("2_hl03d")
+texture_normal = ExtResource("5_2srd1")
 
 [node name="EnemyTest2" type="Button" parent="UI"]
 visible = false

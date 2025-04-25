@@ -1,11 +1,11 @@
 [gd_scene load_steps=25 format=3 uid="uid://dlmu2syech5sk"]
 
 [ext_resource type="Script" path="res://Scripts/menu/MenuScript.gd" id="1_82wa2"]
-[ext_resource type="Texture2D" uid="uid://b3mt5h0tgeq7l" path="res://Textures/Menu/file.svg" id="2_hac84"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="2_ivgje"]
 [ext_resource type="FontFile" uid="uid://jc25fklm5p5m" path="res://Textures/Lazy Fight.otf" id="2_y7qae"]
-[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="3_wiy62"]
+[ext_resource type="Texture2D" uid="uid://cwt41kw62lq1q" path="res://Textures/GUI/StartButton.png" id="4_sohxa"]
 [ext_resource type="MeshLibrary" uid="uid://cy8f7gd0l6jjl" path="res://Meshes/Dungeon.tres" id="4_vfjc3"]
+[ext_resource type="Texture2D" uid="uid://jw67ilycqcsb" path="res://Textures/GUI/ExitButton.png" id="5_fvhbw"]
 [ext_resource type="Texture2D" uid="uid://bx01w75h7o3j" path="res://Textures/Map/oak_veneer_01_diff_1k.jpg" id="5_n47c5"]
 [ext_resource type="Shader" path="res://Shaders/portal.gdshader" id="6_5ffrr"]
 
@@ -131,11 +131,11 @@ grow_horizontal = 2
 
 [node name="Start" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_hac84")
+texture_normal = ExtResource("4_sohxa")
 
 [node name="Quit" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_wiy62")
+texture_normal = ExtResource("5_fvhbw")
 
 [node name="Lighting Stuff" type="Node3D" parent="."]
 
