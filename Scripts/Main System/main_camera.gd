@@ -67,7 +67,7 @@ func _input(event) -> void:
 		else:
 			instance.position = Vector3(inPos.x + 0.5, inPos.y, inPos.z + 1)
 			TowerSpawner.mapGrid[inPos.z][inPos.x] = TowerSpawner.currentTower
-			print(instance.global_position, " ", inPos.z, " ", inPos.x)
+			#print(instance.global_position, " ", inPos.z, " ", inPos.x)
 			#update risk table
 			testNum = Risk.updateRisk(TowerSpawner.currentTower, round(inPos.z), round(inPos.x), false)
 

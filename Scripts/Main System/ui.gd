@@ -1,8 +1,8 @@
 extends Control
 
-@onready var moneyLabel : RichTextLabel = $Money
-@onready var healthLabel: RichTextLabel = $Health
-@onready var roundLabel: RichTextLabel = $Round
+@onready var moneyLabel : RichTextLabel = $TextContain/Money
+@onready var healthLabel: RichTextLabel = $TextContain/Health
+@onready var roundLabel: RichTextLabel = $TextContain/Round
 @onready var path_1: Path3D = $"../Path1"
 
 

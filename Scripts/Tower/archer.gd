@@ -9,7 +9,7 @@ extends AnimatedSprite3D
 # Add to the correct group
 
 const MAXHEALTH : int = 15
-var health : int = MAXHEALTH
+var health : float = MAXHEALTH
 
 var tName : String = "Archer"
 var damage : int = 4

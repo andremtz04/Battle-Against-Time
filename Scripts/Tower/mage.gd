@@ -12,7 +12,7 @@ const MAXHEALTH : int = 30
 const MAXAGE : int = 5
 const BASEDAMGE : int = 3
 
-var health : int = MAXHEALTH
+var health : float = MAXHEALTH
 
 var tName : String = "Mage"
 var damage : int = 3

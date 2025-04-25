@@ -25,7 +25,9 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	var parent = area.get_parent()
 	if parent.is_in_group("Tower") && !parent.is_in_group("Healer"):
 		parent.health += damage
-		parent.opacity -= 0.1
+		parent.age -= 1
+		if parent.opacity >= 0.1:
+			parent.opacity -= 0.1
 		if parent.health > parent.MAXHEALTH:
 			parent.health = parent.MAXHEALTH
 			
