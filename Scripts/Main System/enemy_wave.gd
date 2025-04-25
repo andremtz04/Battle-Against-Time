@@ -29,7 +29,7 @@ func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	#print("Calculating path (Curve)\n path:\n")
 	var path:Array = Risk.calculate_path(startPos,endPos)
 	Risk.print2DArray(path)
-	print("Something worked??")
+	#print("Something worked??")
 	#Risk.print2DArray(path)
 	
 	var zVector = Vector3(0,0,0)
