@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=46 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_hl03d"]
@@ -14,8 +14,13 @@
 [ext_resource type="AudioStream" uid="uid://xa1rxri2spvr" path="res://Audio/Music/Kick.mp3" id="8_exuxu"]
 [ext_resource type="AudioStream" uid="uid://ch5a1flc2esql" path="res://Audio/Music/AtariBass.mp3" id="9_qn2xa"]
 [ext_resource type="AudioStream" uid="uid://bs7xjlov6cm88" path="res://Audio/Music/MusicBox.mp3" id="10_qdetx"]
+[ext_resource type="AudioStream" uid="uid://bj6nu7ngnxhuo" path="res://Audio/Music/Ticking/Ticking1.mp3" id="15_sxb8c"]
+[ext_resource type="AudioStream" uid="uid://cwklypl3c1sho" path="res://Audio/Music/Ticking/Ticking2.mp3" id="16_2ebfi"]
+[ext_resource type="AudioStream" uid="uid://bem1lfmnbqtm1" path="res://Audio/Music/Ticking/Ticking3.mp3" id="17_gokpr"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="17_hwd1k"]
+[ext_resource type="AudioStream" uid="uid://4qvfyxjh20cn" path="res://Audio/Music/Ticking/Ticking4.mp3" id="18_f0dyg"]
 [ext_resource type="Texture2D" uid="uid://bx01w75h7o3j" path="res://Textures/Map/oak_veneer_01_diff_1k.jpg" id="18_sky8f"]
+[ext_resource type="AudioStream" uid="uid://clqwkgn7l01pg" path="res://Audio/Music/FinalRound.mp3" id="19_i6nko"]
 [ext_resource type="Shader" path="res://Shaders/portal.gdshader" id="21_pnqap"]
 [ext_resource type="MeshLibrary" uid="uid://cy8f7gd0l6jjl" path="res://Meshes/Dungeon.tres" id="22_mjaxf"]
 
@@ -341,6 +346,31 @@ parameters/looping = true
 [node name="HiTunePlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("10_qdetx")
 bus = &"HiTune"
+parameters/looping = true
+
+[node name="Ticking1" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("15_sxb8c")
+bus = &"Ticking1"
+parameters/looping = true
+
+[node name="Ticking2" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("16_2ebfi")
+bus = &"Ticking2"
+parameters/looping = true
+
+[node name="Ticking3" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("17_gokpr")
+bus = &"Ticking3"
+parameters/looping = true
+
+[node name="Ticking4" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("18_f0dyg")
+bus = &"Ticking4"
+parameters/looping = true
+
+[node name="FinalRound" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("19_i6nko")
+bus = &"FinalMusic"
 parameters/looping = true
 
 [node name="Path1" type="Path3D" parent="."]

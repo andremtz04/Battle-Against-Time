@@ -20,12 +20,23 @@ func _ready(): #this is basically for audio
 	$Audio/KickPlayer.play()
 	$Audio/BassPlayer.play()
 	$Audio/HiTunePlayer.play()
+	$Audio/Ticking1.play()
+	$Audio/Ticking2.play()
+	$Audio/Ticking3.play()
+	$Audio/Ticking4.play()
+	$Audio/FinalRound.play()
+	
 	
 	#effectively mutes buses
 	AudioServer.set_bus_volume_db(3,-80) #Bass
 	AudioServer.set_bus_volume_db(4,-80) #Womp
 	AudioServer.set_bus_volume_db(5,-80) #Whimsy
 	AudioServer.set_bus_volume_db(6,-80) #HiTune
+	AudioServer.set_bus_volume_db(7,-80) #FinalRound
+	AudioServer.set_bus_volume_db(8,-80) #Ticking1
+	AudioServer.set_bus_volume_db(9,-80) #Ticking2
+	AudioServer.set_bus_volume_db(10,-80) #Ticking3
+	AudioServer.set_bus_volume_db(11,-80) #Ticking4
 	#AudioServer.set_bus_mute(AudioServer.get_bus_index("Kick"),1)
 	
 func _process(_delta: float) -> void:

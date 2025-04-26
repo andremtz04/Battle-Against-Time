@@ -61,7 +61,7 @@ func INIT(blocks:Array):
 func walls():
 #old, moved to calcrisk
 	for block in blockLocation:
-		Risk.riskTable[block.z][block.x] = 99 
+		Risk.riskTable[block.z][block.x] = 1000 
 	#print(Risk.riskTable)
 
 func calcRisk() -> void:
@@ -296,7 +296,7 @@ func calculate_path(startPos:Vector2i, goalPos:Vector2i) -> Array:
 			if node.position == currNode.position:
 				check = false
 		
-		if(currNode.risk<100 && check):
+		if(currNode.risk<1000 && check):
 			
 			if(currNode.position.x < riskTable[0].size()-1):
 				#check = true

@@ -101,19 +101,31 @@ func music(round:int) -> void:
 			setVol = 0;
 		if setVol < 0:
 			match(round):
+				5:
+					AudioServer.set_bus_volume_db(7,setVol)
+					AudioServer.set_bus_volume_db(11,-80)
+					AudioServer.set_bus_volume_db(6,-80)
+					AudioServer.set_bus_volume_db(5,-80)
+					AudioServer.set_bus_volume_db(4,-80)
+					AudioServer.set_bus_mute(3,true)
+					AudioServer.set_bus_volume_db(3,setVol)
 				4:
+					AudioServer.set_bus_volume_db(11,setVol)
 					AudioServer.set_bus_volume_db(6,setVol)
 					AudioServer.set_bus_volume_db(5,setVol)
 					AudioServer.set_bus_volume_db(4,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				3:
+					AudioServer.set_bus_volume_db(10,setVol)
 					AudioServer.set_bus_volume_db(5,setVol)
 					AudioServer.set_bus_volume_db(4,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				2:
+					AudioServer.set_bus_volume_db(9,setVol)
 					AudioServer.set_bus_volume_db(4,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				1:
+					AudioServer.set_bus_volume_db(8,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				0:
 					pass
@@ -125,19 +137,30 @@ func music(round:int) -> void:
 			setVol = -.1
 		if setVol >= -100:
 			match(round):
+				5:
+					AudioServer.set_bus_volume_db(7,setVol)
+					AudioServer.set_bus_volume_db(11,-80)
+					AudioServer.set_bus_volume_db(6,-80)
+					AudioServer.set_bus_volume_db(5,-80)
+					AudioServer.set_bus_volume_db(4,-80)
+					AudioServer.set_bus_volume_db(3,setVol)
 				4:
+					AudioServer.set_bus_volume_db(11,setVol)
 					AudioServer.set_bus_volume_db(6,setVol)
 					AudioServer.set_bus_volume_db(5,setVol)
 					AudioServer.set_bus_volume_db(4,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				3:
+					AudioServer.set_bus_volume_db(10,setVol)
 					AudioServer.set_bus_volume_db(5,setVol)
 					AudioServer.set_bus_volume_db(4,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				2:
+					AudioServer.set_bus_volume_db(9,setVol)
 					AudioServer.set_bus_volume_db(4,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				1:
+					AudioServer.set_bus_volume_db(8,setVol)
 					AudioServer.set_bus_volume_db(3,setVol)
 				0:
 					pass
