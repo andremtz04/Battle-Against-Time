@@ -165,6 +165,7 @@ bus = &"SFX"
 
 [node name="FarmerCoin" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_r3qmj")
+volume_db = -10.127
 bus = &"SFX"
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]

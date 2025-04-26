@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvy871iqlaul5"]
+[gd_scene load_steps=9 format=3 uid="uid://dvy871iqlaul5"]
 
 [ext_resource type="Script" path="res://Scripts/menu/game_over.gd" id="1_g1g75"]
 [ext_resource type="FontFile" uid="uid://jc25fklm5p5m" path="res://Textures/Lazy Fight.otf" id="2_575lc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cmayf25u3jlvy" path="res://Textures/Menu/End Screen/Victorian Ballroom - Dance - Day - 24x35 - 72 DPI.jpg" id="3_pd65i"]
 [ext_resource type="Texture2D" uid="uid://jw67ilycqcsb" path="res://Textures/GUI/ExitButton.png" id="4_278vc"]
 [ext_resource type="AudioStream" uid="uid://capdtg06gypom" path="res://Audio/Music/VicRoll.mp3" id="7_v14ru"]
+[ext_resource type="AudioStream" uid="uid://p2i1rfrptfac" path="res://Audio/Music/You Lose.wav" id="8_l40w5"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_g1g75")
@@ -59,6 +60,8 @@ stream = ExtResource("7_v14ru")
 volume_db = 4.0
 
 [node name="DeFeet" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("8_l40w5")
+volume_db = 4.0
 
 [connection signal="button_down" from="Buttons/ReturnMenu" to="." method="_on_return_menu_button_down"]
 [connection signal="button_down" from="Buttons/Quit" to="." method="_on_quit_button_down"]

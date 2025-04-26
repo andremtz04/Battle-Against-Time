@@ -11,6 +11,7 @@ func _ready() -> void:
 		$VictoryTexture.show()
 	else:
 		victory_defeat.text = "Defeat"
+		$Audio/DeFeet.play()
 		$DefeatTexture.show()
 
 func _process(placeholder) -> void:

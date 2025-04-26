@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bga6mkh5j441c"]
+[gd_scene load_steps=47 format=3 uid="uid://bga6mkh5j441c"]
 
 [ext_resource type="Script" path="res://Scripts/Main System/ui.gd" id="2_bppfq"]
 [ext_resource type="FontFile" uid="uid://jc25fklm5p5m" path="res://Textures/Lazy Fight.otf" id="3_4gy1q"]
@@ -19,6 +19,7 @@
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="17_hwd1k"]
 [ext_resource type="AudioStream" uid="uid://4qvfyxjh20cn" path="res://Audio/Music/Ticking/Ticking4.mp3" id="18_f0dyg"]
 [ext_resource type="Texture2D" uid="uid://bx01w75h7o3j" path="res://Textures/Map/oak_veneer_01_diff_1k.jpg" id="18_sky8f"]
+[ext_resource type="AudioStream" uid="uid://dlvbs6b5tpb7w" path="res://Audio/Effects/PlayerDeath.mp3" id="19_2ly52"]
 [ext_resource type="AudioStream" uid="uid://clqwkgn7l01pg" path="res://Audio/Music/FinalRound.mp3" id="19_i6nko"]
 [ext_resource type="Shader" path="res://Shaders/portal.gdshader" id="21_pnqap"]
 [ext_resource type="MeshLibrary" uid="uid://cy8f7gd0l6jjl" path="res://Meshes/Dungeon.tres" id="22_mjaxf"]
@@ -378,6 +379,9 @@ parameters/looping = true
 stream = ExtResource("19_i6nko")
 bus = &"FinalMusic"
 parameters/looping = true
+
+[node name="PlayerDeath" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("19_2ly52")
 
 [node name="Path1" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 1)

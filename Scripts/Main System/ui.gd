@@ -9,6 +9,8 @@ extends Control
 @onready var health = 20
 var isButtonDown : bool = false
 signal start_round
+var dead = false
+var played = false
 
 func _ready() -> void:
 	EnemySpawner.roundStarted = false
@@ -23,7 +25,14 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if health <= 0:
-		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		if(!played):
+			$"../Camera3D/Audio/PlayerDeath".play()
+			played = true
+		else:
+			if(!$"../Camera3D/Audio/PlayerDeath".playing):
+				get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+	
+	
 	moneyLabel.text = "Money: " + str(Economy.totalMoney)
 	healthLabel.text = "Health: " + str(health)
 	roundLabel.text = "Round: " + str(path_1.roundCount) + "/5"
