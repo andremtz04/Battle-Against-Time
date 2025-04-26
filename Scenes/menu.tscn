@@ -123,11 +123,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 481.0
-offset_top = 252.0
-offset_right = 624.0
-offset_bottom = 442.0
+offset_left = 436.0
+offset_top = 150.0
+offset_right = 936.0
+offset_bottom = 1154.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 
 [node name="Start" type="TextureButton" parent="Control/VBoxContainer"]
 layout_mode = 2
