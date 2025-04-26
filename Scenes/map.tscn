@@ -286,6 +286,7 @@ offset_left = 1004.0
 offset_top = 509.0
 offset_right = 1132.0
 offset_bottom = 637.0
+scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("5_2srd1")
 
 [node name="EnemyTest2" type="Button" parent="UI"]
