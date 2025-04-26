@@ -123,6 +123,12 @@ func spawn_tower() -> void:
 		map.add_child(instance)
 
 
-
+var isMuted : bool = false
 func _on_mute_button_pressed() -> void: #mute or unmute for our earsss
+	if !isMuted:
+		$"../UI/MuteButton".texture_normal = preload("res://Textures/GUI/Sound2.png")
+		isMuted = true
+	else:
+		$"../UI/MuteButton".texture_normal = preload("res://Textures/GUI/Sound1.png")
+		isMuted= false
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),!AudioServer.is_bus_mute(AudioServer.get_bus_index("Master")))
