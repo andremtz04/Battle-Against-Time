@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvy871iqlaul5"]
+[gd_scene load_steps=7 format=3 uid="uid://dvy871iqlaul5"]
 
 [ext_resource type="Script" path="res://Scripts/menu/game_over.gd" id="1_g1g75"]
-[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_3vweo"]
 [ext_resource type="FontFile" uid="uid://jc25fklm5p5m" path="res://Textures/Lazy Fight.otf" id="2_575lc"]
+[ext_resource type="Texture2D" uid="uid://bqq40soa720b1" path="res://Textures/GUI/RetryButton.png" id="3_avsvi"]
 [ext_resource type="Texture2D" uid="uid://bux5nsikhodph" path="res://Textures/Menu/End Screen/Shattered Rift - Astral - Red Star - 22x16 - 72 DPI.jpg" id="3_ghr1c"]
 [ext_resource type="Texture2D" uid="uid://cmayf25u3jlvy" path="res://Textures/Menu/End Screen/Victorian Ballroom - Dance - Day - 24x35 - 72 DPI.jpg" id="3_pd65i"]
+[ext_resource type="Texture2D" uid="uid://jw67ilycqcsb" path="res://Textures/GUI/ExitButton.png" id="4_278vc"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_g1g75")
@@ -31,11 +32,11 @@ offset_bottom = 523.0
 
 [node name="ReturnMenu" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("2_3vweo")
+texture_normal = ExtResource("3_avsvi")
 
 [node name="Quit" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("2_3vweo")
+texture_normal = ExtResource("4_278vc")
 
 [node name="DefeatTexture" type="Sprite2D" parent="."]
 visible = false
