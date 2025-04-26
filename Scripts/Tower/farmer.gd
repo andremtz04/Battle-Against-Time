@@ -34,6 +34,7 @@ const PROJECTILE = preload("res://Scenes/towers/projectile/farmer_money.tscn")
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
 	farmer.play("Idle")
+	$FarmerSpawn.play()
 	timer.start()
 
 # z = rows , x = columns
@@ -53,6 +54,7 @@ func _on_timer_timeout() -> void:
 
 func attack() -> void:
 	farmer.play("Attacking")
+	$FarmerCoin.play()
 	num_of_attacks = num_of_attacks + 1
 	await get_tree().create_timer(0.50).timeout
 	spawn_projectile()

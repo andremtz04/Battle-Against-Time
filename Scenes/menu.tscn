@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dlmu2syech5sk"]
+[gd_scene load_steps=26 format=3 uid="uid://dlmu2syech5sk"]
 
 [ext_resource type="Script" path="res://Scripts/menu/MenuScript.gd" id="1_82wa2"]
+[ext_resource type="AudioStream" uid="uid://bjdxdup0gqjyf" path="res://Audio/Music/Spookmusic.mp3" id="2_3u1c2"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="2_ivgje"]
 [ext_resource type="FontFile" uid="uid://jc25fklm5p5m" path="res://Textures/Lazy Fight.otf" id="2_y7qae"]
 [ext_resource type="Texture2D" uid="uid://cwt41kw62lq1q" path="res://Textures/GUI/StartButton.png" id="4_sohxa"]
@@ -84,6 +85,13 @@ script = ExtResource("1_82wa2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.366501, -0.930418, -4.06698e-08, 0, -4.37114e-08, 1, -0.930418, 0.366501, 1.60203e-08, 7.86142, 8.67204, 4.61853)
+
+[node name="Audio" type="Node3D" parent="Camera3D"]
+
+[node name="MenuMusic" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
+stream = ExtResource("2_3u1c2")
+autoplay = true
+parameters/looping = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

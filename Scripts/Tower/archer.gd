@@ -36,6 +36,7 @@ const PROJECTILE = preload("res://Scenes/towers/projectile/projectile.tscn")
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
 	archer.play("Idle")
+	$ArcherSpawn.play()
 
 # z = rows , x = columns
 func _process(_delta: float) -> void:
@@ -82,6 +83,7 @@ func attack() -> void:
 	if !enemyQueue.is_empty():
 		attackingNode = enemyQueue[0]
 		archer.play("Attacking")
+		$ArcherShoot.play()
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		spawn_projectile()
 		await get_tree().create_timer(0.50).timeout

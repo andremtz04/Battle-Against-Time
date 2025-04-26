@@ -35,6 +35,7 @@ const PROJECTILE = preload("res://Scenes/towers/projectile/projectile_heal.tscn"
 
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
+	$HealerSpawn.play();
 	healer.play("Idle")
 
 # z = rows , x = columns
@@ -80,6 +81,7 @@ func attack() -> void:
 				attackingNode = tower
 		
 		healer.play("Attacking")
+		$HealSound.play()
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		spawn_projectile()
 		await get_tree().create_timer(0.50).timeout

@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dysyltj04yf18"]
+[gd_scene load_steps=20 format=3 uid="uid://dysyltj04yf18"]
 
 [ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_owka5"]
 [ext_resource type="Texture2D" uid="uid://3vgabl1cxn3x" path="res://Textures/Towers/Nagi_Man.png" id="2_7a54k"]
 [ext_resource type="Script" path="res://Scripts/Tower/fist_fighter.gd" id="2_mq440"]
 [ext_resource type="AudioStream" uid="uid://ckgc3ew5hkf4e" path="res://Audio/Effects/FistAttack.mp3" id="3_h465w"]
+[ext_resource type="AudioStream" uid="uid://hcwucmbkuipq" path="res://Audio/Effects/FistSpawn.mp3" id="5_ojmxy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dua4u"]
 resource_local_to_scene = true
@@ -90,6 +91,11 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("3_h465w")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0bvxq"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_ojmxy")
+
 [node name="fist_fighter" type="AnimatedSprite3D" groups=["Tower"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 top_level = true
@@ -153,6 +159,11 @@ texture = SubResource("ViewportTexture_domdm")
 
 [node name="FistAttack" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_um5x6")
+bus = &"SFX"
+
+[node name="FistSpawn" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_0bvxq")
+bus = &"SFX"
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

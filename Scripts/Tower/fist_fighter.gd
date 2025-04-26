@@ -35,6 +35,7 @@ var enemyQueue : Array
 func _ready() -> void:
 	health_bar.max_value = MAXHEALTH
 	fist.play("Idle")
+	$FistSpawn.play()
 	##IMPLEMENT AUDIO HERE ONCE DONE
 
 # z = rows , x = columns
