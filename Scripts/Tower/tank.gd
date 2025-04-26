@@ -15,7 +15,7 @@ const MAXAGE : int = 5
 var health : float = MAXHEALTH
 
 var tName : String = "Tank"
-var damage : int = 1
+var damage : int = 2
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null
@@ -72,22 +72,25 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 
 # The attacking timer
 func _on_timer_timeout() -> void:
+	await get_tree().create_timer(seconds).timeout
 	attack()
 	aging()
 
 func attack() -> void:
-	attackingNode = enemyQueue[0]
-	if attackingNode != null:
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		tank.play("Attacking")
 		attackingNode.health -= damage
 		num_of_attacks = num_of_attacks + 1
 
 func aging() -> void:
-	if (num_of_attacks >= 20 && age <= MAXAGE):
+	if (num_of_attacks >= 10):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMAGE + age
+		damage = BASEDAMAGE + floor(age/2)
 		seconds = age * 0.5
 	

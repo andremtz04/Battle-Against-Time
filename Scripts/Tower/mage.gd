@@ -15,7 +15,7 @@ const BASEDAMGE : int = 3
 var health : float = MAXHEALTH
 
 var tName : String = "Mage"
-var damage : int = 3
+var damage : int = 5
 
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
@@ -59,10 +59,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 	if hitbox_area != area: # Ignores its own hitbox
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"): # Attack function
-			#print(parent)
 			enemyQueue.append(parent)
-			print(enemyQueue)
-			print("area attack", parent)
 			attack()
 			aging()
 			timer.start()
@@ -73,7 +70,6 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 	if hitbox_area != area:
 		var parent = area.get_parent()
 		if parent.is_in_group("Enemy"):
-			print(area, "is leaving")
 			var i = 0
 			for enemy in enemyQueue:
 				if enemy == parent:
@@ -85,7 +81,6 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 func _on_timer_timeout() -> void:
 	await get_tree().create_timer(seconds).timeout
 	attack()
-	print("timer attack")
 
 
 func attack() -> void:
@@ -97,7 +92,7 @@ func attack() -> void:
 		$MageShoot.play()
 		num_of_attacks += 1
 		spawn_projectile()
-		await get_tree().create_timer(.50).timeout
+		await get_tree().create_timer(0.50).timeout
 		mage.play("Idle")
 
 
@@ -109,10 +104,12 @@ func spawn_projectile() -> void:
 
 
 func aging() -> void:
-	if (num_of_attacks >= 15 && age <= MAXAGE):
+	if (num_of_attacks >= 5):
 		if (age <= MAXAGE):
 			age += 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMGE + age
-		seconds = age * 0.2
+		damage = BASEDAMGE + floor(age/2)
+		seconds = age * 0.5

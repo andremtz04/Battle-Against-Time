@@ -8,8 +8,8 @@ extends AnimatedSprite3D
 # Update name to ui.gd, economy.gd, tower_spawner.gd
 # Add to the correct group
 
-const MAXHEALTH : int = 30
-const BASEDAMAGE : int = 5
+const MAXHEALTH : int = 20
+const BASEDAMAGE : int = 3
 const MAXAGE : int = 5
 
 var health : float = MAXHEALTH
@@ -73,23 +73,27 @@ func _on_attack_area_area_exited(area: Area3D) -> void:
 
 # The attacking timer
 func _on_timer_timeout() -> void:
+	await get_tree().create_timer(seconds).timeout
 	attack()
 	aging()
 
 func attack() -> void:
-	attackingNode = enemyQueue[0]
-	if attackingNode != null:
+	await get_tree().create_timer(seconds).timeout
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		fist.play("Attacking")
 		$FistAttack.play()
 		attackingNode.health -= damage
 		num_of_attacks = num_of_attacks + 1
 
 func aging() -> void:
-	if (num_of_attacks >= 15 && age <= MAXAGE):
+	if (num_of_attacks >= 5):
 		if (age < 5):
 			age = age + 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMAGE + age
+		damage = BASEDAMAGE + floor(age/2)
 		seconds = age * 0.5
 	

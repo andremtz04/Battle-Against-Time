@@ -10,11 +10,11 @@ extends AnimatedSprite3D
 
 const MAXHEALTH : int = 15
 const MAXAGE : int = 5
-const BASEDAMAGE : int = 4
+const BASEDAMAGE : int = 2
 
 var health : float = MAXHEALTH
 var tName : String = "Archer"
-var damage : int = 4
+var damage : int = 3
 var age : int = 1
 var tPosition : Vector3 = Vector3(0,0,0)
 var attackingNode = null # To save the node that it is attacking
@@ -79,8 +79,8 @@ func _on_timer_timeout() -> void:
 	aging()
 
 func attack() -> void:
-	attackingNode = enemyQueue[0]
-	if attackingNode != null:
+	if !enemyQueue.is_empty():
+		attackingNode = enemyQueue[0]
 		archer.play("Attacking")
 		num_of_attacks = num_of_attacks + 1				#keeps track of number of attacks for age
 		spawn_projectile()
@@ -94,11 +94,13 @@ func spawn_projectile() -> void:
 	instance.set_variables(attackingNode, archer)
 	
 func aging() -> void:
-	if (num_of_attacks >= 1 && age <= MAXAGE):
+	if (num_of_attacks >= 5):
 		if (age <= MAXAGE):
 			age = age + 1
 			opacity += 0.1
+		else:
+			health -= MAXHEALTH * 0.25
 		num_of_attacks = 0
-		damage = BASEDAMAGE + age
+		damage = BASEDAMAGE + floor(age/2)
 		seconds = age * 0.5
 	

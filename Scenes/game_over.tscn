@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvy871iqlaul5"]
+[gd_scene load_steps=7 format=3 uid="uid://dvy871iqlaul5"]
 
 [ext_resource type="Script" path="res://Scripts/menu/game_over.gd" id="1_g1g75"]
-[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="2_3vweo"]
 [ext_resource type="FontFile" uid="uid://jc25fklm5p5m" path="res://Textures/Lazy Fight.otf" id="2_575lc"]
+[ext_resource type="Texture2D" uid="uid://bqq40soa720b1" path="res://Textures/GUI/RetryButton.png" id="3_avsvi"]
 [ext_resource type="Texture2D" uid="uid://bux5nsikhodph" path="res://Textures/Menu/End Screen/Shattered Rift - Astral - Red Star - 22x16 - 72 DPI.jpg" id="3_ghr1c"]
 [ext_resource type="Texture2D" uid="uid://cmayf25u3jlvy" path="res://Textures/Menu/End Screen/Victorian Ballroom - Dance - Day - 24x35 - 72 DPI.jpg" id="3_pd65i"]
+[ext_resource type="Texture2D" uid="uid://jw67ilycqcsb" path="res://Textures/GUI/ExitButton.png" id="4_278vc"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_g1g75")
@@ -23,7 +24,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-z_index = 1
+top_level = true
 offset_left = 466.0
 offset_top = 263.0
 offset_right = 594.0
@@ -31,31 +32,20 @@ offset_bottom = 523.0
 
 [node name="ReturnMenu" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("2_3vweo")
+texture_normal = ExtResource("3_avsvi")
 
 [node name="Quit" type="TextureButton" parent="Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("2_3vweo")
+texture_normal = ExtResource("4_278vc")
 
-[node name="DefeatTexture" type="TextureRect" parent="."]
+[node name="DefeatTexture" type="Sprite2D" parent="."]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -208.0
-offset_top = -280.0
-offset_right = 1376.0
-offset_bottom = 872.0
-grow_horizontal = 2
-grow_vertical = 2
+position = Vector2(560, 404)
 texture = ExtResource("3_ghr1c")
 
-[node name="VictoryTexture" type="TextureRect" parent="."]
+[node name="VictoryTexture" type="Sprite2D" parent="."]
 visible = false
-offset_left = -296.0
-offset_top = -204.0
-offset_right = 1432.0
-offset_bottom = 2316.0
+position = Vector2(582, 1097)
 texture = ExtResource("3_pd65i")
 
 [connection signal="button_down" from="Buttons/ReturnMenu" to="." method="_on_return_menu_button_down"]

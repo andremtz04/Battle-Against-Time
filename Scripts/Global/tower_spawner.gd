@@ -20,7 +20,6 @@ var TowerDictionary : Dictionary = {
 	"Farmer" : preload("res://Scenes/towers/farmer.tscn"),
 	"Enemy" : preload("res://Scenes/towers/enemy_1.tscn")
 }
-
 func _ready() -> void:
 	for r in row:
 		mapGrid.append([])
@@ -29,3 +28,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	SpawnTower = TowerDictionary[currentTower]
+
+func reset_map() -> void:
+	for r in row:
+		for c in col:
+			mapGrid[r][c] = null

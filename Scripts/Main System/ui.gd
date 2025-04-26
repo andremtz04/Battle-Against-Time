@@ -6,7 +6,8 @@ extends Control
 @onready var path_1: Path3D = $"../Path1"
 
 
-var health = 20
+@onready var health = 20
+var isButtonDown : bool = false
 signal start_round
 
 func _ready() -> void:

@@ -8,9 +8,9 @@ const ENEMY_PATH = preload("res://Scenes/enemy_path.tscn")
 @onready var main_map: GridMap = $"../Background Stuff/Main Map"
 
 var moveSpeed : int = 3
-var currEnemyTotal : int = 0
+@onready var currEnemyTotal : int = 0
 @export var blockLocation : Array = []
-var roundCount : int = 0
+@onready var roundCount : int = 0
 
 func newCurve(startPos:Vector2i,rows:int,cols:int) -> Curve3D:
 	#construct curve for path (CHANGE THIS INGAME)
