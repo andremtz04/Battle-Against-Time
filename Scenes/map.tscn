@@ -327,6 +327,7 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 
 [node name="BadAction" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("5_5u5l7")
 volume_db = -4.103
+bus = &"SFX"
 
 [node name="WhimsyPlayer" type="AudioStreamPlayer3D" parent="Camera3D/Audio"]
 stream = ExtResource("5_nu03c")

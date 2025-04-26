@@ -31,6 +31,7 @@ func _ready():
 	
 	
 	#effectively mutes buses
+	AudioServer.set_bus_volume_db(1,-5) #SFX
 	AudioServer.set_bus_volume_db(3,-80) #Bass
 	AudioServer.set_bus_volume_db(4,-80) #Womp
 	AudioServer.set_bus_volume_db(5,-80) #Whimsy
