@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bebyl24s5s1gd" path="res://Audio/Music/CheekyHorn.mp3" id="5_nu03c"]
 [ext_resource type="Script" path="res://Scripts/Main System/enemy_wave.gd" id="6_0jpq0"]
 [ext_resource type="AudioStream" uid="uid://d2stov0k3ufj1" path="res://Audio/Music/TromboneSadge.mp3" id="6_5kee7"]
-[ext_resource type="Texture2D" uid="uid://g8jmh6epgfur" path="res://Textures/GUI/Sound2.png" id="6_lrlrp"]
+[ext_resource type="Texture2D" uid="uid://cplsts46gorh7" path="res://Textures/GUI/Sound1.png" id="6_8mdov"]
 [ext_resource type="AudioStream" uid="uid://xa1rxri2spvr" path="res://Audio/Music/Kick.mp3" id="8_exuxu"]
 [ext_resource type="AudioStream" uid="uid://ch5a1flc2esql" path="res://Audio/Music/AtariBass.mp3" id="9_qn2xa"]
 [ext_resource type="AudioStream" uid="uid://bs7xjlov6cm88" path="res://Audio/Music/MusicBox.mp3" id="10_qdetx"]
@@ -305,7 +305,7 @@ offset_top = 523.0
 offset_right = 855.0
 offset_bottom = 976.0
 scale = Vector2(0.209464, 0.247923)
-texture_normal = ExtResource("6_lrlrp")
+texture_normal = ExtResource("6_8mdov")
 
 [node name="Lighting Stuff" type="Node3D" parent="."]
 
