@@ -13,10 +13,11 @@ script = ExtResource("1_g1g75")
 
 [node name="Victory_Defeat" type="RichTextLabel" parent="."]
 z_index = 1
-offset_left = 478.0
-offset_top = 160.0
-offset_right = 598.0
-offset_bottom = 200.0
+offset_left = 513.0
+offset_top = 110.0
+offset_right = 643.0
+offset_bottom = 150.0
+scale = Vector2(2, 2)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 7
 theme_override_fonts/normal_font = ExtResource("2_575lc")
@@ -26,10 +27,11 @@ autowrap_mode = 0
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 top_level = true
-offset_left = 466.0
-offset_top = 263.0
-offset_right = 594.0
-offset_bottom = 523.0
+offset_left = 456.0
+offset_top = 175.0
+offset_right = 956.0
+offset_bottom = 1179.0
+scale = Vector2(0.5, 0.5)
 
 [node name="ReturnMenu" type="TextureButton" parent="Buttons"]
 layout_mode = 2
