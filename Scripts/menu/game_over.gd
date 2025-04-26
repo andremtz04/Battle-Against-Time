@@ -14,7 +14,7 @@ func _ready() -> void:
 		$DefeatTexture.show()
 
 func _process(placeholder) -> void:
-	if($Audio/VicRoll.is_playing() == false):
+	if($Audio/VicRoll.is_playing() == false && EnemySpawner.didWin):
 		get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
 
