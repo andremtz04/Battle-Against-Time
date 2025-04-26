@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://csgair4oeaixd"]
+[gd_scene load_steps=5 format=3 uid="uid://csgair4oeaixd"]
 
-[ext_resource type="Texture2D" uid="uid://blwnkhikcechp" path="res://icon.svg" id="1_471cs"]
 [ext_resource type="Script" path="res://Scripts/Tower/projectile.gd" id="1_lwbrc"]
+[ext_resource type="Texture2D" uid="uid://dew8417gclamk" path="res://Textures/Towers/projectiles_game.png" id="2_xsbso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24urm"]
+atlas = ExtResource("2_xsbso")
+region = Rect2(19.6537, 16.3637, 222.543, 496.037)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_apsmg"]
 
@@ -11,7 +15,9 @@ script = ExtResource("1_lwbrc")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 billboard = 1
-texture = ExtResource("1_471cs")
+texture_filter = 0
+texture = SubResource("AtlasTexture_24urm")
+vframes = 2
 
 [node name="Ignore this" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)

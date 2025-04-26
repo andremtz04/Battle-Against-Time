@@ -97,6 +97,7 @@ material_overlay = SubResource("ShaderMaterial_dua4u")
 offset = Vector2(0, 100)
 pixel_size = 0.004
 billboard = 1
+texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_elwur")
 animation = &"Idle"
 script = ExtResource("2_mq440")

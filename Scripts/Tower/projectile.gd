@@ -12,7 +12,12 @@ func _physics_process(_delta):
 
 
 func set_variables(target: Node3D, origin : Node3D):
+	print(origin.name)
 	damage = origin.damage
+	if origin.name == "Mage":
+		$Sprite3D.frame = 0
+	if origin.name == "Archer":
+		$Sprite3D.frame = 1
 	target_node = target
 	direction = (target_node.global_position - global_position).normalized() # Sets where it wants to go
 	#direction.y += 0.25 # Makes it so it doesn't attack their feet
